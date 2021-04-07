@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>商品搜索</title>
+
+</head>
+
+<body>
+
+<!-- the top pane -->
+<div id="top_pane" class="top">
+	<div class="homepage">
+		<img class = "icon0" src="fish_emoji.png">
+		<link href="">首页
+	</div>
+
+	<div id="user" class="user">
+		<img>
+		<a href="">用户</a>
+	</div>
+
+	<div class="myorder" id="order_list">
+		<link href="">查看订单
+	</div>
+
+</div>
+
+<!-- search box -->
+<div class = "search">
+	<div class="search_logo">
+		<img class="icon_big" src="icon.png">
+	</div>
+
+	<div id="search_box" class="search_box">
+		<input type="text" id="searchInput" class="searchIn" placeholder="key word ...">
+		<input type="button" id="searchButton" class="searchButton" value="🔍">
+	</div>
+</div>
+
+<!-- show result -->
+<div class = "result">
+	
+	<!-- filter -->
+	<div class = "filter">
+		<button id="byPrice" class="filterButton">价格</button>
+		<button id="byDate" class="filterButton">新品</button>
+
+		<div class = "filterPrice">价格区间：
+			<input id="in1" type="text" class="inputP">~
+			<input id="in2" type="text" class="inputP">
+			<button id="confirm" class="filterButton">确定</button>
+		</div>
+		
+	</div>
+
+	<hr class="lineBreak">
+
+	<!-- product list -->
+	<div id = "lists"></div>
+
+
+	<!-- page controller -->
+	<div class = "modify_page" valign="bottom">
+		<ol class="page_num">
+			<li class="pC"><span class="page_change previousP">上一页</span></li>
+			<li class="cur_page"><a href="">1</a></li>
+			<li class="pC"><span class="page_change nextP">下一页</span></li>
+		</ol>
+		<div class="page_jump">
+			<input type="text" maxlength="4" class = "pageJ">
+			<input type="button" value="Go" class = "Goto">
+		</div>
+	</div>
+</div>
+
+</body>
+
+<link rel="stylesheet" href="search_result.css" type="text/css">
