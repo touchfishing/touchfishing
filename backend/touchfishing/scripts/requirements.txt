@@ -1,0 +1,14 @@
+django
+pymysql
+numpy
+django-redis
+opencv-python
+torch
+Pillow
+#django-tinymce
+torchvision
+celery
+xlrd
+synonyms
+moviepy
+shapely

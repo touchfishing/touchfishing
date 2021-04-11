@@ -1,0 +1,26 @@
+
+vi /lib/systemd/system/tf.service
+systemctl enable tf
+
+cd /etc/systemd/system/timers.target.wants
+#rm apt-daily-upgrade.timer apt-daily.timer
+
+#假设服务配置文件命令 tf.service
+#将服务设置为开机启动
+systemctl enable tf.service
+#关闭服务开机启动
+systemctl disable tf.service
+#查看服务的状态
+systemctl status tf.service
+#启动服务，对应 tf.service中的ExecStart
+systemctl start tf.service
+#重启服务，对应 tf.service中的ExecReload
+systemctl restart dophin.service
+#停止服务，对应 tf.service中的ExecStop
+systemctl stop tf.service
+#后台进程重新加载配置（相当于重启）
+systemctl daemon-reload
+
+#查看运行日志（记录了服务的运行日志，可以用于服务启动失败时的错误定位）
+journalctl -xe
+

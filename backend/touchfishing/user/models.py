@@ -11,8 +11,12 @@ class User(models.Model):
         default=0,
         verbose_name="性别",
     )
-    avatar = models.FileField(verbose_name='头像',upload_to='avatars/',default='avatars/default.jpg')
+    avatar = models.FileField(verbose_name='头像',upload_to='users/',default='users/default.jpg')
+    address = models.CharField(verbose_name='收获地址',max_length=200,null=True)
+    pay_pwd = models.CharField(verbose_name='支付密码',max_length=100,null=True)
     intro = models.CharField(verbose_name='简介',max_length=500,blank=True)
+    create_time = models.DateTimeField(verbose_name='创建时间',default=timezone.now)
+    update_time = models.DateTimeField(verbose_name='更新时间',auto_now=True)
     class Meta:
         verbose_name = '用户'
         verbose_name_plural = '用户表'

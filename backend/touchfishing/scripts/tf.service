@@ -1,0 +1,14 @@
+[Unit]
+Description=TravelLog server deamon
+After=network.target
+
+[Service]
+User=www
+Type=simple
+KillMode=control-group
+ExecStart=bash /www/wwwroot/tf/scripts/start.sh /www/wwwroot/tf
+ExecReload=/www/wwwroot/tf/scripts/reload.sh  /www/wwwroot/tf
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
