@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class User(models.Model):
     uid = models.AutoField(verbose_name='用户编号',primary_key=True)
@@ -12,7 +13,7 @@ class User(models.Model):
         verbose_name="性别",
     )
     avatar = models.FileField(verbose_name='头像',upload_to='users/',default='users/default.jpg')
-    address = models.CharField(verbose_name='收获地址',max_length=200,null=True)
+    address = models.CharField(verbose_name='收货地址',max_length=200,null=True)
     pay_pwd = models.CharField(verbose_name='支付密码',max_length=100,null=True)
     intro = models.CharField(verbose_name='简介',max_length=500,blank=True)
     create_time = models.DateTimeField(verbose_name='创建时间',default=timezone.now)

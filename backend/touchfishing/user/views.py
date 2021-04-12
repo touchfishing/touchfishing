@@ -8,6 +8,9 @@ from django.http import HttpResponse
 import random
 import base64
 
+font_size=35
+font = ImageFont.truetype('touchfishing/resources/kumo.ttf', 35)
+
 # Create your views here.
 def index(request):
     return render(request,'user.html')
@@ -158,10 +161,25 @@ def updateInfo(request):
     if request.method == "POST":
         gender = request.POST.get("gender")
         intro = request.POST.get("intro")
+        phone = request.POST.get("phone")
+        email = request.POST.get("phone")
+        address = request.POST.get("address")
+        intro = request.POST.get("intro")
+        pay_pwd = request.POST.get("pay_pwd")
         if gender:
             user_obj.gender=gender
         if intro:
             user_obj.intro=intro
+        if phone:
+            user_obj.phone=phone
+        if email:
+            user_obj.email=email
+        if address:
+            user_obj.address=address
+        if intro:
+            user_obj.intro=intro
+        if pay_pwd:
+            user_obj.pay_pwd=pay_pwd
         user_obj.save()
     
     return_data = {
@@ -171,6 +189,7 @@ def updateInfo(request):
         'email' : user_obj.email,
         'gender' : user_obj.gender,
         'intro' : user_obj.intro,
+        'address' : user_obj.address,
         'avatar' : '/media/'+user_obj.avatar.name
     }
     return returnList(return_data)
@@ -213,7 +232,6 @@ def uploadAvatar(request):
     return return200('成功地修改了头像')
 
 def check_code(width=90, height=40, char_length=4):  
-    from touchfishing.load_files import font,font_size
     #print(os.path.isfile('kumo.tff'))
     code = []
     img = Image.new(mode='RGB', size=(width, height), color=(255, 255, 255))
@@ -268,29 +286,17 @@ def getCAPTCHA(request):
     img,captcha = check_code()
     stream = BytesIO()
     img.save(stream, 'png')
-    base64_img = base64.b64encode(stream.getvalue()).decode()
     request.session["captcha"] = captcha.lower()
-    return_data = [
-        {
-            "index" : 1,
-            'img' : base64_img
-        }
-    ]
-    #print('session:'+request.session.session_key+' ,code:'+captcha)
-    return returnList(return_data)
-    #return HttpResponse('<img src="data:image/png;base64,'+base64_img+'"/>')
-    
-    #base64_data = base64.b64encode(f.read())
-    #return HttpResponse(stream.getvalue(), content_type='image/png')
+    return HttpResponse(stream.getvalue(), content_type='image/png')
    
 
 def sendCodeMail(target_addr,code):
-    title='touchfishingLog密码重置验证码'
-    content='您好！<br>请使用以下代码完成验证：<b>%s</b><br>touchfishingLog'% code
+    title='摸渔密码重置验证码'
+    content='您好！<br>请使用以下代码完成验证：<b>%s</b><br>TouchFishing'% code
     return sendMail(target_addr,title,content)
 
 def sendCodePhone(target_addr,code):
-    content='您的touchfishingLog密码重置验证码为：%s。'% code
+    content='您的摸渔密码重置验证码为：%s。'% code
     return sendSMS(target_addr,content)
 
 
