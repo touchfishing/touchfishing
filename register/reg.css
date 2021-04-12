@@ -1,0 +1,239 @@
+li {
+	list-style-type: none;
+}
+
+.reg_box {
+	width: 90%;
+	background-color: #f2eded61;
+    box-shadow: 0 0 9px 2px #c0c0c073;
+    margin: auto;
+    max-width: 800px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+/* buyer, seller switcher */
+.buyerseller {
+	background-color: #2196F310;
+}
+.outerSwitch {
+	position: relative;
+    display: inline-flex;
+    width: 49%;
+    height: 50px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sw {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	height: 0px;
+	width: 0px;
+	border: 0;
+	overflow: hidden;
+}
+
+.outerSwitch label {
+	display: inline-block;
+	width: 90%;
+	color: black;
+	
+	font-size: 24px;
+	text-align: center;
+	padding: 8px 16px;
+	transition: all 0.1s ease-in-out;
+}
+.outerSwitch label:hover {
+	cursor: pointer;
+}
+
+.sw:checked + label {
+	color: white;
+	background-color: #2196F390;
+	border-bottom: 2px solid #2196F3CD;
+}
+
+/* register info */
+.reg_info {
+	display: block;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 18px;
+	line-height: 50px;
+}
+
+.reg_align {
+	display: block;
+	text-align: center;
+	margin: auto;
+	max-width: 60%;
+	min-width: 350px;
+}
+
+.infoinput {
+	border-radius: 20px;
+	box-shadow: 0px 0px 8px 2px #cacacab3;
+	background-color: white;
+    border: none;
+    min-width: 50%;
+    max-width: 80%;
+    outline: none;
+    line-height: 30px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 8px;
+    text-align: center;
+	font-size: 18px;
+}
+.infoinput:focus {
+    outline-width: 0;
+}
+
+.checkpsw {
+	list-style-type: none;
+	float: right;
+}
+.checkpsw li {
+	line-height: 25px;
+	text-align: left;
+}
+
+.after_align {
+	margin-top: 50px;
+}
+.after_align label {
+	display: inline-block;
+}
+
+.genderSwitch {
+	display: inline-block;
+}
+
+.gendertext {
+	margin-right: 70px;
+}
+
+.bioinput {
+	resize: none;
+}
+
+.confirmB {
+	margin-top: 80px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.confirmButton {
+	display: block;
+	background-color: #2284d98a;
+	color: white;
+	border-radius: 25px;
+	box-shadow: 0 0 8px 2px #d5cfcf70;
+	border: none;
+	cursor: pointer;
+	width: 100px;
+	height: 40px;
+	font-size: 28px;
+	margin: auto;
+}
+.confirmButton:focus {
+    outline-width: 0;
+}
+
+
+
+/* region select */
+.selectRegion {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	background-color: #2e2c2c9e;
+	width: 100%;
+	height: 100%;
+}
+
+.selectRegion .addrBorder {
+	display: block;
+	min-width: 360px;
+	max-width: 90%;
+	min-height: 300px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    vertical-align: middle;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 3px #585555d1;
+}
+
+.selectRegion .addrBorder label {
+	margin-left: 5px;
+}
+
+.selectRegion .addrBorder li{
+	display: inline-block;
+}
+
+.selectRegion .addrBorder .radioAddr {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	height: 0px;
+	width: 0px;
+	border: 0;
+	overflow: hidden;
+}
+
+.selectRegion .addrBorder .radioAddrL {
+	display: inline-block;
+	color: black;
+	background-color: none;
+	/*background-color: #2196F310;*/
+	text-align: center;
+	padding: 5px 8px;
+	transition: all 0.1s ease-in-out;
+}
+
+.selectRegion .addrBorder .radioAddrL:hover {
+	background-color: #2196F310;
+	cursor: pointer;
+}
+
+.selectRegion .addrBorder .radioAddr:checked + label {
+	color: white;
+	background-color: #2196F390;
+}
+
+.selectRegion .addrBorder .titleSelect {
+	display: block;
+	font-size: 24px;
+	text-align: center;
+	margin: auto;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.selectRegion .addrBorder .confirmRegion {
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: auto;
+}
+
+.selectRegion .addrBorder .confirmRegion button {
+	font-size: 20px;
+	display: inline-flex;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 0 0 9px 2px #c0c0c073;
+	margin-left: 20px;
+	padding: 5px 8px;
+}
+.selectRegion .addrBorder .confirmRegion button:focus {
+    outline-width: 0;
+}

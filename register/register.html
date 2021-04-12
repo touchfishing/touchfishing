@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>用户注册</title>
+
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+	
+<!-- register in the middle -->
+<div>
+	<div class="reg_box">
+		<!-- change to buyer or seller? -->
+		<div id="buyerseller" class="buyerseller" style="text-align: center;" onclick="switchReg()">
+			<li class="outerSwitch">
+				<input type="radio" id="buyer_tag" class="sw" name="bs" value="buyer" checked onclick="switchReg()">
+				<label for="buyer_tag">个人用户</label>
+			</li>
+			<li class="outerSwitch">
+				<input type="radio" id="seller_tag" class="sw" name="bs" value="seller"  onclick="switchReg()">
+				<label for="seller_tag">商家</label>
+			</li>
+		</div>
+		<!-- add line here-->
+
+		<!--below fill the info-->
+		<div id="reg_info" class="reg_info">
+			<div class="reg_align">
+				
+			<div>
+				<label for="username">用户名</label>
+				<input id="username" type="text" class="infoinput">
+			</div>
+			<div>
+				<label for="email">邮箱</label>
+				<input id="email" type="text" class="infoinput">
+			</div>
+			<div>
+				<label for="phone">手机号</label>
+				<input id="phone" type="text" class="infoinput">
+			</div>
+			<div>
+				<label for="psw">密码</label>
+				<input id="psw" type="password" class="infoinput" oninput="checkPSW()">
+				<!--check if psw is strong-->
+				<div id="checkpsw" class="checkpsw">
+					<li>
+						<input type="checkbox" id="pswlength" name="pswc" onclick="return false">
+						<label for="pswlength">密码长度8至16位且不含空格</label>
+					</li>
+					<li>
+						<input type="checkbox" id="numberstring" name="pswc" onclick="return false">
+						<label for="numberstring">密码至少包含数组和英文字母</label>
+					</li>
+				</div>
+			</div>
+
+			<div class="after_align">
+				<label class="gendertext">性别</label>
+				<div class="genderSwitch">
+					<input type="radio" id="male_tag" class="gender" name="gen" value="male">
+					<label for="buyer_tag">男</label>
+				</div>
+				<div class="genderSwitch">
+					<input type="radio" id="female_tag" class="gender" name="gen" value="female">
+					<label for="seller_tag">女</label>
+				</div>
+				<div class="genderSwitch">
+					<input type="radio" id="untold_tag" class="gender" name="gen" value="untold">
+					<label for="seller_tag">保密</label>
+				</div>
+			</div>
+
+			<div>
+				<label for="avatar">头像</label>
+				<div id="avatar" class="avatar"></div>
+			</div>
+			<div class="store">
+				<label for="storename">店铺名</label>
+				<input id="storename" type="text" class="infoinput">
+			</div>
+			<div class="store">
+				<label for="storecity">店铺所在城市</label>
+				<input id="storecity" type="button" class="infoinput cityS" onclick="openRegion()">
+			</div>
+
+			<div>
+				<label id="bioText" for="bio">简介</label>
+				<textarea id="bio" name="bio" rows="3" class="infoinput bioinput"></textarea>
+			</div>
+
+			<div>
+				<label for="captcha">验证码</label>
+				<input id="captcha" type="text" class="infoinput">
+			</div>
+
+			</div>
+			
+		</div>
+
+		<!--confirm info-->
+		<div class="confirmB">
+			<button id="confirmReg" class="confirmButton" onclick="confirm()">注册</button>
+		</div>
+
+	</div>
+</div>
+
+
+<!--choose region-->
+<div id = "selectRegion" class = "selectRegion">
+	<div class = "addrBorder">
+		<div id = "provinceSelect">
+			<label for="provinces" class="titleSelect">省/直辖市</label>
+			<div id = "provinces"></div>
+		</div>
+		<div id = "citySelect">
+			<label for="cities"  class="titleSelect">市/区</label>
+			<div id = "cities"></div>
+		</div>
+
+		<div class = "confirmRegion">
+			<button onclick="selectCity()">确定</button>
+			<button onclick="closeRegion()">取消</button>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<link rel="stylesheet" href="reg.css" type="text/css">
+
+<script type="text/javascript" src="register.js"></script>
