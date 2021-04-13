@@ -127,6 +127,21 @@ def register(request,use_captcha=1):
     else:
         return return403('无效参数：缺少手机或邮箱')
     user_obj = User(uname=uname,pwd=hashlib.md5(password.encode(encoding='UTF-8')).hexdigest(),email=email,phone=phone)
+    gender = request.POST.get("gender")
+    intro = request.POST.get("intro")
+    address = request.POST.get("address")
+    pay_pwd = request.POST.get("pay_pwd")
+    avatar_name = request.POST.get("avatar_name")
+    if gender:
+        user_obj.gender=gender
+    if intro:
+        user_obj.intro=intro
+    if address:
+        user_obj.address=address
+    if pay_pwd:
+        user_obj.pay_pwd=pay_pwd
+    if avatar_name:
+        user_obj.avatar.name='/media/users/'+avatar_name
     user_obj.save()
     return return200('注册成功')
 
@@ -166,6 +181,7 @@ def updateInfo(request):
         address = request.POST.get("address")
         intro = request.POST.get("intro")
         pay_pwd = request.POST.get("pay_pwd")
+        avatar_name = request.POST.get("avatar_name")
         if gender:
             user_obj.gender=gender
         if intro:
@@ -180,6 +196,8 @@ def updateInfo(request):
             user_obj.intro=intro
         if pay_pwd:
             user_obj.pay_pwd=pay_pwd
+        if avatar_name:
+            user_obj.avatar.name='/media/users/'+avatar_name
         user_obj.save()
     
     return_data = {

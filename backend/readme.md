@@ -101,8 +101,12 @@
 | 名称         | 类型   | 必填 | 说明                                     |
 | ------------ | ------ | ---- | ---------------------------------------- |
 | uname        | string | 是   | 用户名                                   |
-| phone或email | string | 是   | 手机或邮箱至少一项                       |
+| phone或email | string | 是   | 手机和邮箱中的至少一项                   |
 | password     | string | 是   | 用户密码                                 |
+| intro        | string | 否   | 个人介绍                                 |
+| address      | string | 否   | 收货地址                                 |
+| pay_pwd      | string | 否   | 支付密码                                 |
+| avatar_name  | string | 否   | 要修改的默认头像文件名                   |
 | no_captcha   | bool   | 否   | 是否关闭验证码（debug）                  |
 |              |        |      | 密码先在前端加密一次，头像这里不用上传。 |
 
@@ -182,6 +186,7 @@
 | email  | string | 否   | 要修改的邮箱     |
 | intro  | string | 否   | 要修改的个人介绍 |
 | address | string | 否   | 要修改的收货地址     |
+| avatar_name | string | 否 | 要修改的默认头像文件名 |
 | pay_pwd  | string | 否   | 要修改的支付密码   |
 
 返回参数：
