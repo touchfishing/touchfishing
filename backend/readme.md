@@ -108,7 +108,7 @@
 | pay_pwd      | string | 否   | 支付密码                                 |
 | avatar_name  | string | 否   | 要修改的默认头像文件名                   |
 | no_captcha   | bool   | 否   | 是否关闭验证码（debug）                  |
-|              |        |      | 密码先在前端加密一次，头像这里不用上传。 |
+| captcha      | string | 是   | 密码先在前端加密一次，头像这里不用上传。 |
 
 返回参数：
 

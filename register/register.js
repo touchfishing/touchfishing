@@ -14,6 +14,8 @@ var bio = document.getElementById("bio");
 var storeEle = document.getElementsByClassName("store");
 var bioText = document.getElementById("bioText");
 
+var captchaval = document.getElementById("captcha");
+
 /* event listener to hide them */
 document.getElementById("reg_info").addEventListener('click', function(){
 	if (unamecheck[0].children[0].checked == true &&
@@ -217,7 +219,15 @@ for(var i = 0; i < ava_num; i++) {
 }
 
 
-
+var captchadiv = document.getElementById("captchaget");
+var captchapic = document.createElement("img");
+captchadiv.addEventListener("click", getcaptcha);
+getcaptcha();
+function getcaptcha() {
+	captchapic.innerHTML = "";
+	captchapic.src = "https://tf.mrning.com/user/captcha";
+}
+captchadiv.appendChild(captchapic);
 
 
 /* buyer click register 
@@ -262,7 +272,8 @@ function buyerRegister() {
 		intro: bio.value,
 		gender: gendertag, 
 		avatar_name: avaname,
-		no_captcha: true
+		no_captcha: false,
+		captcha: captchaval.value
   	},
 	function(data, status) {
     	console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
