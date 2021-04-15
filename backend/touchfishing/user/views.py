@@ -37,7 +37,7 @@ def login(request,use_captcha=1):
         if not captcha:
             return return403('请输入验证码')
         if not session_captcha:
-            return return403('未获取验证码')
+            return ('未获取验证码')
         if request.session["captcha"]=='':
             return return403('验证码过期')
         if captcha.lower()!=session_captcha:
@@ -503,7 +503,7 @@ def editShop(request):
         return return403('无此用户')
     shop_obj = Shop.objects.filter(user=user_obj).first()
     if not shop_obj:
-        return return403('尚未开店')
+        return return403('用户尚无店铺')
     sname = request.POST.get("sname")
     saddr = request.POST.get("saddr")
     avatar = request.FILES.get('avatar',None)

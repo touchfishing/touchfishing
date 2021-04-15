@@ -266,7 +266,9 @@
 
 
 
-## 店铺管理（以下尚未部署）
+## （以下尚未测试部署）
+
+## 店铺管理
 
 #### 我的店铺
 
@@ -412,17 +414,23 @@
 
 
 
-## 商品管理相关（以下尚未实现）
+## 商品管理
 
-#### 上货
+#### 新建商品
 
-接口地址：/product/manage/new
+接口地址：/product/new
 
 请求方式：POST
 
+#### 查看商品
+
+接口地址：/product/\<int:pid\>
+
+请求方式：GET
+
 #### 修改信息
 
-接口地址：/product/manage/info
+接口地址：/product/\<int:pid\>/edit
 
 请求方式：POST
 
@@ -432,13 +440,7 @@
 
 #### 购买产品
 
-接口地址：/order/new
-
-请求方式：POST
-
-#### 发货/确认收货
-
-接口地址：/order/info
+接口地址：/product/\<int:pid\>/order
 
 请求方式：POST
 
@@ -448,13 +450,13 @@
 
 #### 按标题
 
-接口地址：/search/title/[名称]
+接口地址：/search/name/\<str:keyword\>
 
 请求方式：GET
 
 #### 搜店铺
 
-接口地址：/search/shop/[名称]
+接口地址：/search/shop/\<str:keyword\>
 
 请求方式：GET
 

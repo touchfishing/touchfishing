@@ -21,9 +21,10 @@ class Product(models.Model):
     shop = models.ForeignKey(Shop,on_delete=models.CASCADE,verbose_name='店铺')
     price = models.FloatField(verbose_name='价格',default=0)
     info = models.TextField(verbose_name='商品信息',default='')
-    volume = models.TextField(verbose_name='销量',default='')
+    volume = models.IntegerField(verbose_name='销量',default='')
     tag = models.TextField(verbose_name='分类',default='')
     cover = models.FileField(verbose_name='封面',upload_to='products/',default='products/default.jpg')
+    status = models.IntegerField(verbose_name='余量',default=0)
     create_time = models.DateTimeField(verbose_name='创建时间',default=timezone.now)
     update_time = models.DateTimeField(verbose_name='更新时间',auto_now=True)
     class Meta:

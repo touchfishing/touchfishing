@@ -22,17 +22,12 @@ from django.views.static import serve
 
 mall_patterns = [
     path('', indexview.index),
-    path('', mallview.getOrder),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
-    path('', indexview.index),
+    path('product/new', mallview.newProduct),
+    path('product/<int:pid>', mallview.getProduct),
+    path('product/<int:pid>/edit', mallview.editProduct),
+    path('product/<int:pid>/order', mallview.placeOrder),
+    path('search/name/<str:keyword>', mallview.search_by_name),
+    path('search/shop/<str:keyword>', mallview.search_shop),
 ]
 
 urlpatterns = [
