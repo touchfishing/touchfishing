@@ -11,5 +11,10 @@ urlpatterns = [
     path('avatar', views.uploadAvatar),
     path('captcha', views.getCAPTCHA),
     path('info', views.updateInfo),
-    path('reset',views.resetPwd)
+    path('reset',views.resetPwd),
+    path('shop',views.myShop),
+    path('shop/new',views.openShop),
+    path('shop/edit',views.editShop),
+    path('orders',views.myOrders),
+    path('order/<int:oid>',views.getOrder),
 ]

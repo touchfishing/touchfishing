@@ -5,6 +5,7 @@ from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from user.models import User
 from django.http import HttpResponse
+from mall.models import Shop,Product,Order
 import random
 import base64
 
@@ -141,7 +142,7 @@ def register(request,use_captcha=1):
     if pay_pwd:
         user_obj.pay_pwd=pay_pwd
     if avatar_name:
-        user_obj.avatar.name='/media/users/'+avatar_name
+        user_obj.avatar.name='users/'+avatar_name
     user_obj.save()
     return return200('注册成功')
 
@@ -197,7 +198,7 @@ def updateInfo(request):
         if pay_pwd:
             user_obj.pay_pwd=pay_pwd
         if avatar_name:
-            user_obj.avatar.name='/media/users/'+avatar_name
+            user_obj.avatar.name='users/'+avatar_name
         user_obj.save()
     
     return_data = {
@@ -243,7 +244,7 @@ def uploadAvatar(request):
     '''
     user_obj = User.objects.filter(uid = uid).first()
     if os.path.isfile(user_obj.avatar.path): #删除已经存在的图片
-        if 'default' not in user_obj.avatar.path:
+        if ('default' not in user_obj.avatar.path) and ('male' not in user_obj.avatar.path) :
             os.remove(user_obj.avatar.path)
     user_obj.avatar = avatar
     user_obj.save()
@@ -430,3 +431,164 @@ def sendMail(target_addr,title,content):
 
 def sendSMS(phone,content):
     return False
+
+
+def myShop(request):
+    uid = request.session.get('uid',None)
+    if not uid:
+        return return403('未登录或登录超时')
+    user_obj = User.objects.filter(uid=uid).first()
+    if not user_obj:
+        return return403('无此用户')
+    shop_obj = Shop.objects.filter(user=user_obj).first()
+    if not shop_obj:
+        return return403('尚未开店')
+    return_data = {
+        'sid' : shop_obj.sid,
+        'uid' : shop_obj.user.uid,
+        'sname' : shop_obj.sname,
+        'saddr' : shop_obj.saddr,
+        'avatar' : shop_obj.avatar,
+        'create_time' : shop_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : shop_obj.update_time.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    return returnList(return_data)
+
+def openShop(request):
+    uid = request.session.get('uid',None)
+    if not uid:
+        return return403('未登录或登录超时')
+    user_obj = User.objects.filter(uid=uid).first()
+    if not user_obj:
+        return return403('无此用户')
+    shop_obj = Shop.objects.filter(user=user_obj).first()
+    if shop_obj:
+        return return403('已经有店铺啦')
+    sname = request.POST.get("sname")
+    saddr = request.POST.get("saddr")
+    if not (sname and saddr):
+        return403("缺少sname或saddr")
+    shop_obj=Shop(user=user_obj,sname=sname,saddr=saddr)
+    avatar = request.FILES.get('avatar',None)
+    avatar_name = request.POST.get("avatar_name")
+    if avatar_name:
+        shop_obj.avatar.name='shops/'+avatar_name
+    if avatar:
+        f, e = os.path.splitext(avatar.name)
+        imgName=str(shop_obj.sid)+e
+        avatar.name = imgName
+        if os.path.isfile(shop_obj.avatar.path): #删除已经存在的图片
+            if 'default' not in shop_obj.avatar.path:
+                os.remove(shop_obj.avatar.path)
+        shop_obj.avatar = avatar
+    shop_obj.save()
+
+    return_data = {
+        'sid' : shop_obj.sid,
+        'uid' : shop_obj.user.uid,
+        'sname' : shop_obj.sname,
+        'saddr' : shop_obj.saddr,
+        'avatar' : shop_obj.avatar,
+        'create_time' : shop_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : shop_obj.update_time.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    return returnList(return_data)
+
+def editShop(request):
+    uid = request.session.get('uid',None)
+    if not uid:
+        return return403('未登录或登录超时')
+    user_obj = User.objects.filter(uid=uid).first()
+    if not user_obj:
+        return return403('无此用户')
+    shop_obj = Shop.objects.filter(user=user_obj).first()
+    if not shop_obj:
+        return return403('尚未开店')
+    sname = request.POST.get("sname")
+    saddr = request.POST.get("saddr")
+    avatar = request.FILES.get('avatar',None)
+    avatar_name = request.POST.get("avatar_name")
+
+    if sname:
+        shop_obj.sname=sname
+    if saddr:
+        shop_obj.saddr=saddr
+    if avatar_name:
+        shop_obj.avatar.name='shops/'+avatar_name
+    if avatar:
+        f, e = os.path.splitext(avatar.name)
+        imgName=str(shop_obj.sid)+e
+        avatar.name = imgName
+        if os.path.isfile(shop_obj.avatar.path): #删除已经存在的图片
+            if 'default' not in shop_obj.avatar.path:
+                os.remove(shop_obj.avatar.path)
+        shop_obj.avatar = avatar
+    shop_obj.save()
+    return_data = {
+        'sid' : shop_obj.sid,
+        'uid' : shop_obj.user.uid,
+        'sname' : shop_obj.sname,
+        'saddr' : shop_obj.saddr,
+        'avatar' : shop_obj.avatar,
+        'create_time' : shop_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : shop_obj.update_time.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    return returnList(return_data)
+
+def myOrders(request):
+    uid = request.session.get('uid',None)
+    if not uid:
+        return return403('未登录或登录超时')
+    user_obj = User.objects.filter(uid=uid).first()
+    if not user_obj:
+        return return403('无此用户')    
+    orders = Order.objects.filter(user=user_obj)
+    return_data = {
+        'uid' : user_obj.uid,
+        'order_num' : orders.count(),
+        'orders' : []
+    }
+    for i in orders:
+        return_data['orders'].append({
+            'oid' : i.oid,
+            'pid' : i.product.pid,
+            'pname' : i.product.pname,
+            'price' : i.product.price,
+            'product_num' : i.product_num,
+            'sid' : i.product.shop.sid,
+            'sname' : i.product.shop.sname,
+            'status' : i.status,
+            'deliverer' : i.deliverer,
+            'delivery_number' : i.delivery_number,
+            'create_time' : i.strftime("%Y-%m-%d %H:%M:%S"),
+            'update_time' : i.strftime("%Y-%m-%d %H:%M:%S")
+        })
+    return returnList(return_data)
+
+def getOrder(request,oid):
+    uid = request.session.get('uid',None)
+    if not uid:
+        return return403('未登录或登录超时')
+    user_obj = User.objects.filter(uid=uid).first()
+    if not user_obj:
+        return return403('无此用户')    
+    order_obj = Order.objects.filter(user=user_obj,oid=oid).first()
+    if not order_obj:
+        return return403('找不到订单')
+    return_data = {
+        'uid' : user_obj.uid,
+        'oid' : user_obj.oid,
+        'pid' : user_obj.product.pid,
+        'pname' : user_obj.product.pname,
+        'price' : user_obj.product.price,
+        'product_num' : user_obj.product_num,
+        'sid' : user_obj.product.shop.sid,
+        'sname' : user_obj.product.shop.sname,
+        'status' : user_obj.status,
+        'deliverer' : user_obj.deliverer,
+        'delivery_number' : user_obj.delivery_number,
+        'address' : user_obj.address,
+        'create_time' : user_obj.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : user_obj.strftime("%Y-%m-%d %H:%M:%S")
+    }
+    return returnList(return_data)
