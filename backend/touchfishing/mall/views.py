@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+def index(request):
+    return True
+
 def open_shop(request):
     return True
 
@@ -28,4 +31,10 @@ def search_by_name(request):
     return True
 
 def search_by_shop(request):
+    return True
+
+def my_order(request):
+    return True
+
+def product_by_class(request):
     return True

@@ -5,6 +5,9 @@ systemctl enable tf
 cd /etc/systemd/system/timers.target.wants
 #rm apt-daily-upgrade.timer apt-daily.timer
 
+service tf stop
+service tf start
+
 #假设服务配置文件命令 tf.service
 #将服务设置为开机启动
 systemctl enable tf.service

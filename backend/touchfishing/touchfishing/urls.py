@@ -16,13 +16,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path,re_path
 from . import views as indexview
+from mall import views as mallview
 from django.conf import settings
 from django.views.static import serve 
 
+mall_patterns = [
+    path('', indexview.index),
+    path('', mallview.getOrder),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+    path('', indexview.index),
+]
 
 urlpatterns = [
-    path('', indexview.index),
     path('user/', include('user.urls')),
+    path('',include(mall_patterns)),
     path('admin/', admin.site.urls),
 ]
 
