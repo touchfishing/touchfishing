@@ -126,8 +126,8 @@ li {
 .dropdown {
 	display: inline-block;
 	background-color: white;
-    width: 300px;
-    height: 380px;
+    width: 20%;
+    height: 90%;
 	margin: 10px;
 	margin-left: 150px;
 	box-shadow: 3px 3px 8px 2px #cacacab3;
@@ -156,29 +156,36 @@ li {
 
 .imgBox {
 	position: relative;
-	float: right;
-	width: 600px;
-	height: 380px;
-	margin-top: 10px;
-	margin-right: 150px;
-	overflow: hidden;
+    float: right;
+    width: 50%;
+    height: 100%;
+    display: block;
+    margin-top: 10px;
+    margin-right: 5%;
+    overflow: hidden;
 }
 
 .imgBox ul {
 	position: absolute;
-	top: 0;
-	width: 400%;
-	margin: 0;
-	padding: 0;
+    top: 0;
+    width: 400%;
+    margin: auto;
+    height: 100%;
+    padding: 0;
 }
 
 .imgBox ul li {
 	float: left;
+    width: 25%;
+    height: 100%;
+    display: inline-block;
+}
+.imgborder {
+	height: 100%;
 }
 .imgBox img{
-	width: 600px;
-	height: 380px;
-
+	max-width: 100%;
+	object-fit: cover;
 }
 .circle {
     position: absolute;

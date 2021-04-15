@@ -1,8 +1,11 @@
-var isBuyer = document.getElementById("buyer_tag");
-var isSeller = document.getElementById("seller_tag");
-
 var username = document.getElementById("username");
+var unamecheck = document.getElementById("checkuname").children; /* [0, 1] */
+
 var email = document.getElementById("email");
+var emailcheck = document.getElementById("checkemail").children; /* [0] */
+
+var phone = document.getElementById("phone");
+
 var psw = document.getElementById("psw");
 var pswcheck = document.getElementById("checkpsw").children; /* [0, 1, 2] */
 
@@ -11,9 +14,62 @@ var bio = document.getElementById("bio");
 var storeEle = document.getElementsByClassName("store");
 var bioText = document.getElementById("bioText");
 
-switchReg();
+var captchaval = document.getElementById("captcha");
 
-/* personal info and store info switcher */
+/* event listener to hide them */
+document.getElementById("reg_info").addEventListener('click', function(){
+	if (unamecheck[0].children[0].checked == true &&
+		unamecheck[1].children[0].checked == true) {
+		hideCheckUname();
+	}
+	else {
+		showCheckUname();
+	}
+
+	if (emailcheck[0].children[0].checked == true || email.value == "") {
+		hideCheckEmail();
+	}
+	else {
+		showCheckEmail();
+	}
+	if (email.value != "" || phone.value != "") {
+		document.getElementById("mp").checked = true;
+	}
+	else {
+		document.getElementById("mp").checked = false;
+	}
+})
+
+function showCheckUname() {
+	var schun = document.getElementById("checkuname");
+	if (schun.style.display == "none" || schun.style.display == "")
+		schun.style.display = "block";
+}
+function hideCheckUname() {
+	var schun = document.getElementById("checkuname");
+	schun.style.display = "none";
+}
+
+function showCheckEmail() {
+	var schem = document.getElementById("checkemail");
+	if (schem.style.display == "none" || schem.style.display == "")
+		schem.style.display = "block";
+}
+function hideCheckEmail() {
+	var schem = document.getElementById("checkemail");
+	schem.style.display = "none";
+}
+
+function showCheckPsw() {
+	var schpsw = document.getElementById("checkpsw");
+	schpsw.style.display = "block";
+}
+
+
+
+/* personal info and store info switcher
+   not used currently, ignore it
+*/
 function switchReg() {
 	if (isBuyer.checked == true) {
 		bioText.innerText = "个人简介";
@@ -24,8 +80,54 @@ function switchReg() {
 	else {
 		bioText.innerText = "店铺简介";
 		for (var i = 0; i < storeEle.length; i++) {
-			storeEle[i].style.display = "block";
+			storeEle[i].style.display = "table-row";
 		}
+	}
+}
+
+
+/* check if username is valid */
+function checkUname() {
+	showCheckUname();
+	var thename = username.value;
+	if (/^\d+$/.test(thename)) { // only number
+		//console.log("username cannot contain only digits");
+		unamecheck[0].children[0].checked = false;
+	}
+	else {
+		unamecheck[0].children[0].checked = true;
+	}
+	var isValid = true;
+	var invalidstring = [' ', '$', '#', '@', "!", ',', '.', '*', '/', '\\','&','\'','\"'];
+	for (var i in invalidstring) {
+		if (thename.indexOf(invalidstring[i]) >= 0) {
+			isValid = false;
+			break;
+		}
+	}
+	if (isValid) {
+		unamecheck[1].children[0].checked = true;
+	}
+	else {
+		unamecheck[1].children[0].checked = false;
+	}
+	if (thename == "") {
+		unamecheck[0].children[0].checked = false;
+		unamecheck[1].children[0].checked = false;
+	}
+}
+
+/* check if email is valid */
+function checkEmail() {
+	showCheckEmail();
+	var theemail = email.value;
+	var hasLetter = /[A-Za-z]/;
+	if (theemail.indexOf('@') >= 0 && theemail.indexOf('.') > theemail.indexOf('@') + 1
+		&& hasLetter.test(theemail.substr(theemail.length-1)) && theemail.substr(0, 1) != '@') {
+		emailcheck[0].children[0].checked = true;
+	}
+	else {
+		emailcheck[0].children[0].checked = false;
 	}
 }
 
@@ -49,21 +151,33 @@ function checkPSW() {
 
 /* press Register button */
 function confirm() {
-	var res = [];
-	res.push(isBuyer.checked);
-	res.push(isSeller.checked);
-	res.push(username.value);
-	res.push(email.value);
-	res.push(psw.value);
-	res.push(bio.value);
-	console.log(res);
-
-	buyerRegister();
+	if (unamecheck[0].children[0].checked == true && 
+		unamecheck[1].children[0].checked == true) {
+		if ((email.value != "" && emailcheck[0].children[0].checked == true)
+			|| email.value == "" && phone.value != "") {
+			if (pswcheck[0].children[0].checked == true && 
+				pswcheck[1].children[0].checked == true) {
+				// if captcha
+				buyerRegister();
+			}
+			else {
+				alert("invalid password");
+			}
+		}
+		else {
+			alert("invalid email");
+		}
+	}
+	else {
+		alert("invalid username");
+	}
 }
 
 
 /* avatar */
 var ava = document.getElementById("avatar");
+var ava0 = document.getElementById("avatar0");
+var ava1 = document.getElementById("avatar1");
 var ava_num = 10;
 var avaname = [];
 for(var i = 1; i <= ava_num/2; i++) {
@@ -76,160 +190,44 @@ var avapath = "../avatar/";
 for(var i = 0; i < ava_num; i++) {
 	var avat = document.createElement("img");
 	avat.src = avapath + avaname[i];
-	avat.style.width = "50px";
-	ava.appendChild(avat);
+	avat.setAttribute("class", "avatarimg");
+	avat.style.width = "45px";
+
+	var avadiv = document.createElement("div");
+	avadiv.setAttribute("class", "avaSwitch");
+
+	var radioavatar = document.createElement("input");
+	radioavatar.setAttribute("type", "radio");
+	radioavatar.setAttribute("class", "avatarradio");
+	radioavatar.setAttribute("id", avaname[i]);
+	radioavatar.setAttribute("value", avaname[i]);
+	radioavatar.setAttribute("name", "ava");
+
+	var labelavatar = document.createElement("label");
+	labelavatar.setAttribute("for", avaname[i]);
+	labelavatar.appendChild(avat);
+
+	avadiv.appendChild(radioavatar);
+	avadiv.appendChild(labelavatar);
+
+	if(i < 5) {
+		ava0.appendChild(avadiv);
+	}
+	else
+		ava1.appendChild(avadiv);
 	/////////////////////
 }
 
 
-
-var getJSON = function(url, callback) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', url, true);
-	xhr.responseType = 'json';
-	xhr.onload = function() {
-		var status = xhr.status;
-		if (status === 200) {
-			callback(null, xhr.response);
-		} else {
-			callback(status, xhr.response);
-		}
-	};
-	xhr.send();
-};
-
-
-/* in seller register, the region selection */
-var provinceUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/province.json";
-var cityUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/city.json";
-var countyUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/county.json";
-
-var provinceData, cityData;
-
-getJSON(provinceUrl, function(err, data) {
-	if (err !== null) {
-		alert('Sorry, something went wrong: ' + err);
-	} else {
-		console.log("the province data", data);
-		provinceData = data;
-		addProvince();
-	}
-});
-
-getJSON(cityUrl, function(err, data) {
-	if (err !== null) {
-		alert('Sorry, something went wrong: ' + err);
-	} else {
-		console.log("the city data", data);
-		cityData = data;
-	}
-});
-
-var provinceID = [];
-
-function addProvince() {
-	var provinces = document.getElementById("provinces");
-
-	for (var i = 0; i < provinceData.length; i++) {
-
-		var p_li = document.createElement("li");
-
-		var radioInput = document.createElement('input');
-		radioInput.setAttribute('type', 'radio');
-		radioInput.setAttribute('name', 'pro');
-		radioInput.setAttribute('class', 'radioAddr');
-		radioInput.setAttribute('id', 'pro_'+ i);
-		radioInput.setAttribute('onclick', 'addCity()');
-
-		var radioLabel = document.createElement('label');
-		radioLabel.setAttribute('for', 'pro_'+ i);
-		radioLabel.setAttribute('class', 'radioAddrL');
-		radioLabel.innerText = provinceData[i].name;
-
-		p_li.appendChild(radioInput);
-		p_li.appendChild(radioLabel);
-
-		provinces.appendChild(p_li);
-
-		var proString = provinceData[i].url;
-		provinceID.push(proString.substring(proString.length-7, proString.length-5))
-	}
+var captchadiv = document.getElementById("captchaget");
+var captchapic = document.createElement("img");
+captchadiv.addEventListener("click", getcaptcha);
+getcaptcha();
+function getcaptcha() {
+	captchapic.innerHTML = "";
+	captchapic.src = "https://tf.mrning.com/user/captcha";
 }
-
-function addCity() {
-	var cities = document.getElementById("cities");
-	while (cities.firstChild) {
-        cities.removeChild(cities.firstChild);
-    }
-
-	var provinces = document.getElementById("provinces");
-    var checkedNum;
-    for (var i = 0; i < provinces.childElementCount; i++) {
-    	if (provinces.children[i].firstChild.checked == true) {
-    		checkedNum = i;
-    		break;
-    	}
-    }
-
-    for (var i = 0; i < cityData.length; i++) {
-    	if (cityData[i].id.startsWith(provinceID[checkedNum])) {
-    		var p_li = document.createElement("li");
-
-			var radioInput = document.createElement('input');
-			radioInput.setAttribute('type', 'radio');
-			radioInput.setAttribute('name', 'cit');
-			radioInput.setAttribute('class', 'radioAddr');
-			radioInput.setAttribute('id', 'city_'+ i);
-
-			var radioLabel = document.createElement('label');
-			radioLabel.setAttribute('for', 'city_'+ i);
-			radioLabel.setAttribute('class', 'radioAddrL');
-			radioLabel.innerText = cityData[i].name;
-
-			p_li.appendChild(radioInput);
-			p_li.appendChild(radioLabel);
-
-			cities.appendChild(p_li);
-    	}
-    	
-    }
-}
-
-function selectCity() {
-	var provinces = document.getElementById("provinces");
-	var cities = document.getElementById("cities");
-	var pro_name, city_name;
-	for (var i = 0; i < provinces.childElementCount; i++) {
-    	if (provinces.children[i].firstChild.checked == true) {
-    		pro_name = provinces.children[i].children[1].innerText;
-    		break;
-    	}
-    }
-    for (var i = 0; i < cities.childElementCount; i++) {
-    	if (cities.children[i].firstChild.checked == true) {
-    		city_name = cities.children[i].children[1].innerText;
-    		break;
-    	}
-    }
-
-    console.log(pro_name, city_name);
-
-    var applyCity = document.getElementById("storecity");
-    applyCity.value = pro_name + " " + city_name;
-
-    closeRegion();
-}
-
-function openRegion() {
-	var regionSelect = document.getElementById("selectRegion");
-	regionSelect.style.display = "block";
-}
-
-function closeRegion() {
-	var regionSelect = document.getElementById("selectRegion");
-	regionSelect.style.display = "none";
-}
-
+captchadiv.appendChild(captchapic);
 
 
 /* buyer click register 
@@ -237,6 +235,21 @@ function closeRegion() {
  undone currently
 */
 function buyerRegister() {
+	var gendertag = 2;
+	if (document.getElementById("male_tag").checked == true) {
+		gendertag = 0;
+	}
+	if (document.getElementById("female_tag").checked == true) {
+		gendertag = 1;
+	}
+	var avaselected = document.getElementsByClassName("avatarradio");
+	var avaname = "male_01.png";
+	for (var i in avaselected) {
+		if (avaselected[i].checked == true) {
+			avaname = avaselected[i].id;
+			break;
+		}
+	}
 	/*$.ajax({
 		type: "POST",
 		url: "https://tf.mrning.com/user/register",
@@ -254,11 +267,24 @@ function buyerRegister() {
 	{
 		uname: username.value, 
 		email: email.value, 
+		phone: phone.value, 
 		password: psw.value, 
-		no_captcha: true
+		intro: bio.value,
+		gender: gendertag, 
+		avatar_name: avaname,
+		no_captcha: false,
+		captcha: captchaval.value
   	},
 	function(data, status) {
-    	alert("Data: " + data + "\nStatus: " + status);
+    	console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
+    	if (status == "success") {
+    		alert(data.msg);
+    		if (data.code == 200){
+    			// page location
+    			//window.location.href = "index.html";
+    			alert("跳转页面\n现在先不给你跳哈哈哈");
+    		}
+    	}
 	});
 
 

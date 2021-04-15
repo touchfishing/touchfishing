@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>用户注册</title>
+
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+	
+<!-- register in the middle -->
+<div>
+	<div class="reg_box">
+		<!-- change to buyer or seller? -->
+		<div id="buyerseller" class="buyerseller" style="text-align: center;">
+			<div class="bsslabel">用户注册</div>
+		</div>
+		<!-- add line here-->
+
+		<!--below fill the info-->
+		<div id="reg_info" class="reg_info">
+
+		<table border='0' cellpadding='0' cellspacing='0' align='center'>
+
+			<div class="reg_align">
+
+			<tr>
+				<td span="1" style="width: 40%;"></td>
+				<td span="1" style="width: 60%;"></td>
+			</tr>
+				
+			<tr>
+				<td><label for="username">用户名</label></td>
+				<td><input id="username" type="text" class="infoinput" oninput="checkUname()" onclick="showCheckUname()"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<div id="checkuname" class="checkinfo checkpsw">
+					<li class="checking">
+						<input type="checkbox" id="namenum" name="unc" onclick="return false" class="chkipt">
+						<span class="checkmark"></span>
+						<label for="namenum" class="chklab">用户名不能为纯数字</label>
+					</li>
+					<li class="checking">
+						<input type="checkbox" id="validcharacter" name="unc" onclick="return false" class="chkipt">
+						<span class="checkmark"></span>
+						<label for="validcharacter" class="chklab">用户名只能含有中文、英文或数字</label>
+					</li>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="email">邮箱</label></td>
+				<td><input id="email" type="text" class="infoinput" oninput="checkEmail()" onclick="showCheckEmail()"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<div id="checkemail" class="checkinfo checkpsw">
+					<li class="checking">
+						<input type="checkbox" id="mailvalid" name="mailc" onclick="return false" class="chkipt">
+						<span class="checkmark"></span>
+						<label for="namenum" class="chklab">请输入正确的邮箱格式</label>
+					</li>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="phone">手机号</label></td>
+				<td><input id="phone" type="text" class="infoinput"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<div id="checkmailphone" class="checkinfo">
+					<li class="checking">
+						<input type="checkbox" id="mp" name="mp" onclick="return false" class="chkipt">
+						<span class="checkmark"></span>
+						<label for="mp" class="chklab">邮箱和手机号不能同时为空</label>
+					</li>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="psw">密码</label></td>
+				<td><input id="psw" type="password" class="infoinput" oninput="checkPSW()" onclick="showCheckPsw()">
+				<!--check if psw is strong-->
+				<div id="checkpsw" class="checkpsw checkinfo">
+					<li class="checking">
+						<input type="checkbox" id="pswlength" name="pswc" onclick="return false" class="chkipt">
+						<span class="checkmark"></span>
+						<label for="pswlength" class="chklab">密码长度8至16位且不含空格</label>
+					</li>
+					<li class="checking">
+						<input type="checkbox" id="numberstring" name="pswc" onclick="return false" class="chkipt">
+						<span class="checkmark"></span>
+						<label for="numberstring" class="chklab">密码至少包含数组和英文字母</label>
+					</li>
+				</div></td>
+			</tr>
+
+			<tr>
+				<td><label class="gendertext">性别</label></td>
+				<td><div class="genderOuter"><li class="genderSwitch">
+					<input type="radio" id="male_tag" class="gender" name="gen" value="male">
+					<label for="male_tag" class="genderlabel">男</label>
+				</li>
+				<li class="genderSwitch">
+					<input type="radio" id="female_tag" class="gender" name="gen" value="female">
+					<label for="female_tag" class="genderlabel">女</label>
+				</li>
+				<li class="genderSwitch">
+					<input type="radio" id="untold_tag" class="gender" name="gen" value="untold">
+					<label for="untold_tag" class="genderlabel">保密</label>
+				</li></div></td>
+			</tr>
+
+			<tr>
+				<td><label for="avatar">头像</label></td>
+				<td><table id="avatar" class="avatar">
+					<tr><div id="avatar0"></div></tr>
+					<tr><div id="avatar1"></div></tr>
+				</table></td>
+			</tr>
+		<!--
+			<tr class="store">
+				<td><label for="storename">店铺名</label></td>
+				<td><input id="storename" type="text" class="infoinput"></td>
+			</tr>
+			<tr class="store">
+				<td><label for="storecity">店铺所在城市</label></td>
+				<td><input id="storecity" type="button" class="infoinput cityS" onclick="openRegion()"></td>
+			</tr>
+		-->
+
+			<tr>
+				<td><label id="bioText" for="bio">个人简介</label></td>
+				<td><textarea id="bio" name="bio" rows="3" class="infoinput bioinput"></textarea></td>
+			</tr>
+
+			<tr>
+				<td><label for="captcha">验证码</label></td>
+				<td><input id="captcha" type="text" class="infoinput"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a id="captchaget"></a></td>
+			</tr>
+			</div>
+			
+		</table>
+		</div>
+
+		<!--confirm info-->
+		<div class="confirmB">
+			<button id="confirmReg" class="confirmButton" onclick="confirm()">注册</button>
+		</div>
+
+	</div>
+</div>
+
+
+<!--choose region-->
+<!--
+<div id = "selectRegion" class = "selectRegion">
+	<div class = "addrBorder">
+		<div id = "provinceSelect">
+			<label for="provinces" class="titleSelect">省/直辖市</label>
+			<div id = "provinces"></div>
+		</div>
+		<div id = "citySelect">
+			<label for="cities"  class="titleSelect">市/区</label>
+			<div id = "cities"></div>
+		</div>
+
+		<div class = "confirmRegion">
+			<button onclick="selectCity()">确定</button>
+			<button onclick="closeRegion()">取消</button>
+		</div>
+	</div>
+</div>
+-->
+
+</body>
+
+<link rel="stylesheet" href="reg.css" type="text/css">
+<link rel="stylesheet" href="checkbox.css" type="text/css">
+
+<script type="text/javascript" src="register.js"></script>
+
+<!--
+<script type="text/javascript" src="regionSelect.js"></script>
+<link rel="stylesheet" href="regionSelect.css" type="text/css">
+-->

@@ -2,6 +2,13 @@ li {
 	list-style-type: none;
 }
 
+img {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .reg_box {
 	width: 90%;
 	background-color: #f2eded61;
@@ -12,10 +19,17 @@ li {
     margin-bottom: 5%;
 }
 
+.bsslabel {
+	color: white;
+	font-size: 28px;
+	box-shadow: 0px 5px 6px 0px #c7bbbb78;
+    margin: auto;
+    line-height: 50px;
+}
 
 /* buyer, seller switcher */
 .buyerseller {
-	background-color: #2196F310;
+	background-color: #1c90ecd4;
 }
 .outerSwitch {
 	position: relative;
@@ -81,7 +95,6 @@ li {
     max-width: 80%;
     outline: none;
     line-height: 30px;
-    float: right;
     margin-top: 8px;
     margin-right: 8px;
     text-align: center;
@@ -93,9 +106,9 @@ li {
 
 .checkpsw {
 	list-style-type: none;
-	float: right;
+	display: none;
 }
-.checkpsw li {
+.checkinfo li {
 	line-height: 25px;
 	text-align: left;
 }
@@ -107,12 +120,11 @@ li {
 	display: inline-block;
 }
 
+.genderOuter {
+	margin: auto;
+}
 .genderSwitch {
 	display: inline-block;
-}
-
-.gendertext {
-	margin-right: 70px;
 }
 
 .bioinput {
@@ -143,43 +155,14 @@ li {
 }
 
 
-
-/* region select */
-.selectRegion {
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: none;
-	background-color: #2e2c2c9e;
-	width: 100%;
-	height: 100%;
+/* checking info valid */
+.checkinfo {
+	padding-left: 0;
 }
 
-.selectRegion .addrBorder {
-	display: block;
-	min-width: 360px;
-	max-width: 90%;
-	min-height: 300px;
-    background: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: auto;
-    vertical-align: middle;
-    border-radius: 5px;
-    box-shadow: 0px 0px 7px 3px #585555d1;
-}
 
-.selectRegion .addrBorder label {
-	margin-left: 5px;
-}
-
-.selectRegion .addrBorder li{
-	display: inline-block;
-}
-
-.selectRegion .addrBorder .radioAddr {
+/* gender */
+.gender {
 	position: absolute;
 	clip: rect(0, 0, 0, 0);
 	height: 0px;
@@ -187,53 +170,49 @@ li {
 	border: 0;
 	overflow: hidden;
 }
-
-.selectRegion .addrBorder .radioAddrL {
+.genderlabel {
 	display: inline-block;
-	color: black;
-	background-color: none;
-	/*background-color: #2196F310;*/
 	text-align: center;
-	padding: 5px 8px;
-	transition: all 0.1s ease-in-out;
+	padding-left: 5px;
+	padding-right: 5px;
+	transition: all 0.1s linear;
 }
-
-.selectRegion .addrBorder .radioAddrL:hover {
-	background-color: #2196F310;
+.genderlabel:hover {
 	cursor: pointer;
 }
-
-.selectRegion .addrBorder .radioAddr:checked + label {
+.genderSwitch input:checked + label {
 	color: white;
-	background-color: #2196F390;
-}
-
-.selectRegion .addrBorder .titleSelect {
-	display: block;
-	font-size: 24px;
-	text-align: center;
-	margin: auto;
-	padding-top: 20px;
-	padding-bottom: 10px;
-}
-
-.selectRegion .addrBorder .confirmRegion {
-	display: block;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin: auto;
-}
-
-.selectRegion .addrBorder .confirmRegion button {
-	font-size: 20px;
-	display: inline-flex;
+	background-color: #0d8febc2;
 	border-radius: 5px;
-	border: none;
-	box-shadow: 0 0 9px 2px #c0c0c073;
-	margin-left: 20px;
-	padding: 5px 8px;
+	line-height: 32px;
 }
-.selectRegion .addrBorder .confirmRegion button:focus {
-    outline-width: 0;
+
+/* avatar */
+.avatar {
+    margin: auto;
+}
+.avatar img{
+	display: inline-flex;
+}
+.avaSwitch {
+	display: inline-flex;
+}
+.avaSwitch input {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	height: 0px;
+	width: 0px;
+	border: 0;
+	overflow: hidden;
+}
+.avaSwitch label {
+	display: inline-block;
+	text-align: center;
+	transition: all 0.1s ease-in-out;
+}
+.avaSwitch label:hover {
+	cursor: pointer;
+}
+.avaSwitch input:checked + label .avatarimg {
+	-webkit-filter: drop-shadow(0px 0px 6px #eb740dc2);
 }
