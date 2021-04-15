@@ -1,0 +1,111 @@
+a {
+	text-decoration: none;
+}
+li {
+	list-style-type: none;
+}
+
+img {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.proMargin {
+	display: block;
+	margin: auto;
+	width: 95%;
+}
+
+.proLists_ {
+	display: block;
+	margin: auto;
+    text-align: center;
+}
+.proLists_ li {
+	display: inline-block;
+	max-width: 200px;
+	margin: 10px 5px 10px 5px;
+}
+
+.picDiv {
+	display: block;
+}
+.picDiv img {
+	max-width: 100%;
+	cursor: pointer;
+}
+
+.proName {
+	display: block;
+	text-align: left;
+}
+.proName a {
+	cursor: pointer;
+	display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sameLine {
+	display: block;
+	min-height: 35px;
+	line-height: 35px;
+    margin-top: 3px;
+}
+
+.proPrice {
+	display: inline-block;
+	position: relative;
+    float: left;
+    font-size: 28px;
+    color: #ff7676d4;
+	margin-left: 5px;
+}
+
+.proSellVol {
+	display: inline-block;
+	position: relative;
+	float: right;
+	margin-right: 5px;
+}
+
+.proStore {
+	display: block;
+    float: left;
+    color: grey;
+    cursor: pointer;
+}
+
+.proStore a {
+	display: inline-block;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.proStore img {
+	display: inline-block;
+    width: 20px;
+}
+
+/* tooltip */
+.tooltiptext {
+	visibility: hidden;
+	width: 200px;
+    background-color: #bff6ffe0;
+    color: #000;
+    text-align: center;
+    border-radius: 15px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+	transform: translate(0, -160%);
+}
+
+.proName a:hover + .tooltiptext {
+	visibility: visible;
+}

@@ -8,6 +8,8 @@
 </head>
 
 <link rel="stylesheet" href="search_result.css" type="text/css">
+<link rel="stylesheet" href="product_list.css" type="text/css">
+<link rel="stylesheet" href="../region/regionSelect.css" type="text/css">
 
 <body>
 
@@ -64,10 +66,15 @@
 		<button id="byPrice" class="filterButton">价格</button>
 		<button id="byDate" class="filterButton">新品</button>
 
-		<div class = "filterPrice">价格区间：
+		<div class = "filterPrice">价格区间:
 			<input id="in1" type="text" class="inputP">~
 			<input id="in2" type="text" class="inputP">
 			<button id="confirm" class="filterButton">确定</button>
+		</div>
+
+		<div class="regionFilter">发货地:
+			<input id="region_select" type="button" class="reg_fil" value="全国境内" onclick="openRegion()">
+			<input id="region_clear" type="button" class="reg_fil reg_clear" value="清空" onclick="clearRegion()">
 		</div>
 		
 	</div>
@@ -75,7 +82,7 @@
 	<hr class="lineBreak">
 
 	<!-- product list -->
-	<div id = "lists"></div>
+	<div class="proMargin"><div id = "lists" class="proLists_"></div></div>
 
 
 	<!-- page controller -->
@@ -94,3 +101,6 @@
 
 </body>
 
+<script type="text/javascript" src="../JS_library/getJSON.js"></script>
+<script type="text/javascript" src="search.js"></script>
+<script type="text/javascript" src="../region/regionSelect.js"></script>

@@ -1,18 +1,4 @@
-var getJSON = function(url, callback) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', url, true);
-	xhr.responseType = 'json';
-	xhr.onload = function() {
-		var status = xhr.status;
-		if (status === 200) {
-			callback(null, xhr.response);
-		} else {
-			callback(status, xhr.response);
-		}
-	};
-	xhr.send();
-};
-
+addDom();
 
 /* in seller register, the region selection */
 var provinceUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/province.json";
@@ -25,7 +11,7 @@ getJSON(provinceUrl, function(err, data) {
 	if (err !== null) {
 		alert('Sorry, something went wrong: ' + err);
 	} else {
-		console.log("the province data", data);
+		//console.log("the province data", data);
 		provinceData = data;
 		addProvince();
 	}
@@ -35,12 +21,62 @@ getJSON(cityUrl, function(err, data) {
 	if (err !== null) {
 		alert('Sorry, something went wrong: ' + err);
 	} else {
-		console.log("the city data", data);
+		//console.log("the city data", data);
 		cityData = data;
 	}
 });
 
 var provinceID = [];
+
+function addDom() {
+	var selectRegion = document.createElement("div");
+	selectRegion.setAttribute("class", "selectRegion");
+	selectRegion.setAttribute("id", "selectRegion");
+
+	var addrBorder = document.createElement("addrBorder");
+	addrBorder.setAttribute("class","addrBorder");
+
+	var provinceSelect = document.createElement("provinceSelect");
+	provinceSelect.setAttribute("class","provinceSelect");
+	var labelforprovinces = document.createElement("label");
+	labelforprovinces.setAttribute("for","provinces");
+	labelforprovinces.setAttribute("class","titleSelect");
+	labelforprovinces.innerText="(大陆地区)省/直辖市";
+	var provinces__div = document.createElement("div");
+	provinces__div.setAttribute("id", "provinces");
+	provinceSelect.appendChild(labelforprovinces);
+	provinceSelect.appendChild(provinces__div);
+
+	var citySelect = document.createElement("citySelect");
+	citySelect.setAttribute("class","citySelect");
+	var labelforcities = document.createElement("label");
+	labelforcities.setAttribute("for","provinces");
+	labelforcities.setAttribute("class","titleSelect");
+	labelforcities.innerText="市/区";
+	var cities__div = document.createElement("div");
+	cities__div.setAttribute("id","cities");
+	citySelect.appendChild(labelforcities);
+	citySelect.appendChild(cities__div);
+
+	var confirmRegion = document.createElement("confirmRegion");
+	confirmRegion.setAttribute("class","confirmRegion");
+	var buttonS = document.createElement("button");
+	var buttonC = document.createElement("button");
+	buttonS.innerText="确定";
+	buttonC.innerText="取消";
+	buttonS.addEventListener("click", selectCity);
+	buttonC.addEventListener("click", closeRegion);
+	confirmRegion.appendChild(buttonS);
+	confirmRegion.appendChild(buttonC);
+
+	addrBorder.appendChild(provinceSelect);
+	addrBorder.appendChild(citySelect);
+	addrBorder.appendChild(confirmRegion);
+
+	selectRegion.appendChild(addrBorder);
+
+	document.body.appendChild(selectRegion);
+}
 
 function addProvince() {
 	var provinces = document.getElementById("provinces");
@@ -127,9 +163,9 @@ function selectCity() {
     	}
     }
 
-    console.log(pro_name, city_name);
+    //console.log(pro_name, city_name);
 
-    var applyCity = document.getElementById("storecity");
+    var applyCity = document.getElementById("region_select");
     applyCity.value = pro_name + " " + city_name;
 
     closeRegion();

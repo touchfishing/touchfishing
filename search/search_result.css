@@ -206,15 +206,38 @@ a {
 }
 .filterPrice {
 	display: inline-block;
-	margin-left: 100px;
+	margin-left: 3%;
+}
+
+.regionFilter {
+	display: inline-block;
+	margin-left: 3%;
+}
+
+.reg_fil {
+	min-width: 50px;
+	box-shadow: 0px 0px 3px 2px #cacacab3;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	line-height: 20px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.reg_fil:focus {
+    outline-width: 0;
+}
+.reg_clear {
+	background-color: #ff2828a1 !important;
+	color: white !important;
 }
 
 /* the break line */
 .lineBreak {
 	display: block;
-	width: 90%;
-	border-width: 2px;
+	width: 95%;
 	box-shadow: 0 0 2px 2px #d3d3d340;
+	border-top: 0px #000000;
 }
 
 
@@ -224,7 +247,6 @@ a {
 	display: block;
 	text-align: center;
 	position: relative;
-  	margin-top: 100%;
 }
 .page_num {
 	display: inline-block;
