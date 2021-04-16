@@ -28,8 +28,8 @@ class Product(models.Model):
     create_time = models.DateTimeField(verbose_name='创建时间',default=timezone.now)
     update_time = models.DateTimeField(verbose_name='更新时间',auto_now=True)
     class Meta:
-        verbose_name = '店铺'
-        verbose_name_plural = '店铺表'
+        verbose_name = '商品'
+        verbose_name_plural = '商品表'
     def __str__(self):
         return "%s(%s)"% (self.pid,self.pname)
 
@@ -37,9 +37,9 @@ class Order(models.Model):
     oid = models.AutoField(verbose_name='订单号',primary_key=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='用户')
     product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name='商品')
-    product_num = models.IntegerField(verbose_name='商品数量')
+    quantity = models.IntegerField(verbose_name='商品数量',default=0)
     status = models.SmallIntegerField(
-        choices=((0,'等待确认'),(1,"等待发货"),(2,"等待买房确认"),(3,"已完成")),
+        choices=((0,'等待确认'),(1,"等待发货"),(2,"等待买方确认"),(3,"已完成")),
         default=0,
         verbose_name="订单状态",
     )
@@ -52,5 +52,5 @@ class Order(models.Model):
         verbose_name = '订单'
         verbose_name_plural = '订单表'
     def __str__(self):
-        return "%s(%s)"% (self.oid,self.pname)
+        return "%s(%s)"% (self.oid,self.product.pname)
     

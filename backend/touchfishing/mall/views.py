@@ -3,7 +3,11 @@ import os
 from user.models import User
 from django.http import HttpResponse
 from mall.models import Shop,Product,Order
+import threading
 import random
+import json
+
+lock = threading.Lock()
 
 def newProduct(request):
     uid = request.session.get('uid',None)
@@ -119,15 +123,31 @@ def editProduct(request,pid):
 
 def placeOrder(request,pid):
     uid = request.session.get('uid',None)
+    address = request.POST.get("address")
+    quantity = request.POST.get("quantity")
     if not uid:
         return return403('未登录或登录超时')
     user_obj = User.objects.filter(uid=uid).first()
     if not user_obj:
         return return403('无此用户')
+    if not(address and quantity):
+        return return403('缺少address或quantity')
     product_obj = Product.objects.filter(pid=pid).first()
     if not product_obj:
         return return403('无此商品')
-    #to be finished
+    with lock:
+        remains_num = product_obj.status
+        if product_obj.status < int(quantity):
+            return return403('商品购买数量超过限制')
+        order_obj=Order(user=user_obj,product=product_obj,quantity=int(quantity))
+        order_obj.save()
+        product_obj.status=remains_num-int(quantity)
+        product_obj.save()
+    return_data = {
+        'oid' : order_obj.oid,
+        'status' : order_obj.status,
+    }
+    return returnList(return_data)
 
 def search_by_name(request,keyword):
     products = Product.objects.filter(pname__contains=keyword)
