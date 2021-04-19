@@ -13,7 +13,7 @@ class Shop(models.Model):
         verbose_name = '店铺'
         verbose_name_plural = '店铺表'
     def __str__(self):
-        return "%s(%s)"% (self.sid,self.smame)
+        return "%s(%s)"% (self.sid,self.sname)
 
 class Product(models.Model):
     pid = models.AutoField(verbose_name='商品编号',primary_key=True)

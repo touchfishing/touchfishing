@@ -43,7 +43,7 @@ def newProduct(request):
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
-        'cover' : product_obj.cover,
+        'cover' : '/media/'+product_obj.cover.name,
         'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
     }
@@ -62,7 +62,7 @@ def getProduct(request,pid):
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
-        'cover' : product_obj.cover,
+        'cover' : '/media/'+product_obj.cover.name,
         'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
     }
@@ -115,7 +115,7 @@ def editProduct(request,pid):
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
-        'cover' : product_obj.cover,
+        'cover' : '/media/'+product_obj.cover.name,
         'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
     }
@@ -165,7 +165,7 @@ def search_by_name(request,keyword):
             'price' : i.price,
             'volume' : i.volume,
             'tag' : i.tag,
-            'cover' : i.cover,
+            'cover' : '/media/'+i.cover.name,
         })
     return returnList(return_data)
 
