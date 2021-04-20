@@ -1,28 +1,56 @@
-var thelist = document.getElementById("lists");
+function searchItem() {
+	var thekeyword = document.getElementById("searchInput").value;
+	var queryParams = new URLSearchParams(window.location.search);
+	queryParams.set("kw", thekeyword);
+	history.pushState(null, null, "?"+queryParams.toString());
+	showResult();
+}
 
-var searchInput = document.getElementById("searchInput");
-var keyword = searchInput.value;
-
-// product list json
 var list;
 
+var thelist = document.getElementById("lists");
 
-/* only test */
-var JSONurl = "https://raw.githubusercontent.com/Co10/temp_json/main/product.json";
-//var JSONurl = "test/product.json";
-getJSON(JSONurl, function(err, data) {
-	if (err !== null) {
-		alert('Sorry, something went wrong: ' + err);
-	} else {
-		console.log("the data", data);
-		list = data;
-		appendList();
-	}
-});
+showResult();
 
-/* only test */
+function showResult() {
+	var keyword = new URL(window.location.href).searchParams.get('kw');
+
+	var searchInput = document.getElementById("searchInput");
+	searchInput.value = keyword;
+
+	// product list json
+
+	$.get( "https://tf.mrning.com/search/name/" + keyword, function( data ) {
+		if (data.code != 200 || data.data.item_num <= 0) {
+			alert("sorry, 404 not found");
+			
+		}
+		else {
+			console.log(data.data.item_num);
+			console.log(data.data.items);
+			list = data.data.items;
+			appendList();
+		}
+		
+	});
+
+	/* only test */
+	/*var JSONurl = "https://raw.githubusercontent.com/Co10/temp_json/main/product.json";
+	//var JSONurl = "test/product.json";
+	getJSON(JSONurl, function(err, data) {
+		if (err !== null) {
+			alert('Sorry, something went wrong: ' + err);
+		} else {
+			console.log("the data", data);
+			list = data;
+			appendList();
+		}
+	});*/
+	/* only test */
+}
 
 function appendList() {
+	thelist.innerHTML = "";
 	for (var i in list) {
 		var picDiv = document.createElement("div");
 		picDiv.setAttribute("class", "picDiv");
@@ -39,11 +67,12 @@ function appendList() {
 
 		// pic
 		var pic = document.createElement("img");
-		pic.src = "test/" + list[i].picture;//or something //////////////
+		//pic.src = "test/" + list[i].picture;//or something //////////////
+		pic.src = "https://tf.mrning.com" + list[i].cover;
 		picDiv.appendChild(pic);
 		// product name
 		var proname = document.createElement("a");
-		proname.innerText = list[i].product;//or something
+		proname.innerText = list[i].pname;
 		var pronameTooltip = document.createElement("span");
 		pronameTooltip.innerText = proname.innerText;
 		pronameTooltip.setAttribute("class", "tooltiptext");
@@ -51,15 +80,15 @@ function appendList() {
 		proName.appendChild(pronameTooltip);
 		// price
 		var proprice = document.createElement("label");
-		proprice.innerText = "￥ " + list[i].price;//or something
+		proprice.innerText = "￥ " + list[i].price;
 		proPrice.appendChild(proprice);
 		// volume
 		var provolume = document.createElement("label");
-		provolume.innerText = "销量: " + list[i].volume;//or something
+		provolume.innerText = "销量: " + list[i].volume;
 		proSellVol.appendChild(provolume);
 		// store name
 		var storename = document.createElement("a");
-		storename.innerText = list[i].storename;//or something
+		storename.innerText = list[i].sname;
 		var storeICON = document.createElement("img");
 		storeICON.src = "../media/store_icon.svg";
 		proStore.appendChild(storeICON);

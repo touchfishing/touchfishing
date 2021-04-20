@@ -52,7 +52,7 @@ function addDom() {
 	var labelforcities = document.createElement("label");
 	labelforcities.setAttribute("for","provinces");
 	labelforcities.setAttribute("class","titleSelect");
-	labelforcities.innerText="市/区";
+	labelforcities.innerText="市/区(可不选)";
 	var cities__div = document.createElement("div");
 	cities__div.setAttribute("id","cities");
 	citySelect.appendChild(labelforcities);
@@ -149,7 +149,7 @@ function addCity() {
 function selectCity() {
 	var provinces = document.getElementById("provinces");
 	var cities = document.getElementById("cities");
-	var pro_name, city_name;
+	var pro_name = "", city_name = "";
 	for (var i = 0; i < provinces.childElementCount; i++) {
     	if (provinces.children[i].firstChild.checked == true) {
     		pro_name = provinces.children[i].children[1].innerText;
@@ -164,9 +164,13 @@ function selectCity() {
     }
 
     //console.log(pro_name, city_name);
+    var nameoftheapply = pro_name;
+    if (city_name != "") {
+		nameoftheapply += (" " + city_name);
+    }
 
     var applyCity = document.getElementById("region_select");
-    applyCity.value = pro_name + " " + city_name;
+    applyCity.value = nameoftheapply;
 
     closeRegion();
 }
