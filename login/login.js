@@ -4,7 +4,7 @@
 var style = document.createElement('style');
 style.type = 'text/css';
 style.innerHTML = ".dark_login{background-color:#4742428f;width:100%;height:100%;position:fixed;top:0;left:0;z-index:101}.login_border{z-index:102;position:fixed;left:50%;top:50%;background-color:#fff;transform:translate(-50%,-50%);min-height:100px;min-width:350px;max-width:90%;text-align:center;border-radius:5px;box-shadow:0 0 11px 4px #6c686885}.login_goback_button{border-radius:50%;border:none;float:right;font-size:24px;background-color:#fff;margin-right:-15px;margin-top:-15px;box-shadow:-3px 3px 6px 0 #554f4fb3;width:30px;height:30px;cursor:pointer}.fillin_login{display:block;text-align:center;position:relative;margin-top:40px}.login_infoinput{display:block;margin:auto;border:none;box-shadow:0 0 8px 2px #cacacab3;line-height:32px;border-radius:25px;margin-bottom:30px;min-width:300px;max-width:95%;padding-left:10px;font-size:18px}.login_infoinput:focus{outline-width:0}.forget_psw_login{display:block;margin-top:-15px;text-align:right;padding-right:20px;font-size:16px;cursor:pointer}.click_confirm_login{margin-top:20px;margin-bottom:20px}.login_click_button{font-size:18px;border:none;border-radius:15px;padding:5px 10px;cursor:pointer}#login_clicklogin{background-color:#ffb193c7}#login_clicklogin:hover{background-color:#ff4629c7;color:#fff}#signup_clicklogin{background-color:#92c5f09e}#signup_clicklogin:hover{background-color:#2d9eeeb8;color:#fff}";
-document.head.appendChild(style)
+document.head.appendChild(style);
 
 var the_big_login_back = document.createElement("div");
 the_big_login_back.setAttribute("id", "the_big_login_back");
@@ -217,31 +217,31 @@ login_btn.addEventListener("click", function() {
 			user.children[0].style["vertical-align"] = "middle";
 			user.children[0].src = "https://tf.mrning.com" + getCookie('avatar');
 
-			appendPersonalInfo();
+			
 		}
 	}
 
 
-function appendPersonalInfo() {
-	var dropdown = document.createElement("div");
-	dropdown.style.background = "white";
-	dropdown.style["z-index"] = "1888";
-	dropdown.style.position = "absolute";
-	dropdown.style.right = "20px";
-	dropdown.style.top = "30px";
-	dropdown.style["box-shadow"] = "-2px 6px 8px 1px #857e7e8a";
-	var personalpage = document.createElement("a");
-	var logout = document.createElement("a");
-	personalpage.innerText = "个人中心";
-	personalpage.style.display = "table";
-	personalpage.style.margin = "5px";
-	logout.innerText = "退出登录";
-	logout.style.display = "table";
-	logout.style.margin = "5px";
-	dropdown.appendChild(personalpage);
-	dropdown.appendChild(logout);
-	document.getElementById("top_pane").appendChild(dropdown);
-}
+})();
+
+/*
+(function() {
+	//hideDropDown();
+	document.getElementById("user").addEventListener("mouseover", showDropDown);
+	//document.getElementById("user").addEventListener("mouseout", hideDropDown);
+	//document.getElementById("dddopdown").addEventListener("mouseover", showDropDown);
+	document.getElementById("dddopdown").addEventListener("mouseout", hideDropDown);
+	//document.getElementById("user").addEventListener("touchstart", showDropDown);
+
+	function showDropDown() {
+		//document.getElementById("dddopdown").style.display = "block";
+		document.getElementById("dddopdown").style.visibility = "visible";
+	}
+	function hideDropDown() {
+		//document.getElementById("dddopdown").style.display = "none";
+		document.getElementById("dddopdown").style.visibility = "hidden";
+	}
 
 
 })();
+*/

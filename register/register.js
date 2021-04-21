@@ -249,6 +249,7 @@ function getcaptcha() {
 	xhr.onreadystatechange = function () {
 	    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 	    	console.log(xhr);
+	    	console.log(this.getAllResponseHeaders());
 	    	//console.log("i",xhr.response.data[0].img);
 	        captchapic.src = "data:image/png;base64," + xhr.response.data[0].img; //create <img> with src set to the blob
 	    }
@@ -280,20 +281,36 @@ function buyerRegister() {
 			break;
 		}
 	}
-	/*$.ajax({
+	$.support.cors = true;
+	$.ajax({
 		type: "POST",
 		url: "https://tf.mrning.com/user/register",
+		xhrFields: { withCredentials: true },
+     	crossDomain: true,
 		data: {
 			uname: username.value, 
 			email: email.value, 
+			phone: phone.value, 
 			password: psw.value, 
-			no_captcha: true
+			intro: bio.value,
+			gender: gendertag, 
+			avatar_name: avaname,
+			no_captcha: false,
+			captcha: captchaval.value
 		},
 		dataType: 'json'
-}).done(function( msg ) {
-    alert( "registered: " + msg );
-  });*/
-    $.post("https://tf.mrning.com/user/register", 
+		}).done(function(data, status) {
+    		console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
+	    	if (status == "success") {
+	    		alert(data.msg);
+	    		if (data.code == 200){
+	    			// page location
+	    			//window.location.href = "index.html";
+	    			alert("跳转页面\n现在先不给你跳哈哈哈");
+	    		}
+	    	}
+		});
+    /*$.post("https://tf.mrning.com/user/register", 
 	{
 		uname: username.value, 
 		email: email.value, 
@@ -315,7 +332,7 @@ function buyerRegister() {
     			alert("跳转页面\n现在先不给你跳哈哈哈");
     		}
     	}
-	});
+	});*/
 
 
 }
