@@ -305,8 +305,14 @@ def getCAPTCHA(request):
     img,captcha = check_code()
     stream = BytesIO()
     img.save(stream, 'png')
+    base64_img = base64.b64encode(stream.getvalue()).decode()
     request.session["captcha"] = captcha.lower()
-    return HttpResponse(stream.getvalue(), content_type='image/png')
+    return_data = [
+        {
+            'img' : base64_img
+        }
+    ]
+    return returnList(return_data)
    
 
 def sendCodeMail(target_addr,code):
