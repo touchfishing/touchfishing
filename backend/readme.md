@@ -10,7 +10,7 @@
 
 #### 验证码
 
-接口地址：/user/captcha
+接口地址：/api/user/captcha
 
 请求方式：GET
 
@@ -20,7 +20,7 @@
 
 #### 登录
 
-接口地址：/user/login
+接口地址：/api/user/login
 
 请求方式：POST
 
@@ -73,7 +73,7 @@
 
 #### 登出
 
-接口地址：/user/logout
+接口地址：/api/user/logout
 
 请求方式：GET / POST
 
@@ -96,7 +96,7 @@
 
 #### 注册
 
-接口地址：/user/register
+接口地址：/api/user/register
 
 请求方式：POST
 
@@ -132,7 +132,7 @@
 
 #### 修改密码
 
-接口地址：/user/password
+接口地址：/api/user/password
 
 请求方式：POST
 
@@ -154,7 +154,7 @@
 
 #### 上传头像
 
-接口地址：/user/avatar
+接口地址：/api/user/avatar
 
 请求方式：POST
 
@@ -175,7 +175,7 @@
 
 #### 用户信息
 
-接口地址：/user/info
+接口地址：/api/user/info
 
 请求方式：GET，查询用户信息
 
@@ -226,7 +226,7 @@
 
 #### 忘记密码（暂仅允许邮件找回）
 
-接口地址：/user/reset
+接口地址：/api/user/reset
 
 请求方式：POST
 
@@ -270,7 +270,7 @@
 
 #### 我的店铺
 
-接口地址：/user/shop
+接口地址：/api/user/shop
 
 请求方式：GET
 
@@ -290,7 +290,7 @@
 
 #### 开设店铺
 
-接口地址：/user/shop/new
+接口地址：/api/user/shop/new
 
 请求方式：POST
 
@@ -319,7 +319,7 @@
 
 #### 修改店铺信息
 
-接口地址：/user/shop/edit
+接口地址：/api/user/shop/edit
 
 请求方式：POST
 
@@ -350,7 +350,7 @@
 
 #### 我的订单
 
-接口地址：/user/orders
+接口地址：/api/user/orders
 
 请求方式：GET
 
@@ -381,7 +381,7 @@
 
 #### 订单详情
 
-接口地址：/user/order/\<oid\>
+接口地址：/api/user/order/\<oid\>
 
 请求方式：GET
 
@@ -416,7 +416,7 @@
 
 #### 新建商品
 
-接口地址：/product/new
+接口地址：/api/product/new
 
 请求方式：POST
 
@@ -451,7 +451,7 @@
 
 #### 查看商品
 
-接口地址：/product/\<int:pid\>
+接口地址：/api/product/\<int:pid\>
 
 请求方式：GET
 
@@ -481,7 +481,7 @@
 
 #### 修改信息
 
-接口地址：/product/\<int:pid\>/edit
+接口地址：/api/product/\<int:pid\>/edit
 
 请求方式：POST
 
@@ -518,7 +518,7 @@
 
 #### 购买产品
 
-接口地址：/product/\<int:pid\>/order
+接口地址：/api/product/\<int:pid\>/order
 
 请求方式：POST
 
@@ -543,7 +543,7 @@
 
 #### 按标题
 
-接口地址：/search/name/\<str:keyword\>
+接口地址：/api/search/name/\<str:keyword\>
 
 请求方式：GET
 
@@ -578,7 +578,7 @@
 
 #### 搜店铺
 
-接口地址：/search/shop/\<str:keyword\>
+接口地址：/api/search/shop/\<str:keyword\>
 
 请求方式：GET
 
@@ -612,9 +612,12 @@
 
 https://tf.mrning.com/
 
-
+前端首页 https://tf.mrning.com/
+后端首页 https://tf.mrning.com/api/
 
  # 管理后台信息
 
-https://tf.mrning.com/admin
+后端管理 https://tf.mrning.com/api/admin 
+
+前端FTP [tf.mrning.com](ftp://tf.mrning.com) 
 

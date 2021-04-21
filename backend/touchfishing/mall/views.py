@@ -150,7 +150,10 @@ def placeOrder(request,pid):
     return returnList(return_data)
 
 def search_by_name(request,keyword):
+    address = request.GET.get("address")
     products = Product.objects.filter(pname__contains=keyword)
+    if address:
+        products = products.filter(shop.address__contains=address)
     return_data = {
         'keyword' : keyword,
         'item_num' : products.count(),
@@ -166,6 +169,7 @@ def search_by_name(request,keyword):
             'volume' : i.volume,
             'tag' : i.tag,
             'cover' : '/media/'+i.cover.name,
+            'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         })
     return returnList(return_data)
 
@@ -173,7 +177,10 @@ def search_by_shop(request):
     return True
 
 def search_shop(request,keyword):
+    address = request.GET.get("address")
     shops = Shop.objects.filter(sname__contains=keyword)
+    if address:
+        shops = shops.filter(address__contains=address)
     return_data = {
         'keyword' : keyword,
         'item_num' : shops.count(),
