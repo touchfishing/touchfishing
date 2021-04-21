@@ -254,7 +254,7 @@ function getcaptcha() {
 	        captchapic.src = "data:image/png;base64," + xhr.response.data[0].img; //create <img> with src set to the blob
 	    }
 	};
-	xhr.open('GET', 'https://tf.mrning.com/user/captcha', true);
+	xhr.open('GET', 'https://tf.mrning.com/api/user/captcha', true);
 	xhr.setRequestHeader('Authorization', 'sessionid');
 	xhr.send();
 }
@@ -284,7 +284,7 @@ function buyerRegister() {
 	$.support.cors = true;
 	$.ajax({
 		type: "POST",
-		url: "https://tf.mrning.com/user/register",
+		url: "https://tf.mrning.com/api/user/register",
 		xhrFields: { withCredentials: true },
      	crossDomain: true,
 		data: {

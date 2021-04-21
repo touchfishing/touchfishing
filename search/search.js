@@ -20,7 +20,7 @@ function showResult() {
 
 	// product list json
 
-	$.get( "https://tf.mrning.com/search/name/" + keyword, function( data ) {
+	$.get( "https://tf.mrning.com/api/search/name/" + keyword, function( data ) {
 		if (data.code != 200 || data.data.item_num <= 0) {
 			alert("sorry, 404 not found");
 			
@@ -32,7 +32,7 @@ function showResult() {
 			appendList();
 		}
 		
-	});
+	})
 
 	/* only test */
 	/*var JSONurl = "https://raw.githubusercontent.com/Co10/temp_json/main/product.json";
@@ -68,7 +68,7 @@ function appendList() {
 		// pic
 		var pic = document.createElement("img");
 		//pic.src = "test/" + list[i].picture;//or something //////////////
-		pic.src = "https://tf.mrning.com" + list[i].cover;
+		pic.src = "https://tf.mrning.com/api" + list[i].cover;
 		picDiv.appendChild(pic);
 		// product name
 		var proname = document.createElement("a");

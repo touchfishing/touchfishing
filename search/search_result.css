@@ -59,6 +59,7 @@ a {
 }
 .user:hover .dddopdown {
 	display: block;
+	z-index: 2000000;
 }
 
 /* ------------
@@ -66,7 +67,7 @@ a {
    ------------ */
 .search {
 	display: block;
-    padding-top: 20px;
+    margin-top: 70px;
     position: relative;
     text-align: center;
     height: 150px;

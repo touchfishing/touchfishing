@@ -107,7 +107,7 @@ login_btn.addEventListener("click", function() {
 		xhttp.send(senddata);*/
 
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", "https://tf.mrning.com/user/login", true);
+		xhttp.open("POST", "https://tf.mrning.com/api/user/login", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.onreadystatechange = function() {
    			if (this.readyState == 4 && this.status == 200) {

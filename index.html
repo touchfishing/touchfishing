@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content= "width=device-width, user-scalable=no">
+
+<title>首页</title>
+
+<link rel="stylesheet" href="home/index.css" type="text/css">
+
+
+</head>
+
+<body>
+
+<!-- the top pane -->
+<div id="top_pane" class="top">
+	<div class="homepage">
+		<img class = "icon0" src="media/fish_emoji.png">
+		<a onClick="window.location.reload();">首页
+	</div>
+
+	<div id="user" class="user">
+		<img>
+		<a>用户</a>
+		<div id="dddopdown" class="dddopdown"><a href="#">个人中心</a><a href="#">退出登录</a></div>
+	</div>
+
+	<div class="myorder" id="order_list">
+		<link href="">查看订单
+	</div>
+
+	<div id="signup_bar" class="user">
+		<a href="">注册</a>
+	</div>
+
+	<div id="signin_bar" class="user">
+		<a style="cursor: pointer;">登录</a>
+	</div>
+
+</div>
+
+<!-- search box -->
+<div class = "search">
+	<div class="search_logo">
+		<img class="icon_big" src="../media/icon.png">
+	</div>
+
+	<div class="afterLogo">
+
+	<div id="proStoreSwitcher" class="proStoreSwitcher">
+		<div class="psSw">
+		<input type="radio" id="searchProduct" name="searchswitcher" value="0" checked>
+		<label for="searchProduct">商品</label>
+		</div>
+		<div class="psSw">
+		<input type="radio" id="searchStore" name="searchswitcher" value="1">
+		<label for="searchStore">店铺</label>
+		</div>
+	</div>
+
+	<div id="search_box" class="search_box">
+		<div class="floatleft"><input type="text" id="searchInput" class="searchIn" placeholder="key word ..."></div>
+		<div class="floatright"><input type="button" id="searchButton" class="searchButton" value="🔍"></div>
+	</div>
+
+	</div>
+</div>
+
+<!-- nav -->
+<div class="nav">
+    <div class="dropdown">
+        <div class="dd">
+            <ul>
+                <li><a href="#">家用电器</a></li>
+                <li><a href="#">手机/运营商/数码</a></li>
+                <li><a href="#">男装/女装/童装/内衣</a></li>
+                <li><a href="#">运动户外/钟表</a></li>
+                <li><a href="#">图书/音像/电子书</a></li>
+                <li><a href="#">理财/众筹/白条/保险</a></li>
+            </ul>
+        </div>
+    </div>
+
+	<!-- <div class="imgBox">
+
+	</div> -->
+	<div class="imgBox">
+		<ul>
+			<li>
+				<div class="imgborder">
+				<img src="media/cover/box1.jfif" alt="img1">
+				</div>
+			</li>
+			<li>
+				<div class="imgborder">
+				<img src="media/cover/box2.jfif" alt="img2">
+				</div>
+			</li>
+			<li>
+				<div class="imgborder">
+				<img src="media/cover/box3.jfif" alt="img3">
+				</div>
+			</li>
+			<li>
+				<div class="imgborder">
+				<img src="media/cover/box4.jfif" alt="img4">
+				</div>
+			</li>
+		</ul>
+		<ol class="circle">
+			<!-- <li></li>
+			<li></li>
+			<li></li> -->
+		</ol>
+	</div>
+</div>
+
+</body>
+
+<script src="home/index.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../cookie/cookie.js"></script>
+<script type="text/javascript" src="../login/login.js"></script>
+
+</html>
