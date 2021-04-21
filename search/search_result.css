@@ -45,7 +45,21 @@ a {
 	float: right;
 	margin-top: 4px;
 }
-
+.dddopdown {
+	display: none;
+    background-color: white;
+    position: absolute;
+    box-shadow: -2px 6px 8px 1px rgb(133 126 126 / 54%);
+    z-index: 1;
+}
+.dddopdown a {
+    display: block;
+    padding: 6px 8px;
+    cursor: pointer;
+}
+.user:hover .dddopdown {
+	display: block;
+}
 
 /* ------------
    search panel
