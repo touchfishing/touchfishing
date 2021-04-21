@@ -26,6 +26,7 @@ mall_patterns = [
     path('product/<int:pid>', mallview.getProduct),
     path('product/<int:pid>/edit', mallview.editProduct),
     path('product/<int:pid>/order', mallview.placeOrder),
+    path('product/tag/<str:tag>', mallview.getClassOfProduct),
     path('search/name/<str:keyword>', mallview.search_by_name),
     path('search/shop/<str:keyword>', mallview.search_shop),
 ]

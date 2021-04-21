@@ -153,7 +153,7 @@ def search_by_name(request,keyword):
     address = request.GET.get("address")
     products = Product.objects.filter(pname__contains=keyword)
     if address:
-        products = products.filter(shop.address__contains=address)
+        products = products.filter(shop__address__contains=address)
     return_data = {
         'keyword' : keyword,
         'item_num' : products.count(),
@@ -172,9 +172,6 @@ def search_by_name(request,keyword):
             'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         })
     return returnList(return_data)
-
-def search_by_shop(request):
-    return True
 
 def search_shop(request,keyword):
     address = request.GET.get("address")
@@ -196,8 +193,26 @@ def search_shop(request,keyword):
         })
     return returnList(return_data)
 
-def product_by_class(request):
-    return True
+def getClassOfProduct(request,tag):
+    products = Product.objects.filter(tag__contains=tag)
+    return_data = {
+        'tag' : tag,
+        'item_num' : products.count(),
+        'items' : []
+    }
+    for i in products:
+        return_data['items'].append({
+            'pid' : i.pid,
+            'pname' : i.pname,
+            'sid' : i.shop.sid,
+            'sname' : i.shop.sname,
+            'price' : i.price,
+            'volume' : i.volume,
+            'tag' : i.tag,
+            'cover' : '/media/'+i.cover.name,
+            'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        })
+    return returnList(return_data)
 
 
 def return403(str):
