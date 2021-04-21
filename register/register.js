@@ -221,11 +221,41 @@ for(var i = 0; i < ava_num; i++) {
 
 var captchadiv = document.getElementById("captchaget");
 var captchapic = document.createElement("img");
+captchadiv.style.cursor = "pointer";
 captchadiv.addEventListener("click", getcaptcha);
 getcaptcha();
 function getcaptcha() {
-	captchapic.innerHTML = "";
-	captchapic.src = "https://tf.mrning.com/user/captcha";
+	//captchapic.innerHTML = "";
+	//captchapic.src = "https://tf.mrning.com/user/captcha?time=" + new Date().getTime();
+	/*var oReq = new XMLHttpRequest();
+	oReq.open("GET", "https://tf.mrning.com/user/captcha", true);
+	//oReq.setRequestHeader("Set-Cookie", "sessionid");
+	oReq.responseType = "arraybuffer";
+	oReq.onload = function (oEvent) {
+		var arrayBuffer = oReq.response; // Note: not oReq.responseText
+		console.log("buff", arrayBuffer);
+		if (arrayBuffer) {
+		    var u8 = new Uint8Array(arrayBuffer);
+		    var b64encoded = btoa(String.fromCharCode.apply(null, u8));
+		    var mimetype="image/png"; // or whatever your image mime type is
+		    captchapic.src="data:"+mimetype+";base64,"+b64encoded;
+		    console.log("b64",b64encoded);
+		}
+	};
+	oReq.send(null);*/
+	var xhr = new XMLHttpRequest();
+	xhr.responseType = 'json';
+	xhr.withCredentials = true;
+	xhr.onreadystatechange = function () {
+	    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+	    	console.log(xhr);
+	    	//console.log("i",xhr.response.data[0].img);
+	        captchapic.src = "data:image/png;base64," + xhr.response.data[0].img; //create <img> with src set to the blob
+	    }
+	};
+	xhr.open('GET', 'https://tf.mrning.com/user/captcha', true);
+	xhr.setRequestHeader('Authorization', 'sessionid');
+	xhr.send();
 }
 captchadiv.appendChild(captchapic);
 
@@ -235,12 +265,12 @@ captchadiv.appendChild(captchapic);
  undone currently
 */
 function buyerRegister() {
-	var gendertag = 2;
+	var gendertag = 0;
 	if (document.getElementById("male_tag").checked == true) {
-		gendertag = 0;
+		gendertag = 1;
 	}
 	if (document.getElementById("female_tag").checked == true) {
-		gendertag = 1;
+		gendertag = 2;
 	}
 	var avaselected = document.getElementsByClassName("avatarradio");
 	var avaname = "male_01.png";

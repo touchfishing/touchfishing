@@ -21,15 +21,15 @@
 		<!--below fill the info-->
 		<div id="reg_info" class="reg_info">
 
-		<table border='0' cellpadding='0' cellspacing='0' align='center'>
+		<table border='0' cellpadding='0' cellspacing='0' align='center' style="table-layout:fixed;">
 
 			<div class="reg_align">
 
-			<tr>
-				<td span="1" style="width: 40%;"></td>
-				<td span="1" style="width: 60%;"></td>
-			</tr>
-				
+			<colgroup>
+                <col width="40%">
+                <col width="60%">
+            </colgroup>
+            <tbody>
 			<tr>
 				<td><label for="username">用户名</label></td>
 				<td><input id="username" type="text" class="infoinput" oninput="checkUname()" onclick="showCheckUname()"></td>
@@ -148,6 +148,7 @@
 				<td></td>
 				<td><a id="captchaget"></a></td>
 			</tr>
+			</tbody>
 			</div>
 			
 		</table>

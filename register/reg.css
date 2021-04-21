@@ -9,6 +9,13 @@ img {
 	user-select: none;
 }
 
+table.fixed {
+	table-layout: fixed;
+}
+table.fixed td {
+	overflow: hidden;
+}
+
 .reg_box {
 	width: 90%;
 	background-color: #f2eded61;

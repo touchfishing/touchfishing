@@ -18,6 +18,9 @@ var login_goback_button = document.createElement("button");
 login_goback_button.setAttribute("id", "login_goback_button");
 login_goback_button.setAttribute("class", "login_goback_button");
 login_goback_button.innerText = "↺";
+login_goback_button.addEventListener("click", function(){
+	the_big_login_back.style.display = "none";
+})
 
 var fillin_login = document.createElement("div");
 fillin_login.setAttribute("id", "fillin_login");
@@ -53,7 +56,7 @@ var signup_clicklogin = document.createElement("button");
 signup_clicklogin.setAttribute("id", "signup_clicklogin");
 signup_clicklogin.setAttribute("class", "login_click_button");
 signup_clicklogin.innerText = "注册";
-signup_clicklogin.addEventListener("click", function(){ window.open('../register/index.html', '_blank'); })
+signup_clicklogin.addEventListener("click", function(){ window.open('../register/', '_blank'); })
 
 fillin_login.appendChild(login_info_input);
 fillin_login.appendChild(login_psw_input);
@@ -84,13 +87,12 @@ login_btn.addEventListener("click", function() {
 		alert("请输入信息! ");
 	}
 	else {
-		/*
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", "https://tf.mrning.com/user/login", true); 
-		xhttp.setRequestHeader("Content-Type", "application/json");
+		// ----------------
+		/*var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "https://tf.mrning.com/user/login", true);
+		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.onreadystatechange = function() {
    			if (this.readyState == 4 && this.status == 200) {
-     			// Response
      			var response = JSON.parse(this.responseText);
      			console.log(response);
      			if (response.code == 403 || response.code == 500)
@@ -100,8 +102,40 @@ login_btn.addEventListener("click", function() {
      			}
    			}
 		};
-		var senddata = { user: login_info.value, password: login_psw.value, captcha: "", no_captcha: true};
-		xhttp.send(JSON.stringify(senddata));*/
+		var senddata = JSON.stringify({ user: login_info.value, password: login_psw.value, captcha: '', no_captcha: true });
+		console.log(senddata);
+		xhttp.send(senddata);*/
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "https://tf.mrning.com/user/login", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.onreadystatechange = function() {
+   			if (this.readyState == 4 && this.status == 200) {
+     			var response = JSON.parse(this.responseText);
+     			//console.log(response);
+     			if (response.code == 403 || response.code == 500)
+     				alert(response.msg);
+     			else {
+     				//console.log(response);
+     				setCookie('uid', response.data.uid, default_expire_date);
+	    			setCookie('uname', response.data.uname, default_expire_date);
+	    			setCookie('email', response.data.email, default_expire_date);
+	    			setCookie('phone', response.data.email, default_expire_date);
+	    			setCookie('gender', response.data.gender, default_expire_date);
+	    			setCookie('intro', response.data.intro, default_expire_date);
+					setCookie('avatar', response.data.avatar, default_expire_date);
+	    			//console.log(data);
+	    			//console.log(getCookie('uid'));
+	    			//console.log(document.cookie);
+	    			location.reload();
+     			}
+   			}
+		};
+		var senddata = "user="+login_info.value+"&password="+login_psw.value+"&captcha=''&no_captcha="+true;
+		//console.log(senddata);
+		xhttp.send(senddata);
+		// -------------
+/*
 		$.post("https://tf.mrning.com/user/login", 
 	{
 		user: login_info.value,
@@ -128,15 +162,86 @@ login_btn.addEventListener("click", function() {
     			//console.log(data);
     			console.log(getCookie('uid'));
     			console.log(document.cookie);
-    			alert("跳转页面\n现在先不给你跳哈哈哈");
+    			location.reload();
     		}
     	}
 	});
-
-
+*/
 
 
 	}
+
+
 })
+
+})();
+
+
+(function() {
+	'use strict';
+
+	var login_dis = document.getElementById("the_big_login_back");
+	if (login_dis != null) {
+		login_dis.style.display = "none";
+	}
+
+	var user_ = document.getElementById("user");
+	var order_list = document.getElementById("order_list");
+	var signup_bar = document.getElementById("signup_bar");
+	var signin_bar = document.getElementById("signin_bar");
+	if (user_!=null&&order_list!=null&&signin_bar!=null&&signup_bar!=null) {
+		if (getCookie('uid') == "") { // not signed in
+			user_.style.display = "none";
+			order_list.style.display = "none";
+			signup_bar.style.display = "inline-block";
+			signin_bar.style.display = "inline-block";
+
+			signup_bar.children[0].href = "../register";
+			signin_bar.children[0].addEventListener("click", function(){
+				if (login_dis != null) {
+					login_dis.style.display = "block";
+				}
+			})
+
+		}
+		else { // signed in
+			user_.style.display = "inline-block";
+			order_list.style.display = "inline-block";
+			signup_bar.style.display = "none";
+			signin_bar.style.display = "none";
+
+			user.children[1].innerText = getCookie('uname');
+			user.style.cursor = "pointer";
+			user.children[0].style["max-width"] = "26px";
+			user.children[0].style["max-height"] = "26px";
+			user.children[0].style["vertical-align"] = "middle";
+			user.children[0].src = "https://tf.mrning.com" + getCookie('avatar');
+
+			appendPersonalInfo();
+		}
+	}
+
+
+function appendPersonalInfo() {
+	var dropdown = document.createElement("div");
+	dropdown.style.background = "white";
+	dropdown.style["z-index"] = "1888";
+	dropdown.style.position = "absolute";
+	dropdown.style.right = "20px";
+	dropdown.style.top = "30px";
+	dropdown.style["box-shadow"] = "-2px 6px 8px 1px #857e7e8a";
+	var personalpage = document.createElement("a");
+	var logout = document.createElement("a");
+	personalpage.innerText = "个人中心";
+	personalpage.style.display = "table";
+	personalpage.style.margin = "5px";
+	logout.innerText = "退出登录";
+	logout.style.display = "table";
+	logout.style.margin = "5px";
+	dropdown.appendChild(personalpage);
+	dropdown.appendChild(logout);
+	document.getElementById("top_pane").appendChild(dropdown);
+}
+
 
 })();
