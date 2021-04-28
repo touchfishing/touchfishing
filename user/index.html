@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>个人中心</title>
+
+</head>
+
+<link rel="stylesheet" href="top_pane.css" type="text/css">
+<link rel="stylesheet" href="user.css" type="text/css">
+<link rel="stylesheet" href="../region/regionSelect.css" type="text/css">
+
+<body>
+
+<!-- the top pane -->
+<div id="top_pane" class="top">
+	<div class="homepage">
+		<img class = "icon0" src="../media/fish_emoji.png">
+		<a onClick="window.location.href='../';">首页
+	</div>
+
+	<div id="user" class="user">
+		<a href="#">退出登录</a>
+	</div>
+
+	<div class="myorder" id="order_list">
+		<link href="">查看订单
+	</div>
+
+</div>
+
+<div class="user_below">
+
+<div id="left_pane" class="left_pane">
+	<li><span>个人首页</span></li>
+	<li><span>个人信息</span></li>
+	<li><span>付款信息</span></li>
+	<li><span>申请开店</span></li>
+</div>
+
+
+<div id="user_area" class="user_area">
+
+	<div id="user_home" class="user_home">
+		<div class="home_avatar"><img></div>
+		<div id="welcome_user"><span></span></div>
+		<div id="suggestions"><span></span></div>
+	</div>
+
+	<div id="personal_info" class="personal_info">
+		<div id="basic_info" class="basic_info">
+			<div class="sug_textA">基础信息
+				<div class="sug_textB">该部分信息对他人可见</div>
+			</div>
+			<div id="basic_photo"><span>头像<img></span></div>
+			<div id="basic_uname"><span>用户名<span></span></span></div>
+			<div id="basic_gender"><span>性别<span></span></span></div>
+			<div id="basic_intro"><span>简介<span></span></span></div>
+		</div>
+		<div id="secret_info" class="basic_info secret_info">
+			<div class="sug_textA">私人信息
+				<div class="sug_textB">该部分信息对他人不可见</div>
+			</div>
+			<div id="basic_real_name"><span>真实姓名<span></span></span></div>
+			<div id="basic_email"><span>邮箱<span></span></span></div>
+			<div id="basic_phone"><span>手机号<span></span></span></div>
+			<div id="basic_psw"><span>登陆密码<span></span></span></div>
+		</div>
+	</div>
+	
+	<div id="payment_info" class="payment_info">
+		<img src="../media/bank_card.png" style="max-height: 100px;">
+		<div id="p_all_info" class="basic_info">
+			<div class="sug_textA">收付款
+				<div class="sug_textB">请不要填错哦</div>
+			</div>
+			<div id="bank_card"><span>银行卡<span></span></span></div>
+			<div id="pay_psw"><span>支付密码<span></span></span></div>
+		</div>
+		<div id="address_info" class="basic_info">
+			<div class="sug_textA">收货地址
+				<div class="sug_textB">只能寄到境内哦</div>
+			</div>
+			<div id="address_"><span>地址地址<span id="region_select"></span></span></div>
+		</div>
+	</div>
+
+	<div id="run_a_shop" class="run_a_shop">
+		<img src="../media/run_shop.png" style="max-height: 100px;">
+		<div class="runShopText">
+			零门槛开店！<br>
+			…………(描述词balabala......来人编一下)
+		</div>
+		<button id="click_to_run">点我申请</button>
+	</div>
+</div>
+
+</div>
+
+</body>
+<script type="text/javascript" src="../cookie/cookie.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript" src="../JS_library/getJSON.js"></script>
+<script type="text/javascript" src="../region/regionSelect.js"></script>
+<script type="text/javascript" src="user.js"></script>
+
+</html>

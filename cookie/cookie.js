@@ -27,3 +27,8 @@ function getCookie(cname) {
 function removeCookie(cname) {
 	setCookie(cname, 1, -1);
 }
+
+function removeCookies(cname) {
+	for (var i in cname)
+		setCookie(i, 1, -1);
+}

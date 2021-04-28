@@ -245,3 +245,31 @@ login_btn.addEventListener("click", function() {
 
 })();
 */
+(function() {
+	'use strict';
+	function logout(){
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "https://tf.mrning.com/api/user/logout", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.onreadystatechange = function() {
+   			if (this.readyState == 4 && this.status == 200) {
+     			var response = JSON.parse(this.responseText);
+     			//console.log(response);
+     			if (response.code == 403 || response.code == 500)
+     				alert(response.msg);
+     			else {
+     				console.log(response);
+     				var xremove = ["uid","uname","email","phone","gender","intro","avatar"];
+     				removeCookies(xremove);
+	    			//console.log(data);
+	    			//console.log(getCookie('uid'));
+	    			//console.log(document.cookie);
+	    			location.reload();
+     			}
+   			}
+		};
+		//var senddata = "user="+login_info.value+"&password="+login_psw.value+"&captcha=''&no_captcha="+true;
+		//console.log(senddata);
+		xhttp.send();
+	}
+})();
