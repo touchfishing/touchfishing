@@ -43,6 +43,12 @@ body {
 .user_area {
 	margin-left: 150px;
     text-align: center;
+    animation-duration: 4s;
+	animation-delay: 2s;
+}
+
+#llllllogout {
+	cursor: pointer;
 }
 
 .home_avatar img {

@@ -51,6 +51,7 @@ li {
 	padding-right: 10px;
 	float: right;
 	margin-top: 4px;
+	min-width: 80px;
 }
 .dddopdown {
 	display: none;

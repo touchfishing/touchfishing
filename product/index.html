@@ -3,12 +3,13 @@
 <meta charset = "utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>商品搜索</title>
+<title>商品</title>
 
 </head>
 
-<link rel="stylesheet" href="search_result.css" type="text/css">
-<link rel="stylesheet" href="product_list.css" type="text/css">
+<link rel="stylesheet" href="../user/top_pane.css" type="text/css">
+<link rel="stylesheet" href="../search/search_result.css" type="text/css">
+<link rel="stylesheet" href="product.css" type="text/css">
 <link rel="stylesheet" href="../region/regionSelect.css" type="text/css">
 
 <body>
@@ -67,46 +68,42 @@
 	</div>
 </div>
 
-<!-- show result -->
-<div class = "result">
-	
-	<!-- filter -->
-	<div class = "filter">
-		<button id="byPrice" class="filterButton">价格</button>
-		<button id="byDate" class="filterButton">新品</button>
-
-		<div class = "filterPrice">价格区间:
-			<input id="in1" type="text" class="inputP">~
-			<input id="in2" type="text" class="inputP">
-			<button id="confirm" class="filterButton">确定</button>
+<!-- product -->
+<div id="product_detail_box">
+	<!--top the description-->
+	<div class="top_box1">
+	<div class="top_box2">
+		<!--the left pic-->
+		<div class="left_box1">
+		<div class="left_box2">
+			<div class="big_pic">
+				<img>
+			</div>
+			<div class="bottom_pics"></div>
 		</div>
-
-		<div class="regionFilter">发货地:
-			<input id="region_select" type="button" class="reg_fil" value="全国境内" onclick="openRegion()">
-			<input id="region_clear" type="button" class="reg_fil reg_clear" value="清空" onclick="clearRegion()">
 		</div>
-		
-	</div>
+		<!--the right description-->
+		<div class="right_box1">
+		<div class="right_box2">
+			<div class="product_header"></div>
+			<div class="product_price"></div>
 
-	<hr class="lineBreak">
-
-	<!-- product list -->
-	<div class="proMargin"><div id = "lists" class="proLists_"></div></div>
-
-
-	<!-- page controller -->
-	<div class = "modify_page" valign="bottom">
-		<ol class="page_num">
-			<li class="pC"><span class="page_change previousP">上一页</span></li>
-			<li class="cur_page"><a href="">1</a></li>
-			<li class="pC"><span class="page_change nextP">下一页</span></li>
-		</ol>
-		<div class="page_jump">
-			<input type="text" maxlength="4" class = "pageJ">
-			<input type="button" value="Go" class = "Goto">
+			<div class="bottom_action_box1">
+			<div class="bottom_action_box2">
+				<div class="product_numbers"></div>
+				<div class="product_click_buy"></div>
+			</div>
+			</div>
+		</div>
 		</div>
 	</div>
+	</div>
+
+
 </div>
+
+
+
 
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

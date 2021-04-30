@@ -82,7 +82,13 @@ var login_info = document.getElementById("login_info_input");
 var login_psw = document.getElementById("login_psw_input");
 var login_btn = document.getElementById("login_clicklogin");
 
-login_btn.addEventListener("click", function() {
+document.getElementById("login_border").addEventListener('keypress', function(e){
+	if(e.keyCode == 13){
+		click_login();
+	}
+})
+
+function click_login() {
 	if (login_info.value == "" || login_psw.value == "") {
 		alert("请输入信息! ");
 	}
@@ -120,10 +126,11 @@ login_btn.addEventListener("click", function() {
      				setCookie('uid', response.data.uid, default_expire_date);
 	    			setCookie('uname', response.data.uname, default_expire_date);
 	    			setCookie('email', response.data.email, default_expire_date);
-	    			setCookie('phone', response.data.email, default_expire_date);
+	    			setCookie('phone', response.data.phone, default_expire_date);
 	    			setCookie('gender', response.data.gender, default_expire_date);
 	    			setCookie('intro', response.data.intro, default_expire_date);
 					setCookie('avatar', response.data.avatar, default_expire_date);
+					setCookie('createTime', response.data.create_time, default_expire_date);
 	    			//console.log(data);
 	    			//console.log(getCookie('uid'));
 	    			//console.log(document.cookie);
@@ -172,7 +179,9 @@ login_btn.addEventListener("click", function() {
 	}
 
 
-})
+}
+
+login_btn.addEventListener("click", click_login);
 
 })();
 
@@ -247,6 +256,8 @@ login_btn.addEventListener("click", function() {
 */
 (function() {
 	'use strict';
+	document.getElementById("llllllogout").addEventListener('click', logout);
+
 	function logout(){
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", "https://tf.mrning.com/api/user/logout", true);
@@ -259,12 +270,9 @@ login_btn.addEventListener("click", function() {
      				alert(response.msg);
      			else {
      				console.log(response);
-     				var xremove = ["uid","uname","email","phone","gender","intro","avatar"];
+     				var xremove = ["uid","uname","email","phone","gender","intro","avatar","createTime"];
      				removeCookies(xremove);
-	    			//console.log(data);
-	    			//console.log(getCookie('uid'));
-	    			//console.log(document.cookie);
-	    			location.reload();
+	    			window.location.href = "/";
      			}
    			}
 		};
