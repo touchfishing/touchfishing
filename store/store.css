@@ -1,0 +1,260 @@
+/* 主体 */
+.store_container {
+    width: 1100px;
+    margin: 0px auto 10px auto;
+    overflow: hidden;
+    padding-top: 50px;
+}
+
+/* logo + search */
+.store_logo {
+    width: 90%;
+    overflow: hidden;
+    padding: 0px 5%;
+    
+}
+
+.store_logo > a {
+    color: black;
+}
+
+#shopname, .query {
+    height: 48px;
+    line-height: 48px;
+    /* background-color: black; */
+}
+
+#search {
+    width: 407px;
+    margin: 0px auto;
+}
+
+#select, #btnquery {
+    outline: none; /*去除轮廓线，即点击时输入内容时外面的蓝线*/
+}
+
+#select {
+    border-width: 2px 0 2px 2px;
+    border-color: rgba(99, 103, 100, 0.81);
+    border-style: solid;
+    width: 250px;
+    height: 34px;
+    line-height: 34px;
+    margin: 0;
+    padding: 0;
+}
+
+#btnquery {
+    width: 80px;
+    height: 38px;
+    line-height: 38px;
+    background-color: rgba(99, 103, 100, 0.81);
+    font-size: medium;
+    letter-spacing: 5px;
+    text-indent: 5px;
+    font-weight: bold;
+    color: #FFF;
+    position: relative;
+    left: -5px;
+    margin: 0;
+    padding: 0;
+    border: 0
+}
+
+#shopname {
+    float: left;
+    font-size: large;
+    background-image: url("../images/store_logo.png");
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 60px;
+}
+
+.query {
+    float: right;
+}
+
+/* menu */
+
+.store_menu {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgba(99, 103, 100, 0.81);
+    margin-top: 70px;
+    text-align: center;
+    display: block;
+}
+
+.store_menu ul li {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    color: white;
+
+}
+
+.smenu {
+    color: white;
+}
+
+.store_menu ul li:hover {
+    background-color: red;
+}
+
+.hasmenu:hover .catalogs {
+    display: block;
+}
+
+.catalogs {
+    position: absolute;
+    background-color: white;
+    display: none;
+    z-index: 50;
+    line-height: 30px;
+    
+}
+
+.catalogs {
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    padding: 0;
+    top: 40px;
+    left: -1px;
+    /* display: block; */
+}
+
+.cla {
+    display: block;
+    width: 120px;
+    height: 25px;
+    line-height: 25px;
+    color: black;
+    padding :0px;
+    text-align: left;
+    /* border: 1px solid #e4e4e4; */
+    /* border-top: 0px; */
+    text-align: center;
+}
+
+.cla:hover {
+    background-color: #e4e4e4;
+}
+
+
+/* 商品 */
+.store_nav {
+    background-color: #f1f1f1;
+    display: inline-block;
+    /* width: 1200px; */
+    /* height: 800px; */
+    margin-top: 3%;
+    width: 1100px;
+    height: 100%;
+    box-shadow: 3px 3px 8px 2px #cacacab3;
+    border-width: 10px;
+    border-radius: 5px;
+    
+}
+
+.store_nav ul {
+    
+    display: block;
+    /* list-style-type: disc; */
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    text-align: center;
+}
+
+.store_nav ul li {
+    border: 3px solid #f1f1f1;
+    float: left;
+    width: 188px;
+    padding: 0 5px;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.store_nav ul li:hover {
+    border: 3px groove #98bf21;
+}
+
+.store_nav .jItem {
+    height: auto;
+}
+
+.store_nav .jPic {
+    text-align: center;
+    background: #fff;
+    /* _height: 100%; */
+    position: relative;
+    zoom: 1;
+}
+
+.store_nav .jPic a {
+    display: block;
+    height: 220px;
+    padding: 10px 0 5px;
+}
+
+.store_nav .jPic a img {
+    vertical-align: top;
+    width: 100%;
+}
+
+
+
+
+.store_nav .jInfo {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.store_nav .jInfo {
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+
+.store_nav .jInfo .jPrice {
+    margin-bottom:5px;
+    height:20px;
+    color:#e4393c;
+    font-size: 20px;
+    text-align: left;
+    line-height:1;
+    line-height:1;
+}
+
+.store_nav .jInfo .jDesc {
+    height:36px;
+    line-height:17px;
+    overflow:hidden;
+    margin-bottom:5px;
+    text-align: left;
+}
+
+.store_nav .jInfo .jDesc a {
+    font-size:12px; 
+    text-decoration:none; 
+    color:#666666;
+}
+
+.store_nav .jInfo .jDesc a:hover {
+    color:#c81623;;
+}
+
+.cover {
+    display: none;
+}
+.cover :hover {
+    display: block;
+    background-color: red;
+    
+}
