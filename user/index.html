@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="top_pane.css" type="text/css">
 <link rel="stylesheet" href="user.css" type="text/css">
 <link rel="stylesheet" href="../region/regionSelect.css" type="text/css">
-
+<link rel="stylesheet" href="change.css" type="text/css">
 <body>
 
 <!-- the top pane -->
@@ -54,19 +54,19 @@
 			<div class="sug_textA">基础信息
 				<div class="sug_textB">该部分信息对他人可见</div>
 			</div>
-			<div id="basic_photo"><span>头像<img></span></div>
-			<div id="basic_uname"><span>用户名<span></span></span></div>
-			<div id="basic_gender"><span>性别<span></span></span></div>
-			<div id="basic_intro"><span>简介<span></span></span></div>
+			<div id="basic_photo"><span><span>头像</span><img></span></div>
+			<div id="basic_uname"><span><span>用户名</span><span></span></span></div>
+			<div id="basic_gender"><span><span>性别</span><span></span></span></div>
+			<div id="basic_intro"><span><span>简介</span><span></span></span></div>
 		</div>
 		<div id="secret_info" class="basic_info secret_info">
 			<div class="sug_textA">私人信息
 				<div class="sug_textB">该部分信息对他人不可见</div>
 			</div>
-			<div id="basic_real_name"><span>真实姓名<span></span></span></div>
-			<div id="basic_email"><span>邮箱<span></span></span></div>
-			<div id="basic_phone"><span>手机号<span></span></span></div>
-			<div id="basic_psw"><span>登陆密码<span></span></span></div>
+			<div id="basic_real_name"><span><span>真实姓名</span><span></span></span></div>
+			<div id="basic_email"><span><span>邮箱</span><span></span></span></div>
+			<div id="basic_phone"><span><span>手机号</span><span></span></span></div>
+			<div id="basic_psw"><span><span>登陆密码</span><span></span></span></div>
 		</div>
 	</div>
 	
@@ -83,7 +83,7 @@
 			<div class="sug_textA">收货地址
 				<div class="sug_textB">只能寄到境内哦</div>
 			</div>
-			<div id="address_"><span>地址地址<span id="region_select"></span></span></div>
+			<div id="address_"><span>地址地址<input id="region_select"></span></div>
 		</div>
 	</div>
 
@@ -99,6 +99,16 @@
 
 </div>
 
+<div id='all_bg' class='all_bg'>
+	<div id='outer_box' class='outer_box'>
+		<span id='box_text'></span>
+		<span id='box_ori' class='box_input box_ori'></span>
+		<input id='box_new' class='box_input'>
+		<button id='box_confirm' class='box_button box_confirm'>确定</button>
+		<button id='box_cancel' class='box_button box_cancel'>取消</button>
+	</div>
+</div>
+
 </body>
 <script type="text/javascript" src="../cookie/cookie.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -106,5 +116,5 @@
 <script type="text/javascript" src="../JS_library/getJSON.js"></script>
 <script type="text/javascript" src="../region/regionSelect.js"></script>
 <script type="text/javascript" src="user.js"></script>
-
+<script type="text/javascript" src="change.js"></script>
 </html>

@@ -69,15 +69,15 @@ if (getCookie("uid") == "") {
     		$("#personal_info").css("display","block");
     		$("#left_pane li").eq(1).css({"color": "#1a73e8;", "background-color": "#e8f0fe"});
 
-    		$("#basic_photo :first-child :first-child").attr("src", "https://tf.mrning.com/api" + the_avatar).css({"height": "70px","vertical-align": "middle"});
-    		$("#basic_uname :first-child :first-child").text(the_uname);
-    		$("#basic_gender :first-child :first-child").text(the_gender);
-    		$("#basic_intro :first-child :first-child").text(the_intro);
+    		$("#basic_photo :first-child :nth-child(2)").attr("src", "https://tf.mrning.com/api" + the_avatar).css({"height": "70px","vertical-align": "middle"});
+    		$("#basic_uname :first-child :nth-child(2)").text(the_uname);
+    		$("#basic_gender :first-child :nth-child(2)").text(the_gender);
+    		$("#basic_intro :first-child :nth-child(2)").text(the_intro);
 
-    		$("#basic_real_name :first-child :first-child").text("...");
-    		$("#basic_email :first-child :first-child").text(the_email);
-    		$("#basic_phone :first-child :first-child").text(the_phone);
-			$("#basic_psw :first-child :first-child").text("\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}");
+    		$("#basic_real_name :first-child :nth-child(2)").text("...");// change
+    		$("#basic_email :first-child :nth-child(2)").text(the_email);
+    		$("#basic_phone :first-child :nth-child(2)").text(the_phone);
+			$("#basic_psw :first-child :nth-child(2)").text("\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}\u{2022}");
     	}
     	else if(keyword == "payment") {
     		$("#user_home").css("display","none");

@@ -8,7 +8,6 @@
 </head>
 
 <link rel="stylesheet" href="../user/top_pane.css" type="text/css">
-<link rel="stylesheet" href="../search/search_result.css" type="text/css">
 <link rel="stylesheet" href="product.css" type="text/css">
 <link rel="stylesheet" href="../region/regionSelect.css" type="text/css">
 
@@ -41,33 +40,6 @@
 
 </div>
 
-<!-- search box -->
-<div class = "search">
-	<div class="search_logo">
-		<img class="icon_big" src="../media/icon.png">
-	</div>
-
-	<div class="afterLogo">
-
-	<div id="proStoreSwitcher" class="proStoreSwitcher">
-		<div class="psSw">
-		<input type="radio" id="searchProduct" name="searchswitcher" value="0" checked>
-		<label for="searchProduct">商品</label>
-		</div>
-		<div class="psSw">
-		<input type="radio" id="searchStore" name="searchswitcher" value="1">
-		<label for="searchStore">店铺</label>
-		</div>
-	</div>
-
-	<div id="search_box" class="search_box">
-		<div class="floatleft"><input type="text" id="searchInput" class="searchIn" placeholder="key word ..."></div>
-		<div class="floatright"><input type="button" id="searchButton" class="searchButton" value="🔍" onclick="searchItem()"></div>
-	</div>
-
-	</div>
-</div>
-
 <!-- product -->
 <div id="product_detail_box">
 	<!--top the description-->
@@ -85,13 +57,32 @@
 		<!--the right description-->
 		<div class="right_box1">
 		<div class="right_box2">
-			<div class="product_header"></div>
-			<div class="product_price"></div>
+			<div class="product_header"><span></span></div>
+			<div class="PriceVolume">
+			<div class="product_price"><span></span></div>
+			<div class="product_volume"><span></span></div>
+			</div>
+			<div class="fromexpressstore">
+			<div class="product_from"><span></span></div>
+			<div class="product_express"><span></span></div>
+			<div class="product_store"><span></span></div>
+			</div>
+			<div class="product_format"><span></span>
+				<li><input type="radio" id="o_format" class="format_radio" name="p_format" value="0" checked>
+					<label for="o_format" class="format_label">默认配置</label></li>
+			</div>
+			<div class="product_stock"><span></span></div>
 
 			<div class="bottom_action_box1">
 			<div class="bottom_action_box2">
-				<div class="product_numbers"></div>
-				<div class="product_click_buy"></div>
+				<div class="product_numbers">
+					<button>-</button>
+					<input value="1" min="1">
+					<button>+</button>
+				</div>
+				<div class="product_click_buy">
+					<button>立即<br>购买</button>
+				</div>
 			</div>
 			</div>
 		</div>
@@ -108,8 +99,9 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../JS_library/getJSON.js"></script>
-<script type="text/javascript" src="search.js"></script>
+
 <script type="text/javascript" src="../region/regionSelect.js"></script>
 
 <script type="text/javascript" src="../cookie/cookie.js"></script>
 <script type="text/javascript" src="../login/login.js"></script>
+<script type="text/javascript" src="product.js"></script>
