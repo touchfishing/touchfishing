@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>确认订单</title>
+
+</head>
+
+<link rel="stylesheet" href="../user/top_pane.css" type="text/css">
+<link rel="stylesheet" href="order.css" type="text/css">
+
+<body style="margin-left: 0;">
+
+<!-- the top pane -->
+<div id="top_pane" class="top">
+	<div class="homepage">
+		<img class = "icon0" src="../media/fish_emoji.png">
+		<a onClick="window.location.href='../';">首页
+	</div>
+
+	<div id="user" class="user">
+		<img>
+		<a>用户</a>
+		<div id="dddopdown" class="dddopdown"><a href="../user/">个人中心</a><a id="llllllogout">退出登录</a></div>
+	</div>
+
+	<div class="myorder" id="order_list">
+		<link href="">查看订单
+	</div>
+
+	<div id="signup_bar" class="user">
+		<a href="">注册</a>
+	</div>
+
+	<div id="signin_bar" class="user">
+		<a style="cursor: pointer;">登录</a>
+	</div>
+
+</div>
+
+<!-- the order list -->
+<div class="order_box1">
+<div class="order_box2">
+
+<!-- address to get -->
+<div class="address_box1 block_box1">
+<div class="address_box2 block_box2">
+	<span class="textOriginal">收货地址</span>
+	<span class="breakline"></span>
+	<div class="address_info">
+		<span>具体地址text</span>
+	</div>
+</div>
+</div>
+<!-- product list -->
+<div class="pro_box1 block_box1">
+<div class="pro_box2 block_box2">
+	<span class="textOriginal">订单列表</span>
+	<span class="breakline"></span>
+	<div class="product_info">
+		<li>
+			<div><img></div>
+			<div><span>商品1...........</span></div>
+			<div>
+				<div><span>单价:</span><span>x</span></div>
+				<div><span>数量:</span><span>x</span></div>
+				<div><span>小计:</span><span>x</span></div>
+			</div>
+		</li>
+		<li>
+			<div><img></div>
+			<div><span>商品2...........</span></div>
+			<div>
+				<div><span>单价:</span><span>x</span></div>
+				<div><span>数量:</span><span>x</span></div>
+				<div><span>小计:</span><span>x</span></div>
+			</div>
+		</li>
+	</div>
+</div>
+</div>
+<!-- freight -->
+<div class="freight_box1 block_box1">
+<div class="freight_box2 block_box2">
+	<span class="textOriginal">配送</span>
+	<span class="breakline"></span>
+	<div class="freight_info">
+		<div class="express_type expresssss">
+			<span>普通快递</span>
+			<span>0元</span>
+		</div>
+		<div class="insurance expresssss">
+			<div class="innnnsurance"><span>运费险</span>
+				<div style="margin-left: 5px;">
+					<label class="switch">
+						<input type="checkbox">
+						<span class="slider"></span>
+					</label>
+				</div>
+			</div>
+			<span>0元</span>
+		</div>
+	</div>
+</div>
+</div>
+<!-- price -->
+<div class="price_box1 block_box1">
+<div class="price_box2 block_box2">
+	<span class="textOriginal">商品金额</span>
+	<span class="breakline"></span>
+	<div class="price_info">
+		<div class="pppp_info"><span>商品</span><span>￥</span></div>
+		<div class="pppp_info"><span>运费</span><span>￥</span></div>
+		<div class="pppp_info"><span>总计</span><span>￥</span></div>
+	</div>
+</div>
+</div>
+<!-- payment method -->
+<div class="payment_box1 block_box1">
+<div class="payment_box2 block_box2">
+	<span class="textOriginal">支付方式</span>
+	<span class="breakline"></span>
+	<div class="payment_info">
+		<span>先放着</span>
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- bottom -->
+<div class="bottom_box1">
+<div class="bottom_box2">
+<div class="bottom_box3">
+	<div class="ppppprice"><span>￥</span></div>
+	<div class="confirm_bbbbbuton">
+		<button>提交订单</button>
+	</div>
+</div>
+</div>
+</div>
+
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../JS_library/getJSON.js"></script>
+
+<script type="text/javascript" src="../cookie/cookie.js"></script>
+<script type="text/javascript" src="../login/login.js"></script>
+<script type="text/javascript" src="order.js"></script>

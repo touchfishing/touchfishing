@@ -1,3 +1,44 @@
+(function(){
+    'use strict';
+    windowSizeStyle();
+
+    $(window).resize(windowSizeStyle);
+
+    function windowSizeStyle() {
+        var displayType = false;
+        if ($(window).width() <= $(window).height())
+            displayType = true;
+        if ($(window).width() < 600)
+            displayType = true;
+
+        if (displayType == false) {
+            desktopDisplay();
+        }
+        else {
+            mobileDisplay();
+        }
+    }
+
+    function desktopDisplay() {
+        $("body").css('margin', '8px');
+        $(".top_box2").css('flex-direction', 'row');
+        $(".left_box1").css('width', '40%');
+        $(".right_box1").css('width', '50%');
+        $("#product_detail_box").css('margin-top', '60px');
+        $("#top_pane").css('display', 'block');
+    }
+
+    function mobileDisplay() {
+        $("body").css('margin', '0');
+        $(".top_box2").css('flex-direction', 'column');
+        $(".left_box1").css('width', '100%');
+        $(".right_box1").css('width', '100%');
+        $("#product_detail_box").css('margin-top', '0');
+        $("#top_pane").css('display', 'none');
+    }
+})();
+
+
 var rootlink = "../search/test/";
 
 $.getJSON("../search/test/product.json", function(data) {

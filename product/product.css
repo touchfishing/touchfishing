@@ -1,10 +1,12 @@
 #product_detail_box {
     margin-top: 60px;
+    width: 100%;
 }
 
 .top_box2 {
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
 }
 
 .left_box1 {
