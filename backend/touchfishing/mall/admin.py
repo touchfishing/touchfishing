@@ -6,7 +6,7 @@ class ShopAdmin(admin.ModelAdmin):
     list_display = ('sid','user','sname','saddr','update_time')
  
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pid','pname','shop','price','info','volume','tag','cover','status','update_time')
+    list_display = ('pid','pname','shop','price','info','volume','tag','cover','status','specs','shipping_region','update_time')
  
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('oid','user','product','quantity','status','address','deliverer','delivery_number','update_time')

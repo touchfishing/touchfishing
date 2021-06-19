@@ -25,6 +25,8 @@ def newProduct(request):
     tag = request.POST.get("tag")
     cover = request.FILES.get('cover',None)
     status = request.POST.get("status")
+    specs = request.POST.get("specs")
+    shipping_region = request.POST.get("shipping_region")
     if not (pname and price and info and tag and status):
         return return403('缺少参数')
     product_obj = Product(pname=pname,shop=shop_obj,price=price,info=info,tag=tag,status=status)
@@ -43,6 +45,8 @@ def newProduct(request):
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
+        'specs' : product_obj.specs,
+        'shipping_region' : product_obj.shipping_region,
         'cover' : '/media/'+product_obj.cover.name,
         'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
@@ -62,6 +66,8 @@ def getProduct(request,pid):
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
+        'specs' : product_obj.specs,
+        'shipping_region' : product_obj.shipping_region,
         'cover' : '/media/'+product_obj.cover.name,
         'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
@@ -87,6 +93,8 @@ def editProduct(request,pid):
     tag = request.POST.get("tag")
     cover = request.FILES.get('cover',None)
     status = request.POST.get("status")
+    specs = request.POST.get("specs")
+    shipping_region = request.POST.get("shipping_region")
     if pname:
         product_obj.pname=pname
     if price:
@@ -97,6 +105,10 @@ def editProduct(request,pid):
         product_obj.tag=tag
     if status:
         product_obj.status=status
+    if specs:
+        product_obj.specs=specs
+    if shipping_region:
+        product_obj.shipping_region=shipping_region
     if cover:
         f, e = os.path.splitext(cover.name)
         imgName=str(product_obj.sid)+e
@@ -115,6 +127,9 @@ def editProduct(request,pid):
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
+        'status' : product_obj.status,
+        'specs' : product_obj.specs,
+        'shipping_region' : product_obj.shipping_region,
         'cover' : '/media/'+product_obj.cover.name,
         'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
@@ -168,6 +183,7 @@ def search_by_name(request,keyword):
             'price' : i.price,
             'volume' : i.volume,
             'tag' : i.tag,
+            'shipping_region' : i.shipping_region,
             'cover' : '/media/'+i.cover.name,
             'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         })
@@ -209,6 +225,7 @@ def getClassOfProduct(request,tag):
             'price' : i.price,
             'volume' : i.volume,
             'tag' : i.tag,
+            'shipping_region' : i.shipping_region,
             'cover' : '/media/'+i.cover.name,
             'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         })

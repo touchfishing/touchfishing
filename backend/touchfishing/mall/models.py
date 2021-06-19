@@ -25,6 +25,8 @@ class Product(models.Model):
     tag = models.TextField(verbose_name='分类',default='')
     cover = models.FileField(verbose_name='封面',upload_to='products/',default='products/default.jpg')
     status = models.IntegerField(verbose_name='余量',default=0)
+    specs = models.TextField(verbose_name='规格',default='')
+    shipping_region = models.TextField(verbose_name='发货地',default='')
     create_time = models.DateTimeField(verbose_name='创建时间',default=timezone.now)
     update_time = models.DateTimeField(verbose_name='更新时间',auto_now=True)
     class Meta:
