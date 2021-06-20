@@ -1,9 +1,9 @@
 addDom();
 
 /* in seller register, the region selection */
-var provinceUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/province.json";
-var cityUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/city.json";
-var countyUrl = "https://raw.githubusercontent.com/wecatch/china_regions/master/src/county.json";
+var provinceUrl = "../media/json/province.json";
+var cityUrl = "../media/json/city.json";
+var countyUrl = "../media/json/county.json";
 
 var provinceData, cityData;
 

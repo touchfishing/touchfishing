@@ -42,6 +42,7 @@ if (getCookie("uid") == "") {
             console.log(sname_in,region,sadd_in,img_se);
             // not sent yet
             // send to backend
+            
         }
         else {
             $("#checkvalid").css("display","block");

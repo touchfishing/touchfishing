@@ -57,12 +57,19 @@ $("#submit_order__").click(function() {
 	timing(5100, showOrHideSuccess, "block");
 	timing(6000, paying_text, "支付成功");
 	timing(8500, showOrHidePaying, "none");
-	// clear all session storage
-
-	// jump
-
+	timing(8510, clearNjump);
 })
 
+$(window).on("beforeunload", function() { 
+	clearSession();
+    return confirm("Do you really want to close?"); 
+})
+
+function clearSession() {
+	for (var i of topasskey) {
+		sessionStorage.removeItem(i);
+	}
+}
 
 // functions in paying
 async function showOrHidePaying(st) {
@@ -81,9 +88,15 @@ async function showOrHideSuccess(st) {
 	$(".success-animation").css("display", st);
 }
 
+async function clearNjump() {
+	// clear all session storage
+	clearSession();
+	// jump
+	window.location.href = "../";
+}
+
 function timing(t, func, p) {
 	setTimeout(func, t, p);
 }
-
 
 })();
