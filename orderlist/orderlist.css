@@ -1,0 +1,152 @@
+html {
+    display: contents;
+}
+
+#below_01 {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    max-width: 90%;
+    width: 800px;
+}
+#below_02 {
+    margin: auto;
+    width: 99%;
+}
+
+#filter_status_01 {
+    text-align: center;
+    width: 100%;
+}
+#filter_status_02 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#filter_status_02 input {
+    width: 0;
+    margin: 0;
+    padding: 0;
+}
+#filter_status_02 label {
+    position:relative;
+    cursor: pointer;
+    background-color: #dceaff;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px -1px 5px 0 #aaaaaa
+}
+#filter_status_02 input:checked + label {
+    color: white;
+    background-color: cornflowerblue;
+    margin-top: -10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    font-size: 18px;
+    padding-top: 10px;
+    z-index: 15;
+}
+
+#list_box_01 {
+    min-height: 100px;
+    z-index: 10;
+    width: 100%;
+    border-radius: 2px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+#list_box_02 {
+    width: 100%;
+}
+
+#list_filter {
+    display: inline-flex;
+}
+
+
+
+#one_order_01 {
+    width: 98%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#one_order_02 {
+    width: 100%;
+}
+
+.order_groups {
+    width: 100%;
+}
+
+.outer_box_order {
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+
+
+.order_top_pane {
+    background-color: rgb(255, 246, 232);
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 2px 2px 0 0;
+}
+.order_top_pane span {
+    padding: 10px;
+}
+
+
+.item_pic img {
+    height: 40px;
+}
+
+
+.order_item {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    border-radius: 0 0 2px 2px;
+}
+.order_item:hover {
+    background-color: rgb(245, 252, 255);
+}
+.item_detail {
+    margin: 10px;
+    display: inline-flex;
+}
+.item_pic {
+    cursor: pointer;
+}
+.item_text {
+    margin: 0 10px 0 10px;
+    cursor: pointer;
+}
+.order_cost {
+    margin: 10px;
+}
+
+.order_operation {
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+.order_operation button {
+    border-radius: 30px;
+    padding: 4px 8px 4px 8px;
+    border: none;
+    margin-left: 5px;
+    background-color: #f6e7d5;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+.withdraw_item button {
+    background-color: #ededed;
+    color: #8e8e8e;
+}
+.confirm_item button {
+    background-color: #d53131;
+    color: white;
+}

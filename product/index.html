@@ -59,25 +59,22 @@
 		<div class="right_box2">
 			<div class="product_header"><span></span></div>
 			<div class="PriceVolume">
-			<div class="product_price"><span></span></div>
-			<div class="product_volume"><span></span></div>
+			<div class="product_price"><span>￥ </span><span></span></div>
+			<div class="product_volume"><span>销量: </span><span></span></div>
 			</div>
 			<div class="fromexpressstore">
-			<div class="product_from"><span></span></div>
-			<div class="product_express"><span></span></div>
-			<div class="product_store"><span></span></div>
+			<div class="product_from"><span>发货地: </span><span></span></div>
+			<div class="product_express"><span>快递: </span><span></span></div>
+			<div class="product_store"><span>店铺: </span><span></span></div>
 			</div>
-			<div class="product_format"><span></span>
-				<li><input type="radio" id="o_format" class="format_radio" name="p_format" value="0" checked>
-					<label for="o_format" class="format_label">默认配置</label></li>
-			</div>
-			<div class="product_stock"><span></span></div>
+			<div class="product_format"><span id="format_span">规格: </span><div  id="product_format"></div></div>
+			<div class="product_stock"><span>库存: </span><span></span></div>
 
 			<div class="bottom_action_box1">
 			<div class="bottom_action_box2">
 				<div class="product_numbers">
 					<button>-</button>
-					<input value="1" min="1">
+					<input id="stocknum" value="1" min="0" type="number">
 					<button>+</button>
 				</div>
 				<div class="product_click_buy">

@@ -9,8 +9,23 @@
 
 <link rel="stylesheet" href="../user/top_pane.css" type="text/css">
 <link rel="stylesheet" href="order.css" type="text/css">
+<link rel="stylesheet" href="pac-man.css" type="text/css">
+<link rel="stylesheet" href="success_checkmark.css" type="text/css">
 
 <body style="margin-left: 0;">
+
+<div class="whenyoupay">
+	<div class="paying_outer">
+		<div class='pac-man'></div>
+		<div class="success-animation">
+			<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+				<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+			</svg>
+		</div>
+		<div class='ppay_after'><span></span></div>
+	</div>
+</div>
 
 <!-- the top pane -->
 <div id="top_pane" class="top">
@@ -60,15 +75,15 @@
 	<span class="breakline"></span>
 	<div class="product_info">
 		<li>
-			<div><img></div>
-			<div><span>商品1...........</span></div>
-			<div>
-				<div><span>单价:</span><span>x</span></div>
-				<div><span>数量:</span><span>x</span></div>
-				<div><span>小计:</span><span>x</span></div>
+			<div class="iiiimg"><img class="p__img"></div>
+			<div class="p_name_div_g"><span class="p__name"></span><span class="p__format"></span></div>
+			<div class="tttttext">
+				<div><span>单价:</span><span><span class="p__per"></span></span></div>
+				<div><span>数量:</span><span><span class="p__quantity"></span></span></div>
+				<div><span>小计:</span><span><span class="p__sum"></span></span></div>
 			</div>
 		</li>
-		<li>
+		<!--<li>
 			<div><img></div>
 			<div><span>商品2...........</span></div>
 			<div>
@@ -76,7 +91,7 @@
 				<div><span>数量:</span><span>x</span></div>
 				<div><span>小计:</span><span>x</span></div>
 			</div>
-		</li>
+		</li>-->
 	</div>
 </div>
 </div>
@@ -88,7 +103,7 @@
 	<div class="freight_info">
 		<div class="express_type expresssss">
 			<span>普通快递</span>
-			<span>0元</span>
+			<span>￥ <span class="p__express"></span></span>
 		</div>
 		<div class="insurance expresssss">
 			<div class="innnnsurance"><span>运费险</span>
@@ -99,7 +114,7 @@
 					</label>
 				</div>
 			</div>
-			<span>0元</span>
+			<span>￥ 0</span>
 		</div>
 	</div>
 </div>
@@ -110,9 +125,10 @@
 	<span class="textOriginal">商品金额</span>
 	<span class="breakline"></span>
 	<div class="price_info">
-		<div class="pppp_info"><span>商品</span><span>￥</span></div>
-		<div class="pppp_info"><span>运费</span><span>￥</span></div>
-		<div class="pppp_info"><span>总计</span><span>￥</span></div>
+		<div class="pppp_info"><span>商品</span><span>￥ <span class="p__p_sum"></span></span></div>
+		<div class="pppp_info"><span>运费</span><span>￥ <span class="p__e_sum"></span></span></div>
+		<div class="pppp_info"><span>优惠</span><span>别想了，优惠是不可能有的</span></div>
+		<div class="pppp_info"><span>总计</span><span>￥ <span class="p__total"></span></span></div>
 	</div>
 </div>
 </div>
@@ -122,7 +138,7 @@
 	<span class="textOriginal">支付方式</span>
 	<span class="breakline"></span>
 	<div class="payment_info">
-		<span>先放着</span>
+		<label for="thepayment">一个很神奇的支付方式<br>An Amazing Payment Method</label><input id="thepayment" type="radio" checked>
 	</div>
 </div>
 </div>
@@ -134,9 +150,9 @@
 <div class="bottom_box1">
 <div class="bottom_box2">
 <div class="bottom_box3">
-	<div class="ppppprice"><span>￥</span></div>
+	<div class="ppppprice"><span>￥ <span class="p__total"></span></span></div>
 	<div class="confirm_bbbbbuton">
-		<button>提交订单</button>
+		<button id="submit_order__">提交订单</button>
 	</div>
 </div>
 </div>

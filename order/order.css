@@ -43,12 +43,37 @@
     justify-content: space-between;
     width: 100%;
     margin: 10px 0;
+    align-items: center;
+}
+.iiiimg {
+    max-width: 120px;
+    margin: 2px;
+    text-align: center;
+    height: 50px;
+    max-height: 100px;
 }
 .product_info img {
     max-height: 100px;
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .product_info span {
     padding-right: 5px;
+}
+.p_name_div_g {
+    margin: 3px;
+}
+.p_name_div_g span {
+    display: block;
+}
+.p__format {
+    color: gray;
+    font-size: 14px;
+}
+.tttttext {
+    white-space: nowrap;
 }
 /* freight */
 .expresssss {
@@ -114,6 +139,12 @@
     width: 100%;
 }
 /* payment */
+.payment_info {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
 
 /* ---- bottom ---- */
@@ -155,4 +186,44 @@
 }
 .confirm_bbbbbuton button:focus {
     outline-width: 0;
+}
+
+
+
+/* paying */
+.whenyoupay {
+    background-color: #121212b3;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
+    overflow: hidden;
+    display: none;
+}
+  
+.paying_outer {
+    display: block;
+    text-align: center;
+    position: relative;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+}
+  
+.ppay_after {
+    margin: auto;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.ppay_after span {
+    color: white;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.success-animation {
+    display: none;
+    padding-top: 100px;
 }

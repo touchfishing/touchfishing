@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>注册商家</title>
+
+</head>
+
+<link rel="stylesheet" href="../../region/regionSelect.css" type="text/css">
+<link rel="stylesheet" href="newshop.css" type="text/css">
+
+<body>
+
+<div class="outer_box1">
+<div class="outer_box2">
+<!-- store name -->
+<div class="store_name s_group">
+    <span class="beforeinputtitle">店铺名称</span>
+    <div>
+        <input id="sname_input">
+    </div>
+</div>
+<span class="linebreak"></span>
+<!-- store address -->
+<div class="store_address s_group">
+    <span class="beforeinputtitle">店铺地址</span>
+    <div>
+        <input id="region_select" placeholder="省、市">
+        <input id="sadd_input" placeholder="具体地址">
+    </div>
+</div>
+<span class="linebreak"></span>
+<!-- store address -->
+<div class="store_avatar s_group">
+    <span class="beforeinputtitle">店铺头像</span>
+    <div>
+        <div style="margin-top: 10px;">
+        <input type="file" id="upload_img" name="img" accept="image/*">
+        <label for="upload_img">点击上传头像</label>
+        </div>
+        <div id="display_img"><img></div>
+    </div>
+</div>
+<span class="linebreak"></span>
+<div id = "checkvalid"><span>信息不能为空</span></div>
+<div><button class='submit_store'>点击申请</button></div>
+
+</div>
+</div>
+
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../JS_library/getJSON.js"></script>
+<script type="text/javascript" src="../../region/regionSelect.js"></script>
+<script type="text/javascript" src="../../cookie/cookie.js"></script>
+<script type="text/javascript" src="../../login/login.js"></script>
+<script type="text/javascript" src="newshop.js"></script>

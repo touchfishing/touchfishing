@@ -215,6 +215,7 @@ login_btn.addEventListener("click", click_login);
 		}
 		else { // signed in
 			user_.style.display = "inline-block";
+			user_.style['min-width'] = "80px";
 			order_list.style.display = "inline-block";
 			signup_bar.style.display = "none";
 			signin_bar.style.display = "none";
@@ -256,7 +257,8 @@ login_btn.addEventListener("click", click_login);
 */
 (function() {
 	'use strict';
-	document.getElementById("llllllogout").addEventListener('click', logout);
+	if (document.getElementById("llllllogout") !== null)
+		document.getElementById("llllllogout").addEventListener('click', logout);
 
 	function logout(){
 		var xhttp = new XMLHttpRequest();

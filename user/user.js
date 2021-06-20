@@ -3,7 +3,7 @@
 
 if (getCookie("uid") == "") {
 	alert("请先登录");
-	//window.location.href = "../";
+	window.location.href = "../";
 }
 })();
 
@@ -206,5 +206,13 @@ function pcDisplay() {
     $("#user_area").css("margin-left","150px");
     $(".basic_info").css("width","80%");
 }
+
+})();
+
+(function() {
+    'use strict';
+$("#click_to_run").click(()=>{
+	window.location.href = window.location.href.split('?')[0] + 'newshop/';
+});
 
 })();

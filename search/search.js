@@ -67,17 +67,23 @@ function appendList() {
 
 		// pic
 		var pic = document.createElement("img");
-		//pic.src = "test/" + list[i].picture;//or something //////////////
+		var picA = document.createElement("a");
+		pic.alt = list[i].pname;
 		pic.src = "https://tf.mrning.com/api" + list[i].cover;
-		picDiv.appendChild(pic);
+		var pronameTooltip = document.createElement("span");
+		pronameTooltip.innerText = list[i].pname;
+		pronameTooltip.setAttribute("class", "tooltiptext");
+		picDiv.appendChild(picA);
+		picA.appendChild(pic);
+		picA.appendChild(pronameTooltip);
+		picA.href = "../product?pid=" + list[i].pid;
 		// product name
 		var proname = document.createElement("a");
 		proname.innerText = list[i].pname;
-		var pronameTooltip = document.createElement("span");
-		pronameTooltip.innerText = proname.innerText;
-		pronameTooltip.setAttribute("class", "tooltiptext");
+		proname.href = "../product?pid=" + list[i].pid;
 		proName.appendChild(proname);
-		proName.appendChild(pronameTooltip);
+		//proName.appendChild(pronameTooltip);
+		
 		// price
 		var proprice = document.createElement("label");
 		proprice.innerText = "￥ " + list[i].price;
