@@ -76,7 +76,7 @@ li {
    ------------ */
 .search {
 	display: block;
-    margin-top: 70px;
+    margin-top: 30px;
     position: relative;
     text-align: center;
     height: 150px;
@@ -189,7 +189,7 @@ li {
    ----------------- */
 .nav {
     margin: -8px;
-	height: 438px;
+	height: 495px;
 	overflow: hidden;
 	background-color: rgb(244, 244, 244);
 }
@@ -199,7 +199,7 @@ li {
 	background-color: white;
 	min-width: 20%;
     width: 300px;
-    height: 90%;
+    height: 95%;
     margin: 10px;
     margin-left: 10%;
 	box-shadow: 3px 3px 8px 2px #cacacab3;
@@ -212,11 +212,27 @@ li {
 }
 
 .dropdown .dd ul li {
+	border: 3px solid #f1f1f1;
+    float: left;
+    width: 85px;
+    padding: 0 3px;
+    margin: 2px 4px;
+    overflow: hidden;
     position: relative;
-    height: 35px;
-    line-height: 35px;
-	font-size: 16px;
-    padding-left:10px;
+    display: list-item;
+	/* border-radius: 50%; */
+    text-align: -webkit-match-parent;
+	border: 0;
+}
+
+.dropdown .commodity_pic {
+	border-radius: 50%;
+}
+.dropdown .commodity_word {
+	font-size: 18px;
+	font-weight: 800;
+	margin-top: 2px;
+	text-align: center;
 }
 
 .dropdown .dd ul li:hover{
