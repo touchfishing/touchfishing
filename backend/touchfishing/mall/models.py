@@ -19,13 +19,15 @@ class Product(models.Model):
     pid = models.AutoField(verbose_name='商品编号',primary_key=True)
     pname = models.CharField(verbose_name='商品名',unique=True,max_length=50)
     shop = models.ForeignKey(Shop,on_delete=models.CASCADE,verbose_name='店铺')
-    price = models.FloatField(verbose_name='价格',default=0)
     info = models.TextField(verbose_name='商品信息',default='')
     volume = models.IntegerField(verbose_name='销量',default='')
-    tag = models.TextField(verbose_name='分类',default='')
+    tag = models.CharField(verbose_name='分类',default='',max_length=50)
     cover = models.FileField(verbose_name='封面',upload_to='products/',default='products/default.jpg')
-    status = models.IntegerField(verbose_name='余量',default=0)
-    specs = models.TextField(verbose_name='规格',default='')
+
+    specs = models.TextField(verbose_name="规格",default='default')
+    prices = models.TextField(verbose_name="价格",default='0.0')
+    stocks = models.TextField(verbose_name="库存",default='0')
+
     shipping_region = models.TextField(verbose_name='发货地',default='')
     create_time = models.DateTimeField(verbose_name='创建时间',default=timezone.now)
     update_time = models.DateTimeField(verbose_name='更新时间',auto_now=True)
@@ -39,7 +41,11 @@ class Order(models.Model):
     oid = models.AutoField(verbose_name='订单号',primary_key=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='用户')
     product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name='商品')
+
     quantity = models.IntegerField(verbose_name='商品数量',default=0)
+    spec = models.TextField(verbose_name="规格",default='default')
+    price = models.FloatField(verbose_name="订单总额",default=0.0)
+
     status = models.SmallIntegerField(
         choices=((0,'等待确认'),(1,"等待发货"),(2,"等待买方确认"),(3,"已完成")),
         default=0,

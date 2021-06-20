@@ -560,15 +560,16 @@ def myOrders(request):
             'oid' : i.oid,
             'pid' : i.product.pid,
             'pname' : i.product.pname,
-            'price' : i.product.price,
-            'product_num' : i.product_num,
+            'spec' : i.spec,
+            'quantity' : i.quantity,
+            'price' : i.price,
             'sid' : i.product.shop.sid,
             'sname' : i.product.shop.sname,
             'status' : i.status,
             'deliverer' : i.deliverer,
             'delivery_number' : i.delivery_number,
-            'create_time' : i.strftime("%Y-%m-%d %H:%M:%S"),
-            'update_time' : i.strftime("%Y-%m-%d %H:%M:%S")
+            'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'update_time' : i.update_time.strftime("%Y-%m-%d %H:%M:%S")
         })
     return returnList(return_data)
 
@@ -587,15 +588,16 @@ def getOrder(request,oid):
         'oid' : user_obj.oid,
         'pid' : user_obj.product.pid,
         'pname' : user_obj.product.pname,
-        'price' : user_obj.product.price,
-        'product_num' : user_obj.product_num,
+        'spec' : user_obj.spec,
+        'quantity' : user_obj.quantity,
+        'price' : user_obj.price,
         'sid' : user_obj.product.shop.sid,
         'sname' : user_obj.product.shop.sname,
         'status' : user_obj.status,
         'deliverer' : user_obj.deliverer,
         'delivery_number' : user_obj.delivery_number,
         'address' : user_obj.address,
-        'create_time' : user_obj.strftime("%Y-%m-%d %H:%M:%S"),
-        'update_time' : user_obj.strftime("%Y-%m-%d %H:%M:%S")
+        'create_time' : user_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : user_obj.update_time.strftime("%Y-%m-%d %H:%M:%S")
     }
     return returnList(return_data)

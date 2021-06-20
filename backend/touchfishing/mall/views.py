@@ -20,16 +20,26 @@ def newProduct(request):
     if not shop_obj:
         return return403('用户尚无店铺')
     pname = request.POST.get("pname")
-    price = request.POST.get("price")
     info = request.POST.get("info")
     tag = request.POST.get("tag")
     cover = request.FILES.get('cover',None)
-    status = request.POST.get("status")
     specs = request.POST.get("specs")
+    prices = request.POST.get("prices")
+    stocks = request.POST.get("stocks")
+
+    spec_list = specs.split(',')
+    price_list = list(map(float,prices.split(','))),
+    stock_list = list(map(int,stocks.split(','))),
+
+    tmpLen = len(spec_list)
+    if((tmpLen!=len(price_list)) or (tmpLen!=len(stock_list))):
+        return return403('spec_list, price_list, stock_list长度不一致')
+
     shipping_region = request.POST.get("shipping_region")
-    if not (pname and price and info and tag and status):
+    if not (pname and prices and info and tag and specs and stocks):
         return return403('缺少参数')
-    product_obj = Product(pname=pname,shop=shop_obj,price=price,info=info,tag=tag,status=status)
+    
+    product_obj = Product(pname=pname,shop=shop_obj,prices=prices,info=info,tag=tag,specs=specs,stocks=stocks)
     if cover:
         f, e = os.path.splitext(cover.name)
         imgName=str(product_obj.sid)+e
@@ -41,15 +51,16 @@ def newProduct(request):
         'pname' : product_obj.pname,
         'sid' : product_obj.shop.sid,
         'sname' : product_obj.shop.sname,
-        'price' : product_obj.price,
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
-        'specs' : product_obj.specs,
+        'specs' : product_obj.specs.split(','),
+        'prices' : list(map(float,product_obj.prices.split(','))),
+        'stocks' : list(map(int,product_obj.stocks.split(','))),
         'shipping_region' : product_obj.shipping_region,
         'cover' : '/media/'+product_obj.cover.name,
-        'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
-        'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
+        'create_time' : product_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : product_obj.update_time.strftime("%Y-%m-%d %H:%M:%S")
     }
     return returnList(return_data)
 
@@ -62,15 +73,16 @@ def getProduct(request,pid):
         'pname' : product_obj.pname,
         'sid' : product_obj.shop.sid,
         'sname' : product_obj.shop.sname,
-        'price' : product_obj.price,
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
-        'specs' : product_obj.specs,
+        'specs' : product_obj.specs.split(','),
+        'prices' : list(map(float,product_obj.prices.split(','))),
+        'stocks' : list(map(int,product_obj.stocks.split(','))),
         'shipping_region' : product_obj.shipping_region,
         'cover' : '/media/'+product_obj.cover.name,
-        'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
-        'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
+        'create_time' : product_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : product_obj.update_time.strftime("%Y-%m-%d %H:%M:%S")
     }
     return returnList(return_data)
 
@@ -88,23 +100,23 @@ def editProduct(request,pid):
     if not product_obj:
         return return403('用户店铺内找不到该商品')
     pname = request.POST.get("pname")
-    price = request.POST.get("price")
+    prices = request.POST.get("prices")
     info = request.POST.get("info")
     tag = request.POST.get("tag")
     cover = request.FILES.get('cover',None)
-    status = request.POST.get("status")
+    stocks = request.POST.get("stocks")
     specs = request.POST.get("specs")
     shipping_region = request.POST.get("shipping_region")
     if pname:
         product_obj.pname=pname
-    if price:
-        product_obj.price=price
+    if prices:
+        product_obj.prices=prices
     if info:
         product_obj.info=info
     if tag:
         product_obj.tag=tag
-    if status:
-        product_obj.status=status
+    if stocks:
+        product_obj.stocks=stocks
     if specs:
         product_obj.specs=specs
     if shipping_region:
@@ -123,16 +135,16 @@ def editProduct(request,pid):
         'pname' : product_obj.pname,
         'sid' : product_obj.shop.sid,
         'sname' : product_obj.shop.sname,
-        'price' : product_obj.price,
         'info' : product_obj.info,
         'volume' : product_obj.volume,
         'tag' : product_obj.tag,
-        'status' : product_obj.status,
-        'specs' : product_obj.specs,
+        'specs' : product_obj.specs.split(','),
+        'prices' : list(map(float,product_obj.prices.split(','))),
+        'stocks' : list(map(int,product_obj.stocks.split(','))),
         'shipping_region' : product_obj.shipping_region,
         'cover' : '/media/'+product_obj.cover.name,
-        'create_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S"),
-        'update_time' : product_obj.strftime("%Y-%m-%d %H:%M:%S")
+        'create_time' : product_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+        'update_time' : product_obj.update_time.strftime("%Y-%m-%d %H:%M:%S")
     }
     return returnList(return_data)
 
@@ -140,23 +152,30 @@ def placeOrder(request,pid):
     uid = request.session.get('uid',None)
     address = request.POST.get("address")
     quantity = request.POST.get("quantity")
+    spec = request.POST.get("spec")
     if not uid:
         return return403('未登录或登录超时')
     user_obj = User.objects.filter(uid=uid).first()
     if not user_obj:
         return return403('无此用户')
-    if not(address and quantity):
-        return return403('缺少address或quantity')
+    if not(address and quantity and spec):
+        return return403('缺少address或quantity或spec')
     product_obj = Product.objects.filter(pid=pid).first()
     if not product_obj:
         return return403('无此商品')
     with lock:
-        remains_num = product_obj.status
-        if product_obj.status < int(quantity):
+        stock_list = product_obj.stocks.split(",")
+        spec_list = product_obj.specs.split(",")
+        price_list = product_obj.prices.split(",")
+        total_price = price_list[int(spec)] * int(spec)
+        remains_num = int(stock_list[int(spec)])
+        if remains_num < int(quantity):
             return return403('商品购买数量超过限制')
-        order_obj=Order(user=user_obj,product=product_obj,quantity=int(quantity))
+        order_obj=Order(user=user_obj,product=product_obj,quantity=int(quantity),spec = spec_list[int(spec)],price = total_price)
         order_obj.save()
-        product_obj.status=remains_num-int(quantity)
+        stock_list[int(spec)] = str(stock_list[int(spec)] - int(quantity))
+        product_obj.stocks = ','.join(str(i) for i in stock_list)
+        product_obj.volume = product_obj.volume + 1
         product_obj.save()
     return_data = {
         'oid' : order_obj.oid,
@@ -180,7 +199,9 @@ def search_by_name(request,keyword):
             'pname' : i.pname,
             'sid' : i.shop.sid,
             'sname' : i.shop.sname,
-            'price' : i.price,
+            'specs' : i.specs.split(','),
+            'prices' : list(map(float,i.prices.split(','))),
+            'stocks' : list(map(int,i.stocks.split(','))),
             'volume' : i.volume,
             'tag' : i.tag,
             'shipping_region' : i.shipping_region,
@@ -222,7 +243,9 @@ def getClassOfProduct(request,tag):
             'pname' : i.pname,
             'sid' : i.shop.sid,
             'sname' : i.shop.sname,
-            'price' : i.price,
+            'specs' : i.specs.split(','),
+            'prices' : list(map(float,i.prices.split(','))),
+            'stocks' : list(map(int,i.stocks.split(','))),
             'volume' : i.volume,
             'tag' : i.tag,
             'shipping_region' : i.shipping_region,
