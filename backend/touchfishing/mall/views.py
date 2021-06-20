@@ -256,6 +256,31 @@ def getClassOfProduct(request,tag):
         })
     return returnList(return_data)
 
+def getShopProductList(request,sid):
+    products = Product.objects.filter(shop__sid=sid)
+    return_data = {
+        'sid' : sid,
+        'item_num' : products.count(),
+        'items' : []
+    }
+    for i in products:
+        return_data['items'].append({
+            'pid' : i.pid,
+            'pname' : i.pname,
+            'sid' : i.shop.sid,
+            'sname' : i.shop.sname,
+            'specs' : i.specs.split(','),
+            'prices' : list(map(float,i.prices.split(','))),
+            'stocks' : list(map(int,i.stocks.split(','))),
+            'volume' : i.volume,
+            'tag' : i.tag,
+            'shipping_region' : i.shipping_region,
+            'cover' : '/media/'+i.cover.name,
+            'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'update_time' : i.update_time.strftime("%Y-%m-%d %H:%M:%S"),
+        })
+    return returnList(return_data)
+
 
 def return403(str):
     return HttpResponse('{"code":403,"msg":"%s"}' % str, content_type='application/json')

@@ -29,6 +29,7 @@ mall_patterns = [
     path('product/tag/<str:tag>', mallview.getClassOfProduct),
     path('search/name/<str:keyword>', mallview.search_by_name),
     path('search/shop/<str:keyword>', mallview.search_shop),
+    path('shop/<int:sid>/list', mallview.getShopProductList),
 ]
 
 urlpatterns = [

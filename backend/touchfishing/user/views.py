@@ -455,7 +455,7 @@ def myShop(request):
         'uid' : shop_obj.user.uid,
         'sname' : shop_obj.sname,
         'saddr' : shop_obj.saddr,
-        'avatar' : shop_obj.avatar,
+        'avatar' : '/media/'+shop_obj.avatar.name,
         'create_time' : shop_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : shop_obj.update_time.strftime("%Y-%m-%d %H:%M:%S"),
     }
@@ -495,7 +495,7 @@ def openShop(request):
         'uid' : shop_obj.user.uid,
         'sname' : shop_obj.sname,
         'saddr' : shop_obj.saddr,
-        'avatar' : shop_obj.avatar,
+        'avatar' : '/media/'+shop_obj.avatar.name,
         'create_time' : shop_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : shop_obj.update_time.strftime("%Y-%m-%d %H:%M:%S"),
     }
@@ -536,7 +536,7 @@ def editShop(request):
         'uid' : shop_obj.user.uid,
         'sname' : shop_obj.sname,
         'saddr' : shop_obj.saddr,
-        'avatar' : shop_obj.avatar,
+        'avatar' : '/media/'+shop_obj.avatar,
         'create_time' : shop_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
         'update_time' : shop_obj.update_time.strftime("%Y-%m-%d %H:%M:%S"),
     }
