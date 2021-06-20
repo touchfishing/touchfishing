@@ -422,14 +422,16 @@
 
 请求参数：
 
-| 名称   | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| pname  | string | 是   | 商品标题 |
-| price  | float  | 是   | 价格     |
-| info   | string | 是   | 描述     |
-| tag    | string | 是   | 分类标签 |
-| cover  | file   | 否   | 商品图   |
-| status | int    | 是   | 剩余库存 |
+| 名称            | 类型   | 必填 | 说明     |
+| --------------- | ------ | ---- | -------- |
+| pname           | string | 是   | 商品标题 |
+| price           | float  | 是   | 价格     |
+| info            | string | 是   | 描述     |
+| tag             | string | 是   | 分类标签 |
+| cover           | file   | 否   | 商品图   |
+| status          | int    | 是   | 剩余库存 |
+| specs           | string |      | 规格     |
+| shipping_region | string |      | 发货地   |
 
 返回参数：
 
@@ -463,19 +465,22 @@
 
 返回参数：
 
-| 名称        | 说明       |
-| ----------- | ---------- |
-| pid         | 商品ID     |
-| pname       | 商品名     |
-| sid         | 店铺ID     |
-| sname       | 店铺名     |
-| price       | 商品价格   |
-| info        | 商品数量   |
-| volume      | 销量       |
-| tag         | 分类标签   |
-| cover       | 商品封面图 |
-| create_time |            |
-| update_time |            |
+| 名称            | 说明         |
+| --------------- | ------------ |
+| pid             | 商品ID       |
+| pname           | 商品名       |
+| sid             | 店铺ID       |
+| sname           | 店铺名       |
+| price           | 商品价格     |
+| info            | 商品描述信息 |
+| volume          | 销量         |
+| tag             | 分类标签     |
+| cover           | 商品封面图   |
+| status          | 库存         |
+| specs           | 规格         |
+| shipping_region | 发货地       |
+| create_time     |              |
+| update_time     |              |
 
 
 
@@ -487,14 +492,16 @@
 
 请求参数：
 
-| 名称   | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| pname  | string | 否   | 商品标题 |
-| price  | float  | 否   | 价格     |
-| info   | string | 否   | 描述     |
-| tag    | string | 否   | 分类标签 |
-| cover  | file   | 否   | 商品图   |
-| status | int    | 否   | 剩余库存 |
+| 名称            | 类型   | 必填 | 说明     |
+| --------------- | ------ | ---- | -------- |
+| pname           | string | 否   | 商品标题 |
+| price           | float  | 否   | 价格     |
+| info            | string | 否   | 描述     |
+| tag             | string | 否   | 分类标签 |
+| cover           | file   | 否   | 商品图   |
+| status          | int    | 否   | 剩余库存 |
+| specs           | string | 否   | 规格     |
+| shipping_region | string | 否   | 发货地   |
 
 返回参数：
 
@@ -564,16 +571,17 @@
 
 其中，items中每个项目：
 
-| 名称   | 说明       |
-| ------ | ---------- |
-| pid    | 商品ID     |
-| pname  | 商品名     |
-| sid    | 店铺ID     |
-| sname  | 店铺名     |
-| price  | 商品价格   |
-| volume | 销量       |
-| tag    | 分类标签   |
-| cover  | 商品封面图 |
+| 名称            | 说明       |
+| --------------- | ---------- |
+| pid             | 商品ID     |
+| pname           | 商品名     |
+| sid             | 店铺ID     |
+| sname           | 店铺名     |
+| price           | 商品价格   |
+| volume          | 销量       |
+| tag             | 分类标签   |
+| shipping_region | 发货地     |
+| cover           | 商品封面图 |
 
 
 
@@ -632,13 +640,17 @@
 
 其中，items中每个项目：
 
-| 名称   | 说明       |
-| ------ | ---------- |
-| sid    | 店铺ID     |
-| sname  | 店铺名     |
-| avatar | 店铺头像   |
-| uid    | 老板ID     |
-| uname  | 老板用户名 |
+| 名称            | 说明       |
+| --------------- | ---------- |
+| sid             | 店铺ID     |
+| sname           | 店铺名     |
+| avatar          | 店铺头像   |
+| uid             | 老板ID     |
+| uname           | 老板用户名 |
+| volume          | 销量       |
+| tag             | 分类标签   |
+| shipping_region | 发货地     |
+| cover           | 商品封面图 |
 
 
 

@@ -77,7 +77,8 @@ def login(request,use_captcha=1):
         'email' : user_obj.email,
         'gender' : user_obj.gender,
         'intro' : user_obj.intro,
-        'avatar' : '/media/'+user_obj.avatar.name
+        'avatar' : '/media/'+user_obj.avatar.name,
+        'create_time' : user_obj.create_time.strftime("%Y-%m-%d %H:%M:%S"),
     }
 
     return returnList(return_data)
