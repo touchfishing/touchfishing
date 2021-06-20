@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="top_pane" class="top">
+        <div class="homepage">
+            <img class = "icon0" src="../media/fish_emoji.png">
+            <link href="">首页
+        </div>
+    
+        <div id="user" class="user">
+            <img>
+            <a href="#">店铺信息</a>
+        </div>
+    
+        <div class="myorder" id="order_list">
+            <link href="">查看订单
+        </div>
+    
+    </div>
+
+    <div class="store_container">
+        <div id="store_logo">
+            <a href="#">
+                <div id="shopname">店铺：迪迦奥特曼</div>
+            </a>
+            <div id="search" class="query">
+                <input type="text" id="select" placeholder="请输入搜索内容..."/>
+                <button type="button" id="btnquery">搜索</button>
+            </div>
+        </div>
+        <form class="order_table">
+            <div class="order_inform">
+                <label>订单号：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>商品名称：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>用户名：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>送货地址：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>联系电话：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>物流公司：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>物流单号：</label>
+                <div class="input_block">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="order_inform">
+                <label>状态：</label>                
+                <div class="rdo-grp">
+                    <input id="rdo1" type="radio" name="radio"/>
+                    <label for="rdo1"><span></span><span>未发</span></label>
+                    <input id="rdo2" type="radio" name="radio"/>
+                    <label for="rdo2"><span></span><span>已发</span></label>
+                    <input id="rdo3" type="radio" name="radio"/>
+                  </div>
+            
+            </div>
+            <div class="order_inform">
+                <button style="margin-left: 80px;" type="submit" lay-submit="" >提交</button>
+                <button style="margin-left: 40px; background-color: red;" type="submit" lay-submit="" >删除</button>
+                <!-- 111 -->
+            </div>
+            
+        </form>
+        
+        
+    </div>
+    
+</body>
+<link rel="stylesheet" href="../merchant/index.css" type="text/css">
+<link rel="stylesheet" href="../merchant/store.css" type="text/css">
+<link rel="stylesheet" href="../merchant/order.css" type="text/css">
+<!-- <link rel="stylesheet" href="layui/css/layui.css" type="text/css"> -->
+<!-- <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all"> -->
+</html>

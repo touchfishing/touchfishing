@@ -64,7 +64,7 @@
 #shopname {
     float: left;
     font-size: large;
-    background-image: url("../images/store_logo.png");
+    background-image: url("../media/store_logo.png");
     background-position: 5px center;
     background-repeat: no-repeat;
     padding-left: 60px;
@@ -258,3 +258,4 @@
     background-color: red;
     
 }
+
