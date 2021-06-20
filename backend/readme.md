@@ -367,8 +367,9 @@
 | oid             | 店铺ID                                                       |
 | pid             | 用户ID                                                       |
 | pname           | 商品名                                                       |
-| price           | 商品价格                                                     |
-| product_num     | 商品数量                                                     |
+| spec           | 购买规格                                                     |
+| quantity           | 数量                                                     |
+| price           | 总价                                                     |
 | sid             | 店铺ID                                                       |
 | sname           | 店铺名                                                       |
 | status          | 状态(0,'等待确认'),(1,"等待发货"),(2,"等待买房确认"),(3,"已完成") |
@@ -399,8 +400,9 @@
 | oid             | 店铺ID                                                       |
 | pid             | 用户ID                                                       |
 | pname           | 商品名                                                       |
-| price           | 商品价格                                                     |
-| product_num     | 商品数量                                                     |
+| spec           | 购买规格                                                     |
+| quantity           | 数量                                                     |
+| price           | 总价                                                     |
 | sid             | 店铺ID                                                       |
 | sname           | 店铺名                                                       |
 | status          | 状态(0,'等待确认'),(1,"等待发货"),(2,"等待买房确认"),(3,"已完成") |
@@ -429,9 +431,12 @@
 | info            | string | 是   | 描述     |
 | tag             | string | 是   | 分类标签 |
 | cover           | file   | 否   | 商品图   |
-| status          | int    | 是   | 剩余库存 |
-| specs           | string |      | 规格     |
-| shipping_region | string |      | 发货地   |
+| specs          | string |   是  | 规格     |
+| prices          | string |  是   | 价格     |
+| stocks           | string |  是   | 库存     |
+| shipping_region | string |  是   | 发货地   |
+
+specs prices prices 为逗号分隔字符串，其数组长度应一致。
 
 返回参数：
 
@@ -441,13 +446,16 @@
 | pname       | 商品名     |
 | sid         | 店铺ID     |
 | sname       | 店铺名     |
-| price       | 商品价格   |
-| info        | 商品数量   |
-| volume      | 销量       |
-| tag         | 分类标签   |
+| info        | 商品详情   |
+| volume       | 商品销量   |
+| tag       | 商品标签   |
+| specs      | 规格       |
+| prices         | 价格   |
+| stocks         | 库存   |
+| shipping_region         | 发货地   |
 | cover       | 商品封面图 |
-| create_time |            |
-| update_time |            |
+| create_time |  创建时间      |
+| update_time |  更新时间    |
 
 
 
@@ -471,16 +479,16 @@
 | pname           | 商品名       |
 | sid             | 店铺ID       |
 | sname           | 店铺名       |
-| price           | 商品价格     |
 | info            | 商品描述信息 |
 | volume          | 销量         |
 | tag             | 分类标签     |
+| specs      | 规格       |
+| prices         | 价格   |
+| stocks         | 库存   |
+| shipping_region         | 发货地   |
 | cover           | 商品封面图   |
-| status          | 库存         |
-| specs           | 规格         |
-| shipping_region | 发货地       |
-| create_time     |              |
-| update_time     |              |
+| create_time |  创建时间      |
+| update_time |  更新时间    |
 
 
 
@@ -495,13 +503,15 @@
 | 名称            | 类型   | 必填 | 说明     |
 | --------------- | ------ | ---- | -------- |
 | pname           | string | 否   | 商品标题 |
-| price           | float  | 否   | 价格     |
 | info            | string | 否   | 描述     |
 | tag             | string | 否   | 分类标签 |
 | cover           | file   | 否   | 商品图   |
-| status          | int    | 否   | 剩余库存 |
-| specs           | string | 否   | 规格     |
+| specs          | string |   是  | 规格     |
+| prices          | string |  是   | 价格     |
+| stocks           | string |  是   | 库存     |
 | shipping_region | string | 否   | 发货地   |
+
+specs prices prices 为逗号分隔字符串，其数组长度应一致。
 
 返回参数：
 
@@ -511,13 +521,16 @@
 | pname       | 商品名     |
 | sid         | 店铺ID     |
 | sname       | 店铺名     |
-| price       | 商品价格   |
 | info        | 商品数量   |
 | volume      | 销量       |
 | tag         | 分类标签   |
-| cover       | 商品封面图 |
-| create_time |            |
-| update_time |            |
+| specs      | 规格       |
+| prices         | 价格   |
+| stocks         | 库存   |
+| shipping_region         | 发货地   |
+| cover           | 商品封面图   |
+| create_time |  创建时间      |
+| update_time |  更新时间    |
 
 
 
@@ -577,11 +590,15 @@
 | pname           | 商品名     |
 | sid             | 店铺ID     |
 | sname           | 店铺名     |
-| price           | 商品价格   |
-| volume          | 销量       |
-| tag             | 分类标签   |
-| shipping_region | 发货地     |
-| cover           | 商品封面图 |
+| specs      | 规格       |
+| prices         | 价格   |
+| stocks         | 库存   |
+| volume      | 销量       |
+| tag         | 分类标签   |
+| shipping_region         | 发货地   |
+| cover           | 商品封面图   |
+| create_time |  创建时间      |
+| update_time |  更新时间    |
 
 
 
@@ -642,16 +659,19 @@
 
 | 名称            | 说明       |
 | --------------- | ---------- |
+| pid             | 商品ID     |
+| pname           | 商品名     |
 | sid             | 店铺ID     |
 | sname           | 店铺名     |
-| avatar          | 店铺头像   |
-| uid             | 老板ID     |
-| uname           | 老板用户名 |
-| volume          | 销量       |
-| tag             | 分类标签   |
-| shipping_region | 发货地     |
-| cover           | 商品封面图 |
-
+| specs      | 规格       |
+| prices         | 价格   |
+| stocks         | 库存   |
+| volume      | 销量       |
+| tag         | 分类标签   |
+| shipping_region         | 发货地   |
+| cover           | 商品封面图   |
+| create_time |  创建时间      |
+| update_time |  更新时间    |
 
 
 # 服务器信息

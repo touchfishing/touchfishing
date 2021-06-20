@@ -207,6 +207,7 @@ def search_by_name(request,keyword):
             'shipping_region' : i.shipping_region,
             'cover' : '/media/'+i.cover.name,
             'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'update_time' : i.update_time.strftime("%Y-%m-%d %H:%M:%S"),
         })
     return returnList(return_data)
 
@@ -251,6 +252,7 @@ def getClassOfProduct(request,tag):
             'shipping_region' : i.shipping_region,
             'cover' : '/media/'+i.cover.name,
             'create_time' : i.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'update_time' : i.update_time.strftime("%Y-%m-%d %H:%M:%S"),
         })
     return returnList(return_data)
 
