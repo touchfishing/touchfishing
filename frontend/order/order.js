@@ -10,7 +10,7 @@ if (getCookie("uid") == "") {
 (function() {
 	'use strict';
 
-var topasskey = ["pid", "quantity", "pname", "price", "express", "format", "pic"];
+var topasskey = ["pid", "quantity", "pname", "price", "express", "format", "pic", "f_index"];
 var theVal = new Map();
 for (var i = 0; i < topasskey.length; i++) {
 	let a = sessionStorage.getItem(topasskey[i]);
@@ -50,7 +50,7 @@ $("#submit_order__").click(function() {
 	showOrHidePaying("block");
 	paying_text("支付中，请不要离开");
 	// then send
-
+	timing(0, makeorder);
 	timing(2000, paying_text, "你不会在等待输入密码吧");
 	timing(4000, paying_text, "经系统检测，你很帅");
 	timing(5000, showOrHideEatbean, "none");
@@ -59,6 +59,29 @@ $("#submit_order__").click(function() {
 	timing(8500, showOrHidePaying, "none");
 	timing(8510, clearNjump);
 })
+
+async function makeorder() {
+	$.ajax({
+		type: "POST",
+		url: `https://tf.mrning.com/api/product/${theVal.get("pid")}/order`,
+		xhrFields: { withCredentials: true },
+		crossDomain: true,
+		data: {
+			pid: theVal.get("pid"), 
+			address: "aaaaaa", 
+			quantity: theVal.get("quantity"),
+			spec: theVal.get("f_index")
+		},
+		dataType: 'json'
+	}).done(function(data, status) {
+		console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
+		if (status == "success") {
+			if (data.code == 200){
+				console.log(data);
+			}
+		}
+	});
+}
 
 $(window).on("beforeunload", function() { 
 	clearSession();

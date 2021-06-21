@@ -59,3 +59,44 @@ function searchItem() {
     //console.log("/search/?"+queryParams.toString());
 	window.open("/search/?"+queryParams.toString(), '_blank');
 }
+
+
+
+
+function windowResize() {
+    var win = $(window);
+    
+    if (1000 * win.height() >= 815 * win.width()) { 
+        phDisplay();
+    }
+    else {
+        pcDisplay();
+    }
+}
+
+$(window).on('resize', windowResize);
+
+windowResize();
+
+function pcDisplay() {
+    $(".nav").css("height", $(window).height()-200);
+    $(".nav").css("flex-direction", "row");
+    $(".search_logo").css("display", "inline-block");
+    $(".search_box").css("margin-bottom", "100px");
+    $(".search").css("height", "150px");
+    $(".commodity_pic").css({"height": "80px", "width": "80px"});
+    $(".dropdown").css({"width": "30%", "margin": "10px 10px 10px 30px"});
+    $(".imgBox").css({"width": "55%", "margin-top": "10px", "margin-right": "5%"});
+}
+
+function phDisplay() {
+    $(".nav").css("height", $(window).height()-150);
+    $(".nav").css("flex-direction", "column");
+    $(".dropdown").css("width", "90%");
+    $(".search_logo").css("display", "none");
+    $(".search_box").css("margin-bottom", "0");
+    $(".search").css("height", "100px");
+    $(".commodity_pic").css({"height": "50px", "width": "50px"});
+    $(".dropdown").css({"width": "100%", "margin": "0"});
+    $(".imgBox").css({"width": "100%", "margin-top": "0", "margin-right": "0"});
+}

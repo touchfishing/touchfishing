@@ -20,7 +20,7 @@ function showResult() {
 
 	// product list json
 
-	$.get( "https://tf.mrning.com/api/search/name/" + keyword, function( data ) {
+	$.get("https://tf.mrning.com/api/search/name/" + keyword, function( data ) {
 		if (data.code != 200 || data.data.item_num <= 0) {
 			alert("sorry, 404 not found");
 			
@@ -86,7 +86,7 @@ function appendList() {
 		
 		// price
 		var proprice = document.createElement("label");
-		proprice.innerText = "￥ " + list[i].price;
+		proprice.innerText = "￥ " + list[i].prices[0];
 		proPrice.appendChild(proprice);
 		// volume
 		var provolume = document.createElement("label");
@@ -96,7 +96,7 @@ function appendList() {
 		var storename = document.createElement("a");
 		storename.innerText = list[i].sname;
 		var storeICON = document.createElement("img");
-		storeICON.src = "../media/store_icon.svg";
+		storeICON.src = "/media/store_icon.svg";
 		proStore.appendChild(storeICON);
 		proStore.appendChild(storename);
 

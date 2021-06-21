@@ -13,12 +13,11 @@ if (getCookie("uid") == "") {
     'use strict';
 
     $("#region_select").click(function(){openRegion();});
-
+    var file
     $(".citySelect > label").text("市/区");
-
     $("#upload_img").change(function(e) {
         for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-            var file = e.originalEvent.srcElement.files[i];
+            file = e.originalEvent.srcElement.files[i];
             var reader = new FileReader();
             reader.onloadend = function() {
                 $("#display_img img").attr("src", reader.result);
@@ -31,6 +30,8 @@ if (getCookie("uid") == "") {
     $("input").click(function(){$("#checkvalid").css("display","none");})
     $("input").change(function(){$("#checkvalid").css("display","none");})
 
+    
+
     $(".submit_store").click(()=>{
         var sname_in = $("#sname_input").val();
         var region = $("#region_select").val();
@@ -42,6 +43,27 @@ if (getCookie("uid") == "") {
             console.log(sname_in,region,sadd_in,img_se);
             // not sent yet
             // send to backend
+            var formData = new FormData()
+            formData.append('sname', sname_in)
+            formData.append('saddr', region+sadd_in)
+            formData.append('avatar', file)
+            formData.append('avatar_name', img_se)
+            $.ajax({
+                type: "POST",
+                url: "/api/user/shop/new",
+                xhrFields: { withCredentials: true },
+                crossDomain: true,
+                data: formData,
+                contentType: false,
+                processData: false
+            }).done(function(data, status) {
+                console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
+                if (status == "success") {
+                    if (data.code == 200){
+                        console.log("ok");
+                    }
+                }
+            });
             
         }
         else {

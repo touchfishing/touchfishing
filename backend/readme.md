@@ -587,6 +587,7 @@ specs prices prices 为逗号分隔字符串，其数组长度应一致。
 | pid      | int    | 是   | 商品ID (In URL) |
 | address  | string | 是   | 收货地址        |
 | quantity | string | 是   | 商品数量        |
+| spec     | int    | 是   | 商品规格(index) |
 
 返回参数：
 

@@ -1,9 +1,9 @@
 addDom();
 
 /* in seller register, the region selection */
-var provinceUrl = "../media/json/province.json";
-var cityUrl = "../media/json/city.json";
-var countyUrl = "../media/json/county.json";
+var provinceUrl = "/media/json/province.json";
+var cityUrl = "/media/json/city.json";
+var countyUrl = "/media/json/county.json";
 
 var provinceData, cityData;
 

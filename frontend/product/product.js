@@ -63,7 +63,7 @@ $.get( "https://tf.mrning.com/api/product/" + the_pid, function( data ) {
 
 const rootlink = "https://tf.mrning.com/api/";
 
-function createFormat(w, idx, st) {
+function createFormat(w, idx, st, pr) {
     let c_id = 'o_format_' + idx;
     let c_string = '<li><input type=\"radio\" id=\"' + c_id + '\"class=\"format_radio\" name=\"p_format\"';
     c_string += ('value=\"'+idx +'\"> <label for=\"'+c_id+'\"class="format_label">');
@@ -72,6 +72,9 @@ function createFormat(w, idx, st) {
     $("#"+c_id).click(function() {
         $(".product_stock span:eq(1)").text(st);
         $("#stocknum").prop('max', +st);
+        $("#stocknum").val(0)
+        $(".product_price span:eq(1)").text(pr);
+        $(".product_numbers button:nth-child(3)").click();
     })
 }
 
@@ -83,21 +86,23 @@ function divideByComma(s) {
 function showDetails(data) {
     $(".big_pic img").attr("src", rootlink + data.cover);
     $(".product_header span").text(data.pname);
-    $(".product_price span:eq(1)").text(data.price);
+    //$(".product_price span:eq(1)").text(data.price);
     $(".product_volume span:eq(1)").text(data.volume);
     $(".product_from span:eq(1)").text(data.shipping_region);
     var express_p = Math.floor(Math.random()*12);
     $(".product_express span:eq(1)").text(express_p + " CNY");
     $(".product_store span:eq(1)").text(data.sname);
 
-    var format_arr = ["默认规格"], stock_arr = [];
+    var format_arr = data.specs, stock_arr = data.stocks, price_arr = data.prices;
+    if (format_arr.length === 1 && format_arr[0] === "")    format_arr[0] = "默认规格";
+    /*var format_arr = ["默认规格"], stock_arr = [];
     stock_arr.push(+data.status);
     if (data.specs !== "") {
         format_arr = divideByComma(data.specs);
         stock_arr = divideByComma(data.volume.toString()); // !!!! change volume to status
-    }
+    }*/
     for (var i = 0; i < format_arr.length; i++) {
-        createFormat(format_arr[i], i, stock_arr[i]);
+        createFormat(format_arr[i], i, stock_arr[i], price_arr[i]);
     }
     $('#o_format_0').click(); // click default
 
@@ -105,17 +110,20 @@ function showDetails(data) {
 
     //;
 
-    $('#stocknum').on('input', function() {
-        if (+$(this).val() > +$(".product_stock span:eq(1)").text()) {
-            $(this).val(+$(".product_stock span:eq(1)").text());
+    function stockNum() {
+        var tIDX = +$(".format_radio:checked").val();
+        if (+$('#stocknum').val() > stock_arr[tIDX]) {
+            $('#stocknum').val(stock_arr[tIDX]);
         }
-        if (+$(this).val() === 0) {
+        if (+$('#stocknum').val() === 0) {
             $(".product_click_buy button:first-child").css('background-color', "#979797");
         }
         else {
             $(".product_click_buy button:first-child").css('background-color', "#ff4063");
         }
-    });
+    }
+
+    $('#stocknum').on('input', stockNum);
 
 
 
@@ -127,6 +135,7 @@ function showDetails(data) {
             }
             return +(this.value)+1;
         });
+        stockNum();
     })
     $(".product_numbers button:nth-child(1)").click(function() {
         $(".product_numbers input").val(function() {
@@ -140,19 +149,22 @@ function showDetails(data) {
     })
     
     $(".product_click_buy button:first-child").click(function() {
+        var theIDX = +$(".format_radio:checked").val();
         var buy_num = +$('#stocknum').val();
         if (buy_num === 0) return;
+        if (buy_num > stock_arr[theIDX]) return;
         if (getCookie("uid") == "") {
             alert("请先登录");
             document.getElementById("signin_bar").children[0].click();
         }
         else { // open the make-order page
-            var topasskey = ["pid", "quantity", "pname", "price", "express", "format", "pic"];
-            var topassval = [data.pid, $("#stocknum").val(), data.pname, data.price, express_p, format_arr[$(".format_radio:checked").val()], data.cover];
+            var topasskey = ["pid", "quantity", "pname", "price", "express", "format", "pic", "f_index"];
+            
+            var topassval = [data.pid, $("#stocknum").val(), data.pname, data.prices[theIDX], express_p, format_arr[theIDX], data.cover, theIDX];
             for (var i = 0; i < topasskey.length; i++) {
                 setSession(topasskey[i], topassval[i]);
             }
-            window.open("../order/");
+            window.open("/order/");
         }
     })
 
