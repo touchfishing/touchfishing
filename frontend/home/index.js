@@ -1,25 +1,28 @@
-window.addEventListener('load',function() {
+window.addEventListener('load', function() {
     var focus = document.querySelector('.imgBox');
     var ul = focus.querySelector('ul');
     var ol = focus.querySelector('.circle');
     var length = ul.children.length;
     // console.log(ul.children.length);
-    for(var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
         var li = document.createElement('li');
         li.setAttribute('index',i);
         ol.appendChild(li);
         li.addEventListener('click',function() {
-            for(var i=0; i<ol.children.length; i++) {
-                ol.children[i].className="";
+            for(var j=0; j<ol.children.length; j++) {
+                ol.children[j].className="";
             }
             this.className="current";
             //move
             var index=this.getAttribute('index');
             var focusWidth = focus.offsetWidth;
             animate(ul, -index*focusWidth);
+            // change the background img
+            changeBG(i);
         })
     }
     ol.children[0].className = "current";
+    ol.children[0].click();
 })
 
 function animate(obj, target, callback) {
@@ -38,10 +41,29 @@ function animate(obj, target, callback) {
         }
         // 把每次加1 这个步长值改为一个慢慢变小的值  步长公式：(目标值 - 现在的位置) / 10
         obj.style.left = obj.offsetLeft + step + 'px';
-
     }, 15);
 }
 
+function changeBG(idx) {
+    var theBG = document.getElementsByClassName("bgIMG")[0];
+    if (1000 * window.innerHeight < 815 * window.innerWidth) {
+        var theOne = document.getElementsByClassName("imgBox")[0].children[0].children[idx];
+        theBG.style["background-image"] = `url(${theOne.children[0].children[0].src})`;
+    }
+    else {
+        theBG.style["background-image"] = "none";
+    }
+}
+
+var click_I = 0;
+var click_million_seconds = 5000;
+
+setInterval(function () {clickCircle();}, click_million_seconds);
+
+async function clickCircle() {
+    document.getElementsByClassName("circle")[0].children[click_I].click();
+    click_I = (click_I + 1) % document.getElementsByClassName("circle")[0].children.length;
+}
 
 document.getElementById("searchButton").addEventListener("click", searchItem);
 
@@ -72,6 +94,7 @@ function windowResize() {
     else {
         pcDisplay();
     }
+    document.getElementsByClassName("circle")[0].children[click_I].click();
 }
 
 $(window).on('resize', windowResize);
@@ -87,6 +110,7 @@ function pcDisplay() {
     $(".commodity_pic").css({"height": "80px", "width": "80px"});
     $(".dropdown").css({"width": "30%", "margin": "10px 10px 10px 30px"});
     $(".imgBox").css({"width": "55%", "margin-top": "10px", "margin-right": "5%"});
+    $(".imgBox ul").css("transform", "translateY(50px)");
 }
 
 function phDisplay() {
@@ -99,4 +123,5 @@ function phDisplay() {
     $(".commodity_pic").css({"height": "50px", "width": "50px"});
     $(".dropdown").css({"width": "100%", "margin": "0"});
     $(".imgBox").css({"width": "100%", "margin-top": "0", "margin-right": "0"});
+    $(".imgBox ul").css("transform", "translateY(0px)");
 }
