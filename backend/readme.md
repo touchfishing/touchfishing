@@ -465,7 +465,6 @@
 | 名称            | 类型   | 必填 | 说明     |
 | --------------- | ------ | ---- | -------- |
 | pname           | string | 是   | 商品标题 |
-| price           | float  | 是   | 价格     |
 | info            | string | 是   | 描述     |
 | tag             | string | 是   | 分类标签 |
 | cover           | file   | 否   | 商品图   |

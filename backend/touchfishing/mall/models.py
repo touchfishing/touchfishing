@@ -17,10 +17,10 @@ class Shop(models.Model):
 
 class Product(models.Model):
     pid = models.AutoField(verbose_name='商品编号',primary_key=True)
-    pname = models.CharField(verbose_name='商品名',unique=True,max_length=50)
+    pname = models.CharField(verbose_name='商品名',max_length=50)
     shop = models.ForeignKey(Shop,on_delete=models.CASCADE,verbose_name='店铺')
     info = models.TextField(verbose_name='商品信息',default='')
-    volume = models.IntegerField(verbose_name='销量',default='')
+    volume = models.IntegerField(verbose_name='销量',default=0)
     tag = models.CharField(verbose_name='分类',default='',max_length=50)
     cover = models.FileField(verbose_name='封面',upload_to='products/',default='products/default.jpg')
 

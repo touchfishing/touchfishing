@@ -6,6 +6,7 @@ from mall.models import Shop,Product,Order
 import threading
 import random
 import json
+import time
 
 lock = threading.Lock()
 
@@ -28,12 +29,12 @@ def newProduct(request):
     stocks = request.POST.get("stocks")
 
     spec_list = specs.split(',')
-    price_list = list(map(float,prices.split(','))),
-    stock_list = list(map(int,stocks.split(','))),
+    price_list = list(map(float,prices.split(',')))
+    stock_list = list(map(int,stocks.split(',')))
 
     tmpLen = len(spec_list)
     if((tmpLen!=len(price_list)) or (tmpLen!=len(stock_list))):
-        return return403('spec_list, price_list, stock_list长度不一致')
+        return return403('spec_list, price_list, stock_list长度不一致'+str(len(spec_list))+str(len(price_list))+str(len(stock_list)))
 
     shipping_region = request.POST.get("shipping_region")
     if not (pname and prices and info and tag and specs and stocks):
@@ -42,7 +43,7 @@ def newProduct(request):
     product_obj = Product(pname=pname,shop=shop_obj,prices=prices,info=info,tag=tag,specs=specs,stocks=stocks)
     if cover:
         f, e = os.path.splitext(cover.name)
-        imgName=str(product_obj.sid)+e
+        imgName=str(int(time.time()))+str(random.randint(10000,99999))+e
         cover.name = imgName
         product_obj.cover = cover
     product_obj.save()
@@ -164,16 +165,16 @@ def placeOrder(request,pid):
     if not product_obj:
         return return403('无此商品')
     with lock:
-        stock_list = product_obj.stocks.split(",")
+        stock_list = list(map(int,product_obj.stocks.split(',')))
         spec_list = product_obj.specs.split(",")
-        price_list = product_obj.prices.split(",")
-        total_price = price_list[int(spec)] * int(spec)
-        remains_num = int(stock_list[int(spec)])
+        price_list = list(map(float,product_obj.prices.split(',')))
+        total_price = price_list[int(spec)] * int(quantity)
+        remains_num = stock_list[int(spec)]
         if remains_num < int(quantity):
             return return403('商品购买数量超过限制')
         order_obj=Order(user=user_obj,product=product_obj,quantity=int(quantity),spec = spec_list[int(spec)],price = total_price)
         order_obj.save()
-        stock_list[int(spec)] = str(stock_list[int(spec)] - int(quantity))
+        stock_list[int(spec)] = stock_list[int(spec)] - int(quantity)
         product_obj.stocks = ','.join(str(i) for i in stock_list)
         product_obj.volume = product_obj.volume + 1
         product_obj.save()
