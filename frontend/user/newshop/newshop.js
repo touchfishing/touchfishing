@@ -3,9 +3,14 @@
 
 if (getCookie("uid") == "") {
 	alert("请先登录");
-	window.location.href = "../../";
+	window.location.href = "/";
 }
-// if (has store) jump
+$.get("/api/user/shop", function( data ) {
+	if (data.code === 200) {
+		alert("听闻你的店铺昨日经营的很好哦!");
+        window.location.href = "/merchant/";
+	}
+})
 })();
 
 
@@ -17,6 +22,7 @@ if (getCookie("uid") == "") {
     $(".citySelect > label").text("市/区");
     $("#upload_img").change(function(e) {
         for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+            //console.log(e);
             file = e.originalEvent.srcElement.files[i];
             var reader = new FileReader();
             reader.onloadend = function() {
@@ -60,7 +66,8 @@ if (getCookie("uid") == "") {
                 console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
                 if (status == "success") {
                     if (data.code == 200){
-                        console.log("ok");
+                        alert("申请成功");
+                        window.location.href = "/merchant/";
                     }
                 }
             });

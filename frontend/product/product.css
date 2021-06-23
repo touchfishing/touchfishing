@@ -1,6 +1,21 @@
+html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0px;
+    display: contents;
+    width: 100%;
+}
+
 #product_detail_box {
     margin-top: 60px;
     width: 100%;
+}
+.top {
+    min-width: 100% !important;
+    margin: 0px !important;
 }
 
 .top_box2 {

@@ -304,9 +304,8 @@ function buyerRegister() {
 	    	if (status == "success") {
 	    		alert(data.msg);
 	    		if (data.code == 200){
-	    			// page location
-	    			//window.location.href = "index.html";
-	    			alert("跳转页面\n现在先不给你跳哈哈哈");
+	    			alert("注册成功");
+					window.location.href = "/";
 	    		}
 	    	}
 		});

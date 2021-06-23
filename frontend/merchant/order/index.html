@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content= "width=device-width, user-scalable=no">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="../index.css" type="text/css">
+<link rel="stylesheet" href="../store.css" type="text/css">
+<link rel="stylesheet" href="../order.css" type="text/css">
 <body>
     <div id="top_pane" class="top">
         <div class="homepage">
-            <img class = "icon0" src="../../media/fish_emoji.png">
-            <link href="">首页
+            <img class = "icon0" src="/media/fish_emoji.png">
+            <a onClick="window.location.href='/';">首页</a>
         </div>
     
         <div id="user" class="user">
-            <img>
-            <a href="#">店铺信息</a>
-        </div>
-    
-        <div class="myorder" id="order_list">
-            <link href="">查看订单
+            <a href="../">返回店铺首页</a>
         </div>
     
     </div>
@@ -27,7 +25,7 @@
     <div class="store_container">
         <div id="store_logo">
             <a href="#">
-                <div id="shopname">店铺：迪迦奥特曼</div>
+                <div id="shopname">店铺：</div>
             </a>
             <div id="search" class="query">
                 <input type="text" id="select" placeholder="请输入搜索内容..."/>
@@ -53,12 +51,13 @@
                             <th>详细信息</th>
                         </tr>
                     </thead>
+                    <!--here-->
                     <tbody>
                         <tr>
                             <td>#100000</td>
                             <td>2021.01.01</td>
                             <td>未发</td>
-                            <td><button> <a href="logistics.html">查看</a></button></td>
+                            <td><button> <a href="info/">查看</a></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,9 +68,8 @@
     </div>
     
 </body>
-<link rel="stylesheet" href="../index.css" type="text/css">
-<link rel="stylesheet" href="../store.css" type="text/css">
-<link rel="stylesheet" href="../order.css" type="text/css">
+<script src="/JS_library/jquery-3.6.0.min.js"></script>
+<script src="theorder.js"></script>
 <!-- <link rel="stylesheet" href="layui/css/layui.css" type="text/css"> -->
 <!-- <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all"> -->
 </html>

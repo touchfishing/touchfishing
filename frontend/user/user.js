@@ -3,7 +3,7 @@
 
 if (getCookie("uid") == "") {
 	alert("请先登录");
-	window.location.href = "../";
+	window.location.href = "/";
 }
 })();
 
@@ -67,9 +67,10 @@ if (getCookie("uid") == "") {
     		$("#payment_info").css("display","none");
     		$("#run_a_shop").css("display","none");
     		$("#personal_info").css("display","block");
+			$("#the_shop").css("display", "none");
     		$("#left_pane li").eq(1).css({"color": "#1a73e8;", "background-color": "#e8f0fe"});
 
-    		$("#basic_photo :first-child :nth-child(2)").attr("src", "https://tf.mrning.com/api" + the_avatar).css({"height": "70px","vertical-align": "middle"});
+    		$("#basic_photo :first-child :nth-child(2)").attr("src", "/api" + the_avatar).css({"height": "70px","vertical-align": "middle"});
     		$("#basic_uname :first-child :nth-child(2)").text(the_uname);
     		$("#basic_gender :first-child :nth-child(2)").text(the_gender);
     		$("#basic_intro :first-child :nth-child(2)").text(the_intro);
@@ -84,6 +85,7 @@ if (getCookie("uid") == "") {
     		$("#personal_info").css("display","none");
     		$("#run_a_shop").css("display","none");
     		$("#payment_info").css("display","block");
+			$("#the_shop").css("display", "none");
     		$("#left_pane li").eq(2).css({"color": "#1a73e8;", "background-color": "#e8f0fe"});
     	
     		$("#address_").click(openRegion);
@@ -92,6 +94,7 @@ if (getCookie("uid") == "") {
     		$("#user_home").css("display","none");
     		$("#personal_info").css("display","none");
     		$("#payment_info").css("display","none");
+			$("#the_shop").css("display", "block");
     		$("#run_a_shop").css("display","block");
     		$("#left_pane li").eq(3).css({"color": "#1a73e8;", "background-color": "#e8f0fe"});
     	}
@@ -100,9 +103,10 @@ if (getCookie("uid") == "") {
     		$("#payment_info").css("display","none");
     		$("#run_a_shop").css("display","none");
     		$("#user_home").css("display","block");
+			$("#the_shop").css("display", "none");
     		$("#left_pane li").eq(0).css({"color": "#1a73e8;", "background-color": "#e8f0fe"});
 
-    		$("#user_home :first-child :first-child").attr("src", "https://tf.mrning.com/api" + the_avatar);
+    		$("#user_home :first-child :first-child").attr("src", "/api" + the_avatar);
     		$("#welcome_user :first-child").text("你好，" + the_uname);
     		$("#suggestions :first-child").text("这是你来到摸渔的第"+create_till+"天");
     	}
@@ -212,7 +216,17 @@ function pcDisplay() {
 (function() {
     'use strict';
 $("#click_to_run").click(()=>{
-	window.location.href = window.location.href.split('?')[0] + 'newshop/';
+	window.location.href = '/user/newshop/';
 });
+
+
+$.get("/api/user/shop", function( data ) {
+	if (data.code === 200) {
+		// remove
+		$("#run_a_shop").html("")
+		$("#left_pane li:eq(3) span").text("我的店铺");
+		$("#the_shop").css("display", "block");
+	}
+})
 
 })();

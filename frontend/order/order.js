@@ -42,7 +42,7 @@ $(".p__p_sum").text(sum0);
 $(".p__e_sum").text(express);
 $(".p__total").text(+sum0 + +express);
 
-
+var payingResult = false;
 $("#submit_order__").click(function() {
 	// check valid
 
@@ -51,14 +51,23 @@ $("#submit_order__").click(function() {
 	paying_text("支付中，请不要离开");
 	// then send
 	timing(0, makeorder);
-	timing(2000, paying_text, "你不会在等待输入密码吧");
+	//timing(10, function(){ console.log(payingResult);} )
+	timing(200, paying_text, "你不会在等待输入密码吧");
+})
+
+function failureOrder() {
+	timing(3000, paying_text, "经系统检测，下次见面你会变得更加帅气");
+	timing(4000, paying_text, "下单失败");
+	timing(6000, clearNjump, true);
+}
+function successOrder() {
 	timing(4000, paying_text, "经系统检测，你很帅");
 	timing(5000, showOrHideEatbean, "none");
 	timing(5100, showOrHideSuccess, "block");
 	timing(6000, paying_text, "支付成功");
 	timing(8500, showOrHidePaying, "none");
 	timing(8510, clearNjump);
-})
+}
 
 async function makeorder() {
 	$.ajax({
@@ -74,19 +83,39 @@ async function makeorder() {
 		},
 		dataType: 'json'
 	}).done(function(data, status) {
-		console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
+		//console.log("Data: " + data.msg + data.code + "\nStatus: " + status);
 		if (status == "success") {
 			if (data.code == 200){
-				console.log(data);
+				payingResult = data;
+				successOrder();
+				return;
 			}
 		}
+		failureOrder();
 	});
 }
 
-$(window).on("beforeunload", function() { 
-	clearSession();
-    return confirm("Do you really want to close?"); 
-})
+window.onbeforeunload = onbeforeunload_handler;
+
+function onbeforeunload_handler() {  
+	var yesOrNo = confirm("Do you really want to leave?\nAll changes won't be saved!");
+	if (yesOrNo === true)
+		clearSession();
+	return "all clear???";
+}
+
+/*window.addEventListener("beforeunload", function(){
+	var yesOrNo = confirm("Do you really want to leave?\nAll changes won't be saved!");
+	if (yesOrNo === true)
+		clearSession();
+	return confirm("n");
+});*/
+/*$(window).on("beforeunload", function() {
+	var yesOrNo = confirm("Do you really want to leave?\nAll changes won't be saved!");
+	if (yesOrNo === true)
+		clearSession();
+	return 'Are you sure you want to leave?';
+})*/
 
 function clearSession() {
 	for (var i of topasskey) {
@@ -111,11 +140,15 @@ async function showOrHideSuccess(st) {
 	$(".success-animation").css("display", st);
 }
 
-async function clearNjump() {
+async function clearNjump(where) {
 	// clear all session storage
 	clearSession();
 	// jump
-	window.location.href = "../";
+	window.onbeforeunload = function() {
+		return null;
+	};
+	if (where)	window.location.href = "/";
+	else	window.location.href = "/orderlist/";
 }
 
 function timing(t, func, p) {

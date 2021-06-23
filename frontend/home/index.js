@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+function LoadIt() {
     var focus = document.querySelector('.imgBox');
     var ul = focus.querySelector('ul');
     var ol = focus.querySelector('.circle');
@@ -19,11 +19,13 @@ window.addEventListener('load', function() {
             animate(ul, -index*focusWidth);
             // change the background img
             changeBG(i);
+            click_I = i;
         })
     }
     ol.children[0].className = "current";
     ol.children[0].click();
-})
+}
+LoadIt();
 
 function animate(obj, target, callback) {
     // 先清除以前的定时器，只保留当前的一个定时器执行
@@ -75,11 +77,12 @@ document.getElementById("searchInput").addEventListener('keypress', function (e)
 
 function searchItem() {
     var thekeyword = document.getElementById("searchInput").value;
-    var queryParams = new URLSearchParams(window.location.search);
-    queryParams.set("kw", thekeyword);
-    history.pushState(null, null, "/search/?"+queryParams.toString());
+    window.location.href = "/search/?kw="+thekeyword;
+    //var queryParams = new URLSearchParams(window.location.search);
+    //queryParams.set("kw", thekeyword);
+    //history.pushState(null, null, "/search/?"+queryParams.toString());
     //console.log("/search/?"+queryParams.toString());
-	window.open("/search/?"+queryParams.toString(), '_blank');
+	//window.open("/search/?"+queryParams.toString(), '_blank');
 }
 
 
@@ -94,7 +97,8 @@ function windowResize() {
     else {
         pcDisplay();
     }
-    document.getElementsByClassName("circle")[0].children[click_I].click();
+    if (document.getElementsByClassName("circle")[0].children !== null)
+        document.getElementsByClassName("circle")[0].children[click_I].click();
 }
 
 $(window).on('resize', windowResize);
@@ -124,4 +128,47 @@ function phDisplay() {
     $(".dropdown").css({"width": "100%", "margin": "0"});
     $(".imgBox").css({"width": "100%", "margin-top": "0", "margin-right": "0"});
     $(".imgBox ul").css("transform", "translateY(0px)");
+}
+
+addSwipe();
+/* 
+    code from
+    https://code-maven.com/swipe-left-right-vanilla-javascript
+    to detect finger swipe
+*/
+function addSwipe() {
+    var min_horizontal_move = 20;
+    var max_vertical_move = 20;
+    var within_ms = 500;
+ 
+    var start_xPos;
+    var start_yPos;
+    var start_time;
+    function touch_start(event) {
+        start_xPos = event.touches[0].pageX;
+        start_yPos = event.touches[0].pageY;
+        start_time = new Date();
+    }
+ 
+ 
+    function touch_end(event) {
+        var end_xPos = event.changedTouches[0].pageX;
+        var end_yPos = event.changedTouches[0].pageY;
+        var end_time = new Date();
+        let move_x = end_xPos - start_xPos;
+        let move_y = end_yPos - start_yPos;
+        let elapsed_time = end_time - start_time;
+        if (Math.abs(move_x) > min_horizontal_move && Math.abs(move_y) < max_vertical_move && elapsed_time < within_ms) {
+            var tLen = document.getElementsByClassName("circle")[0].children.length;
+            if (move_x < 0) {
+                document.getElementsByClassName("circle")[0].children[(click_I + 1)%tLen].click();
+            } else {
+                document.getElementsByClassName("circle")[0].children[(click_I - 1)%tLen].click();
+            }
+        }
+    }
+ 
+    var content = document.getElementsByClassName("imgBox")[0];
+    content.addEventListener('touchstart', touch_start);
+    content.addEventListener('touchend', touch_end);
 }

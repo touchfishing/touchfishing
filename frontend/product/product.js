@@ -26,6 +26,8 @@
         $(".right_box1").css('width', '50%');
         $("#product_detail_box").css('margin-top', '60px');
         $("#top_pane").css('display', 'block');
+        $(".right_box1").css('height', '400px');
+        $(".bottom_action_box1").css({"position": "absolute", "margin-bottom": "0", "padding": "10px"});
     }
 
     function mobileDisplay() {
@@ -35,6 +37,8 @@
         $(".right_box1").css('width', '100%');
         $("#product_detail_box").css('margin-top', '0');
         $("#top_pane").css('display', 'none');
+        $(".right_box1").css('height', 'auto');
+        $(".bottom_action_box1").css({"position": "relative", "margin-bottom": "15px", "padding": "0"});
     }
 })();
 

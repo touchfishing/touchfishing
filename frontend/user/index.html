@@ -18,7 +18,7 @@
 <div id="top_pane" class="top">
 	<div class="homepage">
 		<img class = "icon0" src="/media/fish_emoji.png">
-		<a onClick="window.location.href='/';">首页
+		<a onClick="window.location.href='/';">首页</a>
 	</div>
 
 	<div id="user" class="user">
@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="myorder" id="order_list">
-		<a onClick="window.location.href='/orderlist/';">查看订单
+		<a onClick="window.location.href='/orderlist/';">查看订单</a>
 	</div>
 
 </div>
@@ -71,7 +71,7 @@
 	</div>
 	
 	<div id="payment_info" class="payment_info">
-		<img src="../media/bank_card.png" style="max-height: 100px;">
+		<img src="/media/bank_card.png" style="max-height: 100px;">
 		<div id="p_all_info" class="basic_info">
 			<div class="sug_textA">收付款
 				<div class="sug_textB">请不要填错哦</div>
@@ -88,12 +88,16 @@
 	</div>
 
 	<div id="run_a_shop" class="run_a_shop">
-		<img src="../media/run_shop.png" style="max-height: 100px;">
+		<img src="/media/run_shop.png" style="max-height: 100px;">
 		<div class="runShopText">
 			零门槛开店！<br>
 			…………(描述词balabala......来人编一下)
 		</div>
 		<button id="click_to_run">点我申请</button>
+	</div>
+
+	<div id="the_shop" class="run_a_shop" style="display: none;">
+		<button id="click_to_lookup" onclick="window.location.href='/merchant';">点击进入</button>
 	</div>
 </div>
 
@@ -110,11 +114,11 @@
 </div>
 
 </body>
-<script type="text/javascript" src="../cookie/cookie.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/cookie/cookie.js"></script>
+<script type="text/javascript" src="/JS_library/jquery-3.6.0.min.js"></script>
 
-<script type="text/javascript" src="../JS_library/getJSON.js"></script>
-<script type="text/javascript" src="../region/regionSelect.js"></script>
+<script type="text/javascript" src="/JS_library/getJSON.js"></script>
+<script type="text/javascript" src="/region/regionSelect.js"></script>
 <script type="text/javascript" src="user.js"></script>
 <script type="text/javascript" src="change.js"></script>
 </html>

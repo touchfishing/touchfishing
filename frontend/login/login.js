@@ -225,7 +225,7 @@ login_btn.addEventListener("click", click_login);
 			user.children[0].style["max-width"] = "26px";
 			user.children[0].style["max-height"] = "26px";
 			user.children[0].style["vertical-align"] = "middle";
-			user.children[0].src = "https://tf.mrning.com" + getCookie('avatar');
+			user.children[0].src = "https://tf.mrning.com/api" + getCookie('avatar');
 
 			
 		}
@@ -270,12 +270,10 @@ login_btn.addEventListener("click", click_login);
      			//console.log(response);
      			if (response.code == 403 || response.code == 500)
      				alert(response.msg);
-     			else {
-     				console.log(response);
-     				var xremove = ["uid","uname","email","phone","gender","intro","avatar","createTime"];
-     				removeCookies(xremove);
-	    			window.location.href = "/";
-     			}
+				console.log(response);
+     			var xremove = ["uid","uname","email","phone","gender","intro","avatar","createTime"];
+     			removeCookies(xremove);
+	    		window.location.href = "/";
    			}
 		};
 		//var senddata = "user="+login_info.value+"&password="+login_psw.value+"&captcha=''&no_captcha="+true;
