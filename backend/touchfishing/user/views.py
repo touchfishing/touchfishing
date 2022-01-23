@@ -9,6 +9,7 @@ from mall.models import Shop,Product,Order
 import random
 import base64
 
+from touchfishing.modules import sendMail,sendSMS
 font_size=35
 font = ImageFont.truetype('touchfishing/resources/kumo.ttf', 35)
 
@@ -146,6 +147,31 @@ def register(request,use_captcha=1):
         user_obj.avatar.name='users/'+avatar_name
     user_obj.save()
     return return200('注册成功')
+
+def checkUname(request):
+    req_value = request.POST.get("value")
+    if not req_value:
+        return403("缺少value")
+    if User.objects.filter(uname=req_value).first():
+        return return403('用户名已存在')
+    return return200("用户名未使用")
+
+def checkPhone(request):
+    req_value = request.POST.get("value")
+    if not req_value:
+        return403("缺少value")
+    if User.objects.filter(phone=req_value).first():
+        return return403('手机号已存在')
+    return return200("手机号未使用")
+
+def checkEmail(request):
+    req_value = request.POST.get("value")
+    if not req_value:
+        return403("缺少value")
+    if User.objects.filter(email=req_value).first():
+        return return403('邮箱已存在')
+    return return200("邮箱未使用")
+
 
 def modPwd(request):
     if request.method == "GET":
@@ -412,32 +438,6 @@ def returnList(list):
     }
     return HttpResponse(json.dumps(return_data,ensure_ascii=False), content_type='application/json')
 
-import smtplib
-from email import encoders
-from email.header import Header
-from email.mime.text import MIMEText
-from email.utils import parseaddr, formataddr
-
-def sendMail(target_addr,title,content):
-    smtp_server = 'smtp.exmail.qq.com'
-    from_addr = 'send@mrning.com'
-    password = 'zsMM2!'
-    msg = MIMEText(content, 'html', 'utf-8')
-    msg['From']=formataddr(["TravelLog",from_addr])
-    msg['To']=formataddr(["User",target_addr]) 
-    msg['Subject'] = Header(title, 'utf-8').encode()
-    #server.starttls()
-    server=smtplib.SMTP_SSL(smtp_server, 465)
-    try:
-        server.login(from_addr, password)
-        server.sendmail(from_addr, [target_addr], msg.as_string())
-        server.quit()
-    except Exception as e:
-        return repr(e)
-    return 'OK'
-
-def sendSMS(phone,content):
-    return False
 
 
 def myShop(request):

@@ -130,6 +130,29 @@
 
 
 
+#### 注册前查询
+
+接口地址：/api/user/validation/username
+
+接口地址：/api/user/validation/email
+
+接口地址：/api/user/validation/phone
+
+请求参数：
+
+| 名称  | 类型   | 必填 | 说明 |
+| ----- | ------ | ---- | ---- |
+| value | string | 是   | 值   |
+
+返回参数：
+
+| HTTP状态码 | 返回json中，msg的值 | 说明 |
+| ---------- | ------------------- | ---- |
+| 200        | *可用               |      |
+| 403        | *已存在             |      |
+
+
+
 #### 修改密码
 
 接口地址：/api/user/password
